@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt5y7mgj7mb3r"]
+[gd_scene load_steps=10 format=3 uid="uid://bt5y7mgj7mb3r"]
 
 [ext_resource type="Texture2D" uid="uid://dfksewsypmqay" path="res://sprites/nodeBG.png" id="1_4ccff"]
 [ext_resource type="Script" path="res://Components/NodeBehaviour.gd" id="1_31r62"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://t31iupinmlly" path="res://sprites/upgrade.png" id="3_xvvs4"]
 [ext_resource type="Texture2D" uid="uid://c833klf3p3x47" path="res://sprites/bit.png" id="4_cbxtm"]
 [ext_resource type="FontFile" uid="uid://dq2frec26klf7" path="res://fonts/Inter.ttf" id="4_vf6gc"]
+[ext_resource type="Texture2D" uid="uid://bfsblr6xm27in" path="res://sprites/OutKnob.svg" id="7_umvin"]
 
 [sub_resource type="FontVariation" id="FontVariation_sqk01"]
 base_font = ExtResource("4_vf6gc")
@@ -170,3 +171,20 @@ stretch_margin_right = 5
 stretch_margin_bottom = 5
 texture_progress = ExtResource("3_uv76o")
 tint_progress = Color(0.239216, 0.329412, 0.262745, 1)
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 37.0
+offset_bottom = 36.0
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+layout_mode = 1
+offset_left = -14.0
+offset_top = 88.0
+offset_right = 58.0
+offset_bottom = 160.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_umvin")
+stretch_mode = 3
