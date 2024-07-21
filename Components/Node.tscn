@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy7lg6glergvy"]
+
+[ext_resource type="PackedScene" uid="uid://bt5y7mgj7mb3r" path="res://Components/NodeUI.tscn" id="1_4uqji"]
+[ext_resource type="Script" path="res://Components/NodeDisplacement.gd" id="1_g1t8c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ohq2l"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhfto"]
+radius = 203.0
+height = 860.0
+
+[node name="Node" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_ohq2l")
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+linear_damp = 15.396
+script = ExtResource("1_g1t8c")
+attraction_factor = 10.0
+
+[node name="Control" parent="." instance=ExtResource("1_4uqji")]
+offset_top = 0.0
+offset_right = 502.0
+offset_bottom = 200.0
+grow_vertical = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(250, 100)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mhfto")
