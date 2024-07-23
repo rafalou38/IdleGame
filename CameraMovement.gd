@@ -60,12 +60,8 @@ func _input(event):
 func _physics_process(delta):
 	if is_locked(): return
 	if velocity != Vector2(0,0) and points.size() == 0:
-		#velocity *= dampening * delta * Engine.physics_ticks_per_second
-		#offset -= velocity * delta * delta * Engine.physics_ticks_per_second
-		
 		velocity *= pow(dampening, delta * Engine.physics_ticks_per_second)
 		offset -= velocity * delta
-		#print(velocity.length())
 		if velocity.length() < 100: # Threshold to stop
 			velocity = Vector2(0, 0)
 

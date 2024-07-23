@@ -15,8 +15,6 @@ var target_position := Vector2(0, 0)
 var offset := Vector2(0, 0)
 var initial_drag_position := Vector2(0, 0)
 
-# TODO: Take initial offset into account
-
 func _ready():
 	handler = find_parent("Node Handler")
 	assert(handler != null, "Node should be in a node Handler")
@@ -63,7 +61,6 @@ func cancel_drag():
 	dragging = false
 	CameraMovement.control_locks.erase("NodeDisplacement/" + str(drag_index))
 	drag_index = -1
-	
 
 func _integrate_forces(delta):
 	if (dragging):
@@ -77,13 +74,15 @@ func _integrate_forces(delta):
 			set_axis_velocity(global_position * - attraction_factor * delta.step)
 
 func _process(_delta):
-	if (!dragging and drag_initiated and Time.get_ticks_msec() - timer_start >= long_press_delay_ms):
+	if (!dragging and drag_initiated and Time.get_ticks_msec() - timer_start >= long_press_delay_ms and !CameraMovement.control_locks.has("knob-manager/" + str(drag_index))):
 		# Start the drag
 		CameraMovement.control_locks.append("NodeDisplacement/" + str(drag_index))
 		dragging = true
 	
 	if (dragging): $Control.scale = Vector2(1.1, 1.1)
 	else: $Control.scale = Vector2(1, 1)
+
+	get_parent().refreshLines()
 
 func is_point_inside_capsule(point: Vector2, capsule_shape: CapsuleShape2D, capsule_position: Vector2) -> bool:
 	var half_height = capsule_shape.height / 4.0
