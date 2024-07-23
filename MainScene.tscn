@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://sprites/pattern.png" id="1_nrxcl"]
 [ext_resource type="Script" path="res://CameraMovement.gd" id="2_k3dhe"]
 [ext_resource type="Script" path="res://NodesHandler.gd" id="3_epkt4"]
-[ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://Components/Node.tscn" id="3_jmcci"]
+[ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://Components/Node/Node.tscn" id="3_jmcci"]
 
 [node name="root" type="Node2D"]
 
@@ -36,7 +36,7 @@ script = ExtResource("3_epkt4")
 cam = NodePath("../Camera2D")
 
 [node name="Node" parent="Node Handler" instance=ExtResource("3_jmcci")]
-position = Vector2(-253, 306)
+position = Vector2(113, 270)
 
 [node name="Node2" parent="Node Handler" instance=ExtResource("3_jmcci")]
 position = Vector2(-73, -348)

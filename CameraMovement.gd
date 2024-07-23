@@ -3,7 +3,7 @@ class_name CameraMovement
 extends Camera2D
 
 
-@export var control_enabled := true
+static var control_locks := []
 
 @export var dampening := 0.8
 @export var MAX_CAM_SPEED := 1000
@@ -20,6 +20,12 @@ var dirty = false
 func reset_points_origin():
 	for id in points:
 		points[id][0] = points[id][1]
+
+func is_locked():
+	if control_locks.size() > 0:
+		return true
+	else:
+		return false
 
 func _input(event):
 	if event is InputEventScreenTouch:
@@ -52,7 +58,7 @@ func _input(event):
 		handle_drag(event)
 
 func _physics_process(delta):
-	if !control_enabled: return
+	if is_locked(): return
 	if velocity != Vector2(0,0) and points.size() == 0:
 		#velocity *= dampening * delta * Engine.physics_ticks_per_second
 		#offset -= velocity * delta * delta * Engine.physics_ticks_per_second
@@ -65,7 +71,7 @@ func _physics_process(delta):
 
 var prev_event_time := 0
 func handle_drag(event: InputEventScreenDrag):
-	if !control_enabled: return
+	if is_locked(): return
 	points[event.index][1] = event.position
 	if(points.size() == 1):
 		var displacement: Vector2 = (event.position - points[event.index][0]) / zoom.x

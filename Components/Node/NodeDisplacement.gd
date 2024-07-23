@@ -1,3 +1,4 @@
+class_name NodeDisplacement
 extends RigidBody2D
 
 @export var long_press_delay_ms = 300
@@ -7,7 +8,7 @@ var handler: NodeHandler
 
 var dragging := false
 var drag_initiated := false
-var drag_index := 0
+var drag_index := -1
 var timer_start := 0
 
 var target_position := Vector2(0, 0)
@@ -28,15 +29,13 @@ func _input(event):
 			cancel_drag()
 	if event is InputEventScreenDrag and event.index == drag_index:
 		if (dragging):
-			var transformer = get_viewport().get_canvas_transform().affine_inverse()
-			var touch_position = (event.position / handler.cam.zoom.x + transformer.origin)
+			var touch_position = Util.screen_to_world(get_viewport(), event.position)
 			target_position = touch_position - $Control.size / 2 + offset
 		elif (event.position.distance_to(initial_drag_position) > 10):
 			cancel_drag()
 
 func initiate_drag(event: InputEventScreenTouch):
-	var transformer = get_viewport().get_canvas_transform().affine_inverse()
-	var touch_position = (event.position / handler.cam.zoom.x + transformer.origin)
+	var touch_position = Util.screen_to_world(get_viewport(), event.position)
 	
 	if !is_point_inside_capsule(
 			to_local(touch_position),
@@ -62,9 +61,9 @@ func cancel_drag():
 	drag_initiated = false
 			
 	dragging = false
+	CameraMovement.control_locks.erase("NodeDisplacement/" + str(drag_index))
 	drag_index = -1
 	
-	handler.cam.control_enabled = true
 
 func _integrate_forces(delta):
 	if (dragging):
@@ -80,15 +79,13 @@ func _integrate_forces(delta):
 func _process(_delta):
 	if (!dragging and drag_initiated and Time.get_ticks_msec() - timer_start >= long_press_delay_ms):
 		# Start the drag
-		
-		handler.cam.control_enabled = false
+		CameraMovement.control_locks.append("NodeDisplacement/" + str(drag_index))
 		dragging = true
 	
 	if (dragging): $Control.scale = Vector2(1.1, 1.1)
 	else: $Control.scale = Vector2(1, 1)
 
 func is_point_inside_capsule(point: Vector2, capsule_shape: CapsuleShape2D, capsule_position: Vector2) -> bool:
-	#print(point, " ", capsule_position)
 	var half_height = capsule_shape.height / 4.0
 	var radius = capsule_shape.radius * 0.9
 

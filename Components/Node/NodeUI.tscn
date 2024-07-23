@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bt5y7mgj7mb3r"]
+[gd_scene load_steps=12 format=3 uid="uid://bt5y7mgj7mb3r"]
 
 [ext_resource type="Texture2D" uid="uid://dfksewsypmqay" path="res://sprites/nodeBG.png" id="1_4ccff"]
-[ext_resource type="Script" path="res://Components/NodeBehaviour.gd" id="1_31r62"]
+[ext_resource type="Script" path="res://Components/Node/NodeBehaviour.gd" id="1_31r62"]
 [ext_resource type="Texture2D" uid="uid://dqj3xsv85rsfc" path="res://sprites/square.png" id="3_uv76o"]
 [ext_resource type="Texture2D" uid="uid://t31iupinmlly" path="res://sprites/upgrade.png" id="3_xvvs4"]
 [ext_resource type="Texture2D" uid="uid://c833klf3p3x47" path="res://sprites/bit.png" id="4_cbxtm"]
 [ext_resource type="FontFile" uid="uid://dq2frec26klf7" path="res://fonts/Inter.ttf" id="4_vf6gc"]
+[ext_resource type="PackedScene" uid="uid://84huf2fqgxrx" path="res://Components/Node/Knob/in_knob.tscn" id="7_4p78q"]
 [ext_resource type="Texture2D" uid="uid://bfsblr6xm27in" path="res://sprites/OutKnob.svg" id="7_umvin"]
+[ext_resource type="PackedScene" uid="uid://0rfk8ulnlean" path="res://Components/Node/Knob/out_knob.tscn" id="8_61xi7"]
 
 [sub_resource type="FontVariation" id="FontVariation_sqk01"]
 base_font = ExtResource("4_vf6gc")
@@ -172,19 +174,62 @@ stretch_margin_bottom = 5
 texture_progress = ExtResource("3_uv76o")
 tint_progress = Color(0.239216, 0.329412, 0.262745, 1)
 
-[node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_left = -3.0
-offset_top = -4.0
-offset_right = 37.0
-offset_bottom = 36.0
-
-[node name="TextureButton" type="TextureButton" parent="Control"]
+[node name="Knobs" type="Control" parent="."]
 layout_mode = 1
-offset_left = -14.0
-offset_top = 88.0
-offset_right = 58.0
-offset_bottom = 160.0
-scale = Vector2(0.5, 0.5)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="in-knob" parent="Knobs" instance=ExtResource("7_4p78q")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="out-knob" parent="Knobs" instance=ExtResource("8_61xi7")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="knob-t" type="AspectRatioContainer" parent="Knobs"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+scale = Vector2(1.25, 1.25)
+pivot_offset = Vector2(16, 16)
+
+[node name="TextureButton" type="TextureButton" parent="Knobs/knob-t"]
+layout_mode = 2
 texture_normal = ExtResource("7_umvin")
-stretch_mode = 3
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="knob-b" type="AspectRatioContainer" parent="Knobs"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.25, 1.25)
+pivot_offset = Vector2(16, 16)
+
+[node name="TextureButton" type="TextureButton" parent="Knobs/knob-b"]
+layout_mode = 2
+texture_normal = ExtResource("7_umvin")
+ignore_texture_size = true
+stretch_mode = 0
