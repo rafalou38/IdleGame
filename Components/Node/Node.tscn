@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dq2frec26klf7" path="res://fonts/Inter.ttf" id="5_jfici"]
 [ext_resource type="Texture2D" uid="uid://c833klf3p3x47" path="res://sprites/bit.png" id="6_s1xn8"]
 [ext_resource type="Texture2D" uid="uid://dqj3xsv85rsfc" path="res://sprites/square.png" id="7_3fpcc"]
-[ext_resource type="Script" path="res://Components/Node/KnobsManager.gd" id="8_o2y5h"]
+[ext_resource type="Script" path="res://Components/Node/Knob/KnobsManager.gd" id="8_o2y5h"]
 [ext_resource type="PackedScene" uid="uid://0rfk8ulnlean" path="res://Components/Node/Knob/out_knob.tscn" id="9_q1uxu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ohq2l"]
