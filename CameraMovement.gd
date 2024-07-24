@@ -28,6 +28,12 @@ func is_locked():
 		return false
 
 func _input(event):
+	if event is InputEventMouseButton:
+		# Scroll
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom *= Vector2(1.05, 1.05)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom /= Vector2(1.05, 1.05)
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			# Started a press

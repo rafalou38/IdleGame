@@ -3,21 +3,40 @@ class_name OutKnob
 extends AspectRatioContainer
 
 
+# == GLOBAL STATE ==
+static var dragging_out : GameNode = null
+static var out_knobs : Array[OutKnob] = []
+
+# == CONNECT PHASE ==
 var touch_pos := Vector2.ZERO
 var original_pos := Vector2.ZERO
 var connection_initiated := false
 var touch_index := -1
 var retract := false
+
+# == ACTUAL STATE ==
 var connected := false
 
+
+# == NODE REFERENCES ==
 @onready var line : Line2D = $Line
 @onready var hitbox : CollisionShape2D = $Hitbox
+@onready var overlapping_node = get_node("../" + name.replace("out-knob", "in-knob")) as InKnob
 
-static var dragging_out : GameNode = null
+
+func _ready():
+	out_knobs.append(self)
+
+func _exit_tree():
+	out_knobs.erase(self)
 
 func initiateConnection(origin_pos_new: Vector2):
-	# This must be ran after touch_index received
-	owner.dispose_connection(self, null)
+	# Check if overlapping node is connected
+	if overlapping_node.connected:
+		return
+
+	if connected:
+		owner.dispose_connection(self, null)
 
 	connected = false
 	original_pos = origin_pos_new
@@ -35,6 +54,7 @@ func finishConnection():
 		CameraMovement.control_locks.erase("knob-manager/" + str(touch_index))
 	connection_initiated = false
 	dragging_out = null
+	touch_pos = Vector2.ZERO
 
 func isTouchUsed(index: int):
 	return CameraMovement.control_locks.has("NodeDisplacement/" + str(index))
@@ -58,14 +78,23 @@ func _input(event):
 			return
 
 		touch_pos = world_pos
-		line.points[0] =  line.to_local(original_pos)
+
+func _process(delta):
+
+	modulate.r = 1.0
+	if connected: 
+		if OS.is_debug_build():
+			modulate.r = 0.5
+		return
+
+	if connection_initiated and touch_pos != Vector2.ZERO:
+		line.points[0] =  line.to_local(hitbox.global_position)
 		line.points[1] =  line.to_local(touch_pos)
+
 		if InKnob.hoveringIn:
 			line.points[1] = line.to_local(InKnob.hoveringIn.global_position) + InKnob.hoveringIn.pivot_offset
 		
-
-func _process(delta):
-	if dragging_out and !connection_initiated and !connected:
+	if dragging_out and !connection_initiated and !connected or overlapping_node.connected:
 		visible = false
 	else:
 		visible = true
