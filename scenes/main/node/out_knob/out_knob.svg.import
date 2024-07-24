@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfsblr6xm27in"
-path="res://.godot/imported/OutKnob.svg-03bdb82adc3a267846376b4a52075150.ctex"
+path="res://.godot/imported/out_knob.svg-751caa4fc4a7bfc117ba9f6ee0705374.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/OutKnob.svg"
-dest_files=["res://.godot/imported/OutKnob.svg-03bdb82adc3a267846376b4a52075150.ctex"]
+source_file="res://scenes/main/node/out_knob/out_knob.svg"
+dest_files=["res://.godot/imported/out_knob.svg-751caa4fc4a7bfc117ba9f6ee0705374.ctex"]
 
 [params]
 

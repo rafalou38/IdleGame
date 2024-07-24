@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0rfk8ulnlean"]
 
-[ext_resource type="Script" path="res://Components/Node/Knob/OutKnob.gd" id="1_5ubeq"]
-[ext_resource type="Texture2D" uid="uid://bfsblr6xm27in" path="res://sprites/OutKnob.svg" id="2_8t1x3"]
+[ext_resource type="Script" path="res://scenes/main/node/out_knob/out_knob.gd" id="1_vo188"]
+[ext_resource type="Texture2D" uid="uid://bfsblr6xm27in" path="res://scenes/main/node/out_knob/out_knob.svg" id="2_hveit"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tvn0q"]
 radius = 50.0
@@ -10,12 +10,12 @@ radius = 50.0
 offset_right = 32.0
 offset_bottom = 32.0
 pivot_offset = Vector2(16, 16)
-script = ExtResource("1_5ubeq")
+script = ExtResource("1_vo188")
 
 [node name="TextureButton" type="TextureRect" parent="."]
 z_index = 2
 layout_mode = 2
-texture = ExtResource("2_8t1x3")
+texture = ExtResource("2_hveit")
 expand_mode = 1
 
 [node name="Line" type="Line2D" parent="."]

@@ -1,0 +1,151 @@
+[gd_scene load_steps=8 format=3 uid="uid://dy7lg6glergvy"]
+
+[ext_resource type="Script" path="res://scenes/main/node/node_displacement.gd" id="1_g1t8c"]
+[ext_resource type="Script" path="res://scenes/main/node/node.gd" id="1_yiria"]
+[ext_resource type="PackedScene" uid="uid://dfsb3qlietv5l" path="res://scenes/main/node/node_ui.tscn" id="3_vwrt4"]
+[ext_resource type="PackedScene" uid="uid://0rfk8ulnlean" path="res://scenes/main/node/out_knob/out_knob.tscn" id="8_jf7ek"]
+[ext_resource type="PackedScene" uid="uid://84huf2fqgxrx" path="res://scenes/main/node/in_knob/in_knob.tscn" id="9_h45e7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ohq2l"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhfto"]
+radius = 200.0
+height = 700.0
+
+[node name="BaseNode" type="Node2D"]
+script = ExtResource("1_yiria")
+
+[node name="rb" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ohq2l")
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+linear_damp = 2.0
+script = ExtResource("1_g1t8c")
+attraction_factor = 10.0
+
+[node name="Control" type="Control" parent="rb"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 502.0
+offset_bottom = 200.0
+grow_horizontal = 2
+pivot_offset = Vector2(250, 100)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="node_ui" parent="rb/Control" instance=ExtResource("3_vwrt4")]
+layout_mode = 1
+
+[node name="Knobs" type="Control" parent="rb/Control"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="out-knob-t" parent="rb/Control/Knobs" instance=ExtResource("8_jf7ek")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="in-knob-t" parent="rb/Control/Knobs" instance=ExtResource("9_h45e7")]
+layout_mode = 0
+offset_left = 235.0
+offset_top = -16.0
+offset_right = 267.0
+offset_bottom = 16.0
+
+[node name="out-knob-b" parent="rb/Control/Knobs" instance=ExtResource("8_jf7ek")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="in-knob-b" parent="rb/Control/Knobs" instance=ExtResource("9_h45e7")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="out-knob-r" parent="rb/Control/Knobs" instance=ExtResource("8_jf7ek")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="in-knob-r" parent="rb/Control/Knobs" instance=ExtResource("9_h45e7")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="out-knob-l" parent="rb/Control/Knobs" instance=ExtResource("8_jf7ek")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_vertical = 2
+
+[node name="in-knob-l" parent="rb/Control/Knobs" instance=ExtResource("9_h45e7")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rb"]
+position = Vector2(250, 100)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mhfto")
