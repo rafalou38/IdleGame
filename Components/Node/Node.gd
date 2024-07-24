@@ -22,8 +22,8 @@ func _refresh_line(con: Connection):
 	con.line.points[0] = con.line.to_local(con.outputKnob.global_position + con.outputKnob.pivot_offset)
 	con.line.points[1] = con.line.to_local(con.inputKnob.global_position + con.inputKnob.pivot_offset)
 	
-	con.outputNode.body.apply_force((con.line.points[1] - con.line.points[0]) * 2, con.outputKnob.position)
-	con.inputNode.body.apply_force((con.line.points[0] - con.line.points[1]) * 2, con.inputKnob.position)
+	con.outputNode.body.apply_force((con.line.points[1] - con.line.points[0]) * 2 * Engine.physics_ticks_per_second / 60, con.outputKnob.position)
+	con.inputNode.body.apply_force((con.line.points[0] - con.line.points[1]) * 2 * Engine.physics_ticks_per_second / 60, con.inputKnob.position)
 func refreshLines():
 	for con in outbound_connections:
 		_refresh_line(con)

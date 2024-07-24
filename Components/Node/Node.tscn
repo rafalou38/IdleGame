@@ -27,7 +27,7 @@ font_size = 200
 font_color = Color(0.85098, 0.85098, 0.85098, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhfto"]
-radius = 272.57
+radius = 200.0
 height = 700.0
 
 [node name="BaseNode" type="Node2D"]
