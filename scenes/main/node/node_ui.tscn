@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dfksewsypmqay" path="res://scenes/main/node/sprites/node_background.png" id="1_abrnd"]
 [ext_resource type="Texture2D" uid="uid://t31iupinmlly" path="res://scenes/main/node/sprites/upgrade.png" id="2_wi2sa"]
 [ext_resource type="FontFile" uid="uid://dq2frec26klf7" path="res://fonts/Inter.ttf" id="3_q4pun"]
-[ext_resource type="Texture2D" uid="uid://c833klf3p3x47" path="res://sprites/bit.png" id="4_i41kf"]
 [ext_resource type="Texture2D" uid="uid://dqj3xsv85rsfc" path="res://scenes/main/node/sprites/square.png" id="5_rs41o"]
 
 [sub_resource type="FontVariation" id="FontVariation_sqk01"]
@@ -18,6 +17,9 @@ line_spacing = 0.0
 font = SubResource("FontVariation_sqk01")
 font_size = 200
 font_color = Color(0.85098, 0.85098, 0.85098, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p2k3k"]
+load_path = "res://.godot/imported/bit.png-5e72185026a9ec762109a705a4da8c53.ctex"
 
 [node name="node_ui" type="NinePatchRect"]
 self_modulate = Color(0.290196, 0.396078, 0.317647, 1)
@@ -139,7 +141,7 @@ ratio = 0.75
 [node name="TextureRect" type="TextureRect" parent="Wrapper/Container/Button/Control2/NinePatchRect/VBoxContainer/HBoxContainer/AspectRatioContainer"]
 self_modulate = Color(0.85098, 0.85098, 0.85098, 1)
 layout_mode = 2
-texture = ExtResource("4_i41kf")
+texture = SubResource("CompressedTexture2D_p2k3k")
 expand_mode = 1
 
 [node name="ProgressBar" type="TextureProgressBar" parent="Wrapper"]

@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=11 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
 [ext_resource type="Script" path="res://scenes/main/nodes_handler.gd" id="3_de16d"]
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/node.tscn" id="4_nbpf4"]
+[ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="5_3f3gl"]
+[ext_resource type="PackedScene" uid="uid://degu5ftaio8gf" path="res://views/shop/shop.tscn" id="5_wbxbt"]
+[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_tjkwy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d5hs"]
+content_margin_left = 25.0
+content_margin_top = 20.0
+content_margin_right = 25.0
+content_margin_bottom = 20.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="Theme" id="Theme_fr0sw"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_2d5hs")
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2las"]
+font = ExtResource("6_tjkwy")
+font_size = 42
 
 [node name="root" type="Node2D"]
 
@@ -43,3 +60,37 @@ position = Vector2(-73, -348)
 
 [node name="Node3" parent="Node Handler" instance=ExtResource("4_nbpf4")]
 position = Vector2(-360, -712)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 1080.0
+offset_bottom = 1920.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_fr0sw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+ratio = 0.6667
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer/AspectRatioContainer"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+texture = ExtResource("5_3f3gl")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "556.76M"
+label_settings = SubResource("LabelSettings_d2las")
+
+[node name="Shop" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_wbxbt")]
+layout_mode = 2
+size_flags_vertical = 3
