@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpe2p1qu8ir8n"]
+[gd_scene load_steps=17 format=3 uid="uid://cpe2p1qu8ir8n"]
 
 [ext_resource type="Script" path="res://views/shop/shop_item.gd" id="1_6cyv7"]
 [ext_resource type="Texture2D" uid="uid://tlua3vycrbi" path="res://views/shop/icon_background.svg" id="1_q84ax"]
 [ext_resource type="Texture2D" uid="uid://b14tppiydctbk" path="res://views/shop/icons/mine.svg" id="2_0g43x"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="3_lmo0s"]
 [ext_resource type="Texture2D" uid="uid://ccvgly11d6cbg" path="res://views/shop/icons/box.svg" id="4_2i1um"]
-[ext_resource type="Texture2D" uid="uid://dx08rekka53vx" path="res://views/shop/button_background.svg" id="5_o6x10"]
+[ext_resource type="StyleBox" uid="uid://bogt6pvwmfset" path="res://views/shop/ButtonStyleBox.tres" id="6_28xom"]
 [ext_resource type="Texture2D" uid="uid://dkwqmhuiwt6xu" path="res://sprites/bit_32.svg" id="6_ue3vd"]
+[ext_resource type="Script" path="res://views/shop/button/Button.gd" id="10_jyr25"]
+[ext_resource type="Texture2D" uid="uid://b2srwnog01i0j" path="res://views/shop/button/ripple.svg" id="11_orlbk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fady3"]
 font = ExtResource("3_lmo0s")
@@ -21,19 +23,76 @@ font_color = Color(1, 1, 1, 0.501961)
 font = ExtResource("3_lmo0s")
 font_size = 24
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yonfi"]
-texture = ExtResource("5_o6x10")
-texture_margin_left = 32.0
-texture_margin_top = 16.0
-texture_margin_right = 32.0
-texture_margin_bottom = 16.0
-
 [sub_resource type="Theme" id="Theme_fbxdc"]
 default_font = ExtResource("3_lmo0s")
 default_font_size = 32
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 18
-Button/styles/normal = SubResource("StyleBoxTexture_yonfi")
+Button/styles/disabled = ExtResource("6_28xom")
+Button/styles/focus = ExtResource("6_28xom")
+Button/styles/hover = ExtResource("6_28xom")
+Button/styles/normal = ExtResource("6_28xom")
+Button/styles/pressed = ExtResource("6_28xom")
+
+[sub_resource type="Animation" id="Animation_p4ytk"]
+resource_name = "Ripple"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/TextureRect:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oloeo"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5nfqu"]
+_data = {
+"RESET": SubResource("Animation_oloeo"),
+"Ripple": SubResource("Animation_p4ytk")
+}
 
 [node name="ShopItem" type="HBoxContainer"]
 theme_override_constants/separation = 35
@@ -88,9 +147,37 @@ custom_minimum_size = Vector2(142, 142)
 layout_mode = 2
 
 [node name="Button" type="Button" parent="CenterContainer2"]
+clip_children = 2
 z_index = 1
 custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
+focus_mode = 0
 theme = SubResource("Theme_fbxdc")
+action_mode = 0
 text = "100k"
 icon = ExtResource("6_ue3vd")
+script = ExtResource("10_jyr25")
+
+[node name="Control" type="Control" parent="CenterContainer2/Button"]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer2/Button/Control"]
+self_modulate = Color(1, 0, 1, 1)
+layout_mode = 0
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(160, 160)
+mouse_filter = 2
+texture = ExtResource("11_orlbk")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer2/Button"]
+libraries = {
+"": SubResource("AnimationLibrary_5nfqu")
+}
+speed_scale = 3.0
