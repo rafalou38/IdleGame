@@ -62,8 +62,8 @@ func isTouchUsed(index: int):
 func _input(event):
 	if !enabled: return
 	# if connected: return
-	var world_pos = Util.screen_to_world(get_viewport(), event.position)
 	if event is InputEventScreenTouch:
+		var world_pos = Util.screen_to_world(get_viewport(), event.position)
 		if event.pressed and !connection_initiated and !isTouchUsed(event.index):
 			if(hitbox.global_position.distance_to(world_pos) < hitbox.shape.radius):
 				touch_index = event.index
@@ -74,6 +74,8 @@ func _input(event):
 
 
 	if event is InputEventScreenDrag and connection_initiated and event.index == touch_index:
+		var world_pos = Util.screen_to_world(get_viewport(), event.position)
+		
 		if isTouchUsed(event.index):
 			finishConnection()
 			return
