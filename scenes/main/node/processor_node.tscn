@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://chknxyg3giltx"]
+
+[ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_hx82r"]
+
+[node name="ProcessorNode" type="Node2D"]
+
+[node name="BaseNode" parent="." instance=ExtResource("1_hx82r")]
+type = 2
+input_knob_count = 1
+output_knob_count = 1
+
+[node name="node_ui" parent="BaseNode/rb/Control" index="0"]
+self_modulate = Color(0.3026, 0.34, 0.289, 1)
+hue = 104.0
+
+[editable path="BaseNode"]

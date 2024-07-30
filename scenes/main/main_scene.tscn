@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=17 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://views/shop/icons/sell.svg" id="7_ujugr"]
 [ext_resource type="PackedScene" uid="uid://dwfhw7lpcjegr" path="res://scenes/main/node/mine_node.tscn" id="10_2a6vf"]
 [ext_resource type="PackedScene" uid="uid://blihsju516shy" path="res://scenes/main/node/shop_node.tscn" id="11_7ltny"]
+[ext_resource type="PackedScene" uid="uid://chknxyg3giltx" path="res://scenes/main/node/processor_node.tscn" id="12_metlv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5lvk"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -156,5 +157,9 @@ position = Vector2(-723, 1302)
 
 [node name="ShopNode2" parent="Node Handler" instance=ExtResource("11_7ltny")]
 position = Vector2(-495, 800)
+
+[node name="ProcessorNode" parent="Node Handler" instance=ExtResource("12_metlv")]
+
+[node name="ProcessorNode2" parent="Node Handler" instance=ExtResource("12_metlv")]
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
