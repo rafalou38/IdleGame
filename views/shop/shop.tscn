@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://degu5ftaio8gf"]
+[gd_scene load_steps=12 format=3 uid="uid://degu5ftaio8gf"]
 
 [ext_resource type="PackedScene" uid="uid://cpe2p1qu8ir8n" path="res://views/shop/shop_item.tscn" id="1_3kr2x"]
 [ext_resource type="Script" path="res://views/shop/shop.gd" id="1_8xcdu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b63ytok7xwyu4" path="res://views/shop/icons/refinery.svg" id="4_518ue"]
 [ext_resource type="Texture2D" uid="uid://d2uasdvc4ai4u" path="res://views/shop/icons/quantum.svg" id="5_cd5vc"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_uwj70"]
+[ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="8_gwp22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebddv"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
@@ -97,10 +98,17 @@ icon = ExtResource("5_cd5vc")
 icon_bg_color = Color(0.203922, 0.180392, 0.4, 1)
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+clip_children = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_uwj70")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_32qpr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_32qpr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_32qpr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_32qpr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_32qpr")
 text = "CLOSE"
+
+[node name="Ripple" parent="PanelContainer/VBoxContainer/Button" instance=ExtResource("8_gwp22")]
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_handle_button_close"]

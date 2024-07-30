@@ -9,9 +9,9 @@
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_tjkwy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d5hs"]
-content_margin_left = 25.0
+content_margin_left = 40.0
 content_margin_top = 20.0
-content_margin_right = 25.0
+content_margin_right = 40.0
 content_margin_bottom = 20.0
 bg_color = Color(0.101961, 0.101961, 0.101961, 1)
 
@@ -48,26 +48,17 @@ texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_5su2o")
 
-[node name="Node Handler" type="Node2D" parent="." node_paths=PackedStringArray("cam")]
-script = ExtResource("3_de16d")
-cam = NodePath("../Camera2D")
-
-[node name="Node" parent="Node Handler" instance=ExtResource("4_nbpf4")]
-position = Vector2(113, 270)
-
-[node name="Node2" parent="Node Handler" instance=ExtResource("4_nbpf4")]
-position = Vector2(-73, -348)
-
-[node name="Node3" parent="Node Handler" instance=ExtResource("4_nbpf4")]
-position = Vector2(-360, -712)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 1080.0
-offset_bottom = 1920.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 theme = SubResource("Theme_fr0sw")
 
@@ -77,6 +68,7 @@ layout_mode = 2
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+size_flags_vertical = 4
 ratio = 0.6667
 stretch_mode = 1
 
@@ -94,3 +86,16 @@ label_settings = SubResource("LabelSettings_d2las")
 [node name="Shop" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_wbxbt")]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Node Handler" type="Node2D" parent="." node_paths=PackedStringArray("cam")]
+script = ExtResource("3_de16d")
+cam = NodePath("../Camera2D")
+
+[node name="Node" parent="Node Handler" instance=ExtResource("4_nbpf4")]
+position = Vector2(113, 270)
+
+[node name="Node2" parent="Node Handler" instance=ExtResource("4_nbpf4")]
+position = Vector2(-73, -348)
+
+[node name="Node3" parent="Node Handler" instance=ExtResource("4_nbpf4")]
+position = Vector2(-360, -712)
