@@ -19,16 +19,12 @@ font_size = 200
 font_color = Color(0.85098, 0.85098, 0.85098, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p2k3k"]
-load_path = "res://.godot/imported/bit.png-5e72185026a9ec762109a705a4da8c53.ctex"
 
 [node name="node_ui" type="NinePatchRect"]
 self_modulate = Color(0.290196, 0.396078, 0.317647, 1)
 clip_children = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 500.0
+offset_bottom = 200.0
 texture = ExtResource("1_abrnd")
 patch_margin_left = 25
 patch_margin_top = 25
