@@ -2,11 +2,11 @@ class_name GameNode
 extends Node2D
 
 class Connection:
-	var outputNode: GameNode = null
-	var outputKnob: OutKnob = null
+	var fromNode: GameNode = null
+	var fromKnob: OutKnob = null
 
-	var inputNode: GameNode = null
-	var inputKnob: InKnob = null
+	var toNode: GameNode = null
+	var toKnob: InKnob = null
 	
 	var line: Line2D = null
 
@@ -16,22 +16,25 @@ class Connection:
 
 var node_type := "basic"
 var outbound_connections := []
+var inbound_connections := []
 
 @export var input_knob_count := 0
 @export var output_knob_count := 0
 @onready var KnobContainer := $rb/Control/Knobs
 
+
 func _process(_delta):
 	refreshLines()
 
 func _refresh_line(con: Connection):
-	con.line.points[0] = con.line.to_local(con.outputKnob.global_position + con.outputKnob.pivot_offset)
-	con.line.points[1] = con.line.to_local(con.inputKnob.global_position + con.inputKnob.pivot_offset)
+	con.line.points[0] = con.line.to_local(con.fromKnob.global_position + con.fromKnob.pivot_offset)
+	con.line.points[1] = con.line.to_local(con.toKnob.global_position + con.toKnob.pivot_offset)
 	
-	con.outputNode.body.apply_force((con.line.points[1] - con.line.points[0]) * 2 * Engine.physics_ticks_per_second / 60, con.outputKnob.position)
-	con.inputNode.body.apply_force((con.line.points[0] - con.line.points[1]) * 2 * Engine.physics_ticks_per_second / 60, con.inputKnob.position)
+	con.fromNode.body.apply_force((con.line.points[1] - con.line.points[0]) * 2 * Engine.physics_ticks_per_second / 60, con.fromKnob.position)
+	con.toNode.body.apply_force((con.line.points[0] - con.line.points[1]) * 2 * Engine.physics_ticks_per_second / 60, con.toKnob.position)
 
 func refreshLines():
+	_sync_knobs()
 	for con in outbound_connections:
 		_refresh_line(con)
 
@@ -42,18 +45,21 @@ func reset_connections():
 		outk.connected = false
 
 	for con in outbound_connections:
-		con.outputKnob.connected = true
-		con.inputKnob.connected = true
+		con.fromKnob.connected = true
+		con.toKnob.connected = true
 
 
 func dispose_connection(origin: OutKnob, target: InKnob):
 	print("Disposing connection ", origin, target)
 	for con in outbound_connections:
-		if origin != null and con.outputKnob == origin or target != null and con.inputKnob == target:
-			con.outputKnob.connected = false
-			con.inputKnob.connected = false
+		print(con)
+		if origin != null and con.fromKnob == origin or target != null and con.toKnob == target:
+			con.fromKnob.connected = false
+			con.toKnob.connected = false
 
+			
 			outbound_connections.erase(con)
+			con.toNode.inbound_connections.erase(con)
 
 
 func connect_to(origin: OutKnob, target: InKnob):
@@ -61,30 +67,32 @@ func connect_to(origin: OutKnob, target: InKnob):
 	origin.connected = true
 	target.connected = true
 
-	var con = Connection.new()
-	con.outputNode = self
-	con.outputKnob = origin
+	var con : Connection = Connection.new()
+	con.fromNode = self
+	con.fromKnob = origin
 
-	con.inputNode = target.owner
-	con.inputKnob = target
+	con.toNode = target.owner
+	con.toKnob = target
 
 	
 	con.line = origin.get_node("Line")
 
 
 	outbound_connections.append(con)
+	con.toNode.inbound_connections.append(con)
 
-func _ready():
+
+func _sync_knobs():
 	var ins := KnobContainer.find_children("in-knob-*")
 	for in_knob in ins:
-		if input_knob_count == 0:
+		if input_knob_count == 0 or (input_knob_count == inbound_connections.size() and !in_knob.connected):
 			in_knob.enabled = false
 		else:
 			in_knob.enabled = true
 	
 	var outs := KnobContainer.find_children("out-knob-*")
 	for out_knob in outs:
-		if output_knob_count == 0:
+		if output_knob_count == 0 or (output_knob_count == outbound_connections.size() and !out_knob.connected):
 			out_knob.enabled = false
 		else:
 			out_knob.enabled = true
