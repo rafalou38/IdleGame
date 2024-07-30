@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfksewsypmqay"
-path="res://.godot/imported/node_background.png-59a868f34547809c8899ca7c9b87b2cd.ctex"
+uid="uid://t31iupinmlly"
+path="res://.godot/imported/upgrade.png-bd9e94bab250cfe76c939e024c30c3d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/node/sprites/node_background.png"
-dest_files=["res://.godot/imported/node_background.png-59a868f34547809c8899ca7c9b87b2cd.ctex"]
+source_file="res://scenes/main/node/base/sprites/upgrade.png"
+dest_files=["res://.godot/imported/upgrade.png-bd9e94bab250cfe76c939e024c30c3d9.ctex"]
 
 [params]
 

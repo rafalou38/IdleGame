@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwfhw7lpcjegr"]
+
+[ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_qkx4n"]
+
+[node name="MineNode" type="Node2D"]
+
+[node name="BaseNode" parent="." instance=ExtResource("1_qkx4n")]
+type = 1
+output_knob_count = 1
+
+[editable path="BaseNode"]

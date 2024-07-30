@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kthms7s620nv"
-path="res://.godot/imported/in_knob.svg-c5518aee1856dd4f600bf8dbf84966e9.ctex"
+uid="uid://bfsblr6xm27in"
+path="res://.godot/imported/out_knob.svg-976d0bef59a6f84955d05bf1ac311756.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/node/in_knob/in_knob.svg"
-dest_files=["res://.godot/imported/in_knob.svg-c5518aee1856dd4f600bf8dbf84966e9.ctex"]
+source_file="res://scenes/main/node/base/out_knob/out_knob.svg"
+dest_files=["res://.godot/imported/out_knob.svg-976d0bef59a6f84955d05bf1ac311756.ctex"]
 
 [params]
 

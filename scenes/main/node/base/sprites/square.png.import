@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfsblr6xm27in"
-path="res://.godot/imported/out_knob.svg-751caa4fc4a7bfc117ba9f6ee0705374.ctex"
+uid="uid://dqj3xsv85rsfc"
+path="res://.godot/imported/square.png-0a4be5e20e391bbf7b50113f7581fcf2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/node/out_knob/out_knob.svg"
-dest_files=["res://.godot/imported/out_knob.svg-751caa4fc4a7bfc117ba9f6ee0705374.ctex"]
+source_file="res://scenes/main/node/base/sprites/square.png"
+dest_files=["res://.godot/imported/square.png-0a4be5e20e391bbf7b50113f7581fcf2.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=3.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -11,10 +11,11 @@ static var in_knobs : Array[InKnob] = []
 
 # == ACTUAL STATE ==
 var connected := false
+@export var enabled := true
 
 
 func is_target_valid() -> bool:
-	return OutKnob.dragging_out and OutKnob.dragging_out.node_type == "basic" and OutKnob.dragging_out != self.owner and not overlapping_node.connected
+	return enabled and OutKnob.dragging_out and OutKnob.dragging_out.node_type == "basic" and OutKnob.dragging_out != self.owner and not overlapping_node.connected
 
 func _ready():
 	in_knobs.append(self)
@@ -23,6 +24,9 @@ func _exit_tree():
 	in_knobs.erase(self)
 
 func _process(_delta):
+	visible = enabled
+	if !enabled: return
+
 	modulate.r = 1.0
 	if connected: 
 		if OS.is_debug_build():
@@ -36,7 +40,7 @@ func _process(_delta):
 	
 
 func _input(event):
-	if connected: return
+	if connected or !enabled: return
 	if overlapping_node.connected:
 		return
 

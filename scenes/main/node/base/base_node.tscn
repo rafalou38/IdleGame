@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dy7lg6glergvy"]
 
-[ext_resource type="Script" path="res://scenes/main/node/node_displacement.gd" id="1_g1t8c"]
-[ext_resource type="Script" path="res://scenes/main/node/node.gd" id="1_yiria"]
-[ext_resource type="PackedScene" uid="uid://dfsb3qlietv5l" path="res://scenes/main/node/node_ui.tscn" id="3_vwrt4"]
-[ext_resource type="PackedScene" uid="uid://0rfk8ulnlean" path="res://scenes/main/node/out_knob/out_knob.tscn" id="8_jf7ek"]
-[ext_resource type="PackedScene" uid="uid://84huf2fqgxrx" path="res://scenes/main/node/in_knob/in_knob.tscn" id="9_h45e7"]
+[ext_resource type="Script" path="res://scenes/main/node/base/node_displacement.gd" id="1_g1t8c"]
+[ext_resource type="Script" path="res://scenes/main/node/base/base_node.gd" id="1_yiria"]
+[ext_resource type="PackedScene" uid="uid://dfsb3qlietv5l" path="res://scenes/main/node/base/ui/node_ui.tscn" id="3_vwrt4"]
+[ext_resource type="PackedScene" uid="uid://0rfk8ulnlean" path="res://scenes/main/node/base/out_knob/out_knob.tscn" id="8_jf7ek"]
+[ext_resource type="PackedScene" uid="uid://84huf2fqgxrx" path="res://scenes/main/node/base/in_knob/in_knob.tscn" id="9_h45e7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ohq2l"]
 friction = 0.0
@@ -59,6 +59,7 @@ offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 2
+enabled = false
 
 [node name="in-knob-t" parent="rb/Control/Knobs" instance=ExtResource("9_h45e7")]
 layout_mode = 0
@@ -66,6 +67,7 @@ offset_left = 235.0
 offset_top = -16.0
 offset_right = 267.0
 offset_bottom = 16.0
+enabled = false
 
 [node name="out-knob-b" parent="rb/Control/Knobs" instance=ExtResource("8_jf7ek")]
 layout_mode = 1
@@ -80,6 +82,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
+enabled = false
 
 [node name="in-knob-b" parent="rb/Control/Knobs" instance=ExtResource("9_h45e7")]
 layout_mode = 1
@@ -94,6 +97,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
+enabled = false
 
 [node name="out-knob-r" parent="rb/Control/Knobs" instance=ExtResource("8_jf7ek")]
 layout_mode = 1
@@ -108,6 +112,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
+enabled = false
 
 [node name="in-knob-r" parent="rb/Control/Knobs" instance=ExtResource("9_h45e7")]
 layout_mode = 1
@@ -122,6 +127,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
+enabled = false
 
 [node name="out-knob-l" parent="rb/Control/Knobs" instance=ExtResource("8_jf7ek")]
 layout_mode = 1
@@ -133,6 +139,7 @@ offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
 grow_vertical = 2
+enabled = false
 
 [node name="in-knob-l" parent="rb/Control/Knobs" instance=ExtResource("9_h45e7")]
 layout_mode = 1
@@ -144,6 +151,7 @@ offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
 grow_vertical = 2
+enabled = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rb"]
 position = Vector2(250, 100)

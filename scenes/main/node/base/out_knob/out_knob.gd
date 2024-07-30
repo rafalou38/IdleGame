@@ -16,7 +16,7 @@ var retract := false
 
 # == ACTUAL STATE ==
 var connected := false
-
+@export var enabled := true
 
 # == NODE REFERENCES ==
 @onready var line : Line2D = $Line
@@ -60,6 +60,7 @@ func isTouchUsed(index: int):
 	return CameraMovement.control_locks.has("NodeDisplacement/" + str(index))
 
 func _input(event):
+	if !enabled: return
 	# if connected: return
 	var world_pos = Util.screen_to_world(get_viewport(), event.position)
 	if event is InputEventScreenTouch:
@@ -80,6 +81,8 @@ func _input(event):
 		touch_pos = world_pos
 
 func _process(delta):
+	visible = enabled
+	if !enabled: return
 
 	modulate.r = 1.0
 	if connected: 
