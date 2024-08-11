@@ -8,4 +8,13 @@
 type = 1
 output_knob_count = 1
 
+[node name="node_ui" parent="BaseNode/rb/Control" index="0"]
+hue = 253.0
+
+[node name="Knobs" parent="BaseNode/rb/Control" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="BaseNode/rb" index="1"]
+visible = false
+
 [editable path="BaseNode"]

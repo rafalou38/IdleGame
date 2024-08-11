@@ -7,8 +7,10 @@
 [node name="BaseNode" parent="." instance=ExtResource("1_c7gfm")]
 input_knob_count = 1
 
-[node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-self_modulate = Color(0.34, 0.289, 0.289, 1)
-hue = 0.0
+[node name="Knobs" parent="BaseNode/rb/Control" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="BaseNode/rb" index="1"]
+visible = false
 
 [editable path="BaseNode"]

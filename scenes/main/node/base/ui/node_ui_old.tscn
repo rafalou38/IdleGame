@@ -1,0 +1,155 @@
+[gd_scene load_steps=9 format=3 uid="uid://c74ftoa2kkm54"]
+
+[ext_resource type="Texture2D" uid="uid://dfksewsypmqay" path="res://scenes/main/node/base/sprites/node_background.png" id="1_7ycxt"]
+[ext_resource type="Script" path="res://scenes/main/node/base/ui/node_ui.gd" id="2_b27i1"]
+[ext_resource type="Texture2D" uid="uid://t31iupinmlly" path="res://scenes/main/node/base/sprites/upgrade.png" id="3_yxul7"]
+[ext_resource type="FontFile" uid="uid://dq2frec26klf7" path="res://fonts/Inter.ttf" id="4_hn1vs"]
+[ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="5_ffrhx"]
+[ext_resource type="Texture2D" uid="uid://dqj3xsv85rsfc" path="res://scenes/main/node/base/sprites/square.png" id="6_4dgvy"]
+
+[sub_resource type="FontVariation" id="FontVariation_sqk01"]
+base_font = ExtResource("4_hn1vs")
+variation_opentype = {
+1936486004: null,
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ec8cg"]
+line_spacing = 0.0
+font = SubResource("FontVariation_sqk01")
+font_size = 200
+font_color = Color(0.85098, 0.85098, 0.85098, 1)
+
+[node name="node_ui" type="NinePatchRect"]
+self_modulate = Color(0.30005, 0.289, 0.34, 1)
+clip_children = 2
+offset_right = 500.0
+offset_bottom = 200.0
+texture = ExtResource("1_7ycxt")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+script = ExtResource("2_b27i1")
+hue = 253.0
+
+[node name="Wrapper" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -15
+
+[node name="Container" type="HBoxContainer" parent="Wrapper"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ContentWrapper" type="Control" parent="Wrapper/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Wrapper/Container/ContentWrapper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="TextureButton" parent="Wrapper/Container"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Control2" type="MarginContainer" parent="Wrapper/Container/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Wrapper/Container/Button/Control2"]
+self_modulate = Color(0.244907, 0.2352, 0.28, 1)
+layout_mode = 2
+texture = ExtResource("1_7ycxt")
+patch_margin_left = 25
+patch_margin_top = 25
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Wrapper/Container/Button/Control2/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Wrapper/Container/Button/Control2/NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 51)
+layout_mode = 2
+ratio = 0.9167
+
+[node name="TextureRect" type="TextureRect" parent="Wrapper/Container/Button/Control2/NinePatchRect/VBoxContainer/AspectRatioContainer"]
+self_modulate = Color(0.85098, 0.85098, 0.85098, 1)
+custom_minimum_size = Vector2(11, 12)
+layout_mode = 2
+texture = ExtResource("3_yxul7")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Wrapper/Container/Button/Control2/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Control" type="Control" parent="Wrapper/Container/Button/Control2/NinePatchRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(38.6, 24.3)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Wrapper/Container/Button/Control2/NinePatchRect/VBoxContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 347.4
+offset_bottom = 218.7
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+size_flags_vertical = 0
+text = "780
+"
+label_settings = SubResource("LabelSettings_ec8cg")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Wrapper/Container/Button/Control2/NinePatchRect/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0.85098, 0.85098, 0.85098, 1)
+custom_minimum_size = Vector2(12.75, 16.035)
+layout_mode = 2
+size_flags_horizontal = 8
+ratio = 0.75
+
+[node name="TextureRect" type="TextureRect" parent="Wrapper/Container/Button/Control2/NinePatchRect/VBoxContainer/HBoxContainer/AspectRatioContainer"]
+self_modulate = Color(0.85098, 0.85098, 0.85098, 1)
+layout_mode = 2
+texture = ExtResource("5_ffrhx")
+expand_mode = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Wrapper"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_progress = ExtResource("6_4dgvy")
+tint_progress = Color(0.244907, 0.2352, 0.28, 1)
