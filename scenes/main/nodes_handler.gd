@@ -29,8 +29,8 @@ func _ready():
 	add_node(NodeType.MINE)
 	add_node(NodeType.PROCESSOR)
 	add_node(NodeType.PROCESSOR)
-	add_node(NodeType.PROCESSOR)
-	add_node(NodeType.PROCESSOR)
+	# add_node(NodeType.PROCESSOR)
+	# add_node(NodeType.PROCESSOR)
 
 
 var time_since_last_insert : float = 0.0

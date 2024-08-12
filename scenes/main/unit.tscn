@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://buranv82ycvhi"]
+
+[ext_resource type="Script" path="res://scenes/main/unit.gd" id="1_1chh7"]
+[ext_resource type="Texture2D" uid="uid://bwws2qjpuuxps" path="res://sprites/particles/x64-circle.svg" id="2_vecwu"]
+
+[node name="Unit" type="PathFollow2D"]
+rotates = false
+loop = false
+script = ExtResource("1_1chh7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_vecwu")

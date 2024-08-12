@@ -25,20 +25,29 @@ var inbound_connections := []
 @export var spawn_timeout := 0.0
 var spawned := false
 
+var out_queue : Array[Unit] = []
+@export var input_queue : Array[Unit] = []
+
+func update_units():
+	if(out_queue.size() > 0 and outbound_connections.size() > 0):
+		var unit : Unit = out_queue.pop_front()
+		var con : Connection = outbound_connections[0]
+		
+		unit.spawn(con)
+
+func push_unit(unit: Unit):
+	out_queue.append(unit)
+
+func receive_unit(unit: Unit):
+	input_queue.append(unit)
+
 func _ready():
 	$rb/CollisionShape2D.shape = $rb/CollisionShape2D.shape.duplicate()
 	$AnimationPlayer.play("spawn")
-	pass
 
-
-func _process(delta):
-	# if spawn_timeout <= 0 and not spawned:
-	# 	spawned = true
-	# 	spawn_timeout = 0
-	# 	$AnimationPlayer.play("spawn")
-	# elif not spawned:
-	# 	spawn_timeout -= delta
+func _process(_delta):
 	refreshLines()
+	update_units()
 
 func _refresh_line(con: Connection):
 	var pos_0 := con.path.to_local(con.fromKnob.global_position + con.fromKnob.pivot_offset)
