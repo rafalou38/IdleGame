@@ -1,6 +1,8 @@
 @tool
 extends HBoxContainer
 
+@export var type: NodeHandler.NodeType = NodeHandler.NodeType.SHOP
+
 @export var item_name: String = ""
 @export var item_description: String = ""
 @export var icon: Texture2D = null
@@ -8,6 +10,8 @@ extends HBoxContainer
 
 @export var can_buy: bool = false
 @export var bought: int = 0
+
+signal buy
 
 func apply_props():
 	$VBoxContainer/Label.text = item_name
@@ -24,4 +28,11 @@ func _ready():
 
 func _process(_delta):
 	if Engine.is_editor_hint():
+		apply_props()
+
+func _buy_button_pressed():
+	if can_buy:
+		bought += 1
+		owner.buy(type)
+
 		apply_props()

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_hx82r"]
 [ext_resource type="Texture2D" uid="uid://tcovup47adfu" path="res://sprites/icons/processor.svg" id="2_b4vk0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4oe1g"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr0mv"]
 bg_color = Color(0.3026, 0.34, 0.289, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -18,7 +18,7 @@ input_knob_count = 1
 output_knob_count = 1
 
 [node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_4oe1g")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xr0mv")
 hue = 104.0
 icon = ExtResource("2_b4vk0")
 
