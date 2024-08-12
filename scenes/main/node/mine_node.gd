@@ -6,12 +6,6 @@ extends Node2D
 var spawn_delay := 0.0
 var unit_scene = preload("res://scenes/main/unit.tscn")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	spawn_delay += delta
 	if spawn_delay >= spawn_interval:

@@ -15,10 +15,8 @@ func apply():
 	$ProgressBar.tint_progress = Color.from_hsv(hue/360, 38.0/100, 28.0/100, 1.0)
 	$TextureRect.texture = icon
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	apply()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	apply()

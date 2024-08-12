@@ -5,15 +5,9 @@ var timer := 0
 
 @export var node_handler: NodeHandler
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("RESET")
 	$AnimationPlayer.connect("animation_finished", _anim_finished)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _anim_finished(anim_name):
 	if anim_name == "slide_in" and open == false:

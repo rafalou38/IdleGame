@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=16 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="5_3f3gl"]
 [ext_resource type="PackedScene" uid="uid://degu5ftaio8gf" path="res://views/shop/shop.tscn" id="5_wbxbt"]
 [ext_resource type="Script" path="res://scenes/main/OpenShop.gd" id="6_e2gnf"]
+[ext_resource type="Script" path="res://scenes/main/TopBar.gd" id="6_qu1qt"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_tjkwy"]
 [ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="6_ypsot"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="7_ujugr"]
+[ext_resource type="Script" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5lvk"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -110,6 +112,7 @@ z_index = 5
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 theme = SubResource("Theme_fr0sw")
+script = ExtResource("6_qu1qt")
 
 [node name="Wallet" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TopBar"]
 layout_mode = 2
@@ -129,7 +132,8 @@ expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/TopBar/Wallet"]
 layout_mode = 2
-text = "556.76M"
+text = "0
+"
 label_settings = SubResource("LabelSettings_d2las")
 
 [node name="Shop" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("node_handler") instance=ExtResource("5_wbxbt")]
@@ -140,5 +144,8 @@ node_handler = NodePath("../../../Node Handler")
 
 [node name="Node Handler" type="Node2D" parent="."]
 script = ExtResource("3_de16d")
+
+[node name="Economy" type="Node2D" parent="."]
+script = ExtResource("10_3tfdc")
 
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

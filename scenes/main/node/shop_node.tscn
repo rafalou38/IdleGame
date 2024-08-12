@@ -1,22 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://blihsju516shy"]
+[gd_scene load_steps=5 format=3 uid="uid://blihsju516shy"]
 
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_c7gfm"]
+[ext_resource type="Script" path="res://scenes/main/node/shop_node.gd" id="1_q5rge"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="2_6encq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ceone"]
-bg_color = Color(0.34, 0.289, 0.289, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trqvl"]
+bg_color = Color(0.29, 0.1798, 0.1798, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="ShopNode" type="Node2D"]
+script = ExtResource("1_q5rge")
 
 [node name="BaseNode" parent="." instance=ExtResource("1_c7gfm")]
 input_knob_count = 1
 
 [node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ceone")
+theme_override_styles/panel = SubResource("StyleBoxFlat_trqvl")
 icon = ExtResource("2_6encq")
 
 [editable path="BaseNode"]

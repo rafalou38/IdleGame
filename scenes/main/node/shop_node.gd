@@ -6,5 +6,5 @@ extends Node2D
 func _process(_delta):
 	if node.input_queue.size() > 0:
 		var unit = node.input_queue.pop_front()
-		unit.value += increment
-		node.push_unit(unit)
+		unit.destroy()
+		Economy.money += unit.value

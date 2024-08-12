@@ -2,11 +2,10 @@ class_name Unit
 extends PathFollow2D
 
 @export var value := 1.0
-@export var speed := 20.0
+@export var speed := 40.0
 
 var current_connection: GameNode.Connection = null
 @export var active := false
-# @export var progress := 0.0
 
 func spawn(con: GameNode.Connection):
 	current_connection = con
@@ -19,10 +18,12 @@ func spawn(con: GameNode.Connection):
 		self.get_parent().remove_child(self)
 	con.path.add_child(self)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func destroy():
+	if self.get_parent():
+		self.get_parent().remove_child(self)
+
 func _process(delta):
 	if active:
-		# Set position on curve fro, progress
 		progress = progress + delta * speed
 
 		if progress_ratio >= 1.0:

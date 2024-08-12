@@ -19,7 +19,7 @@ enum NodeType {
 	# NodeType.DUPLICATOR: null
 }
 
-@export var nodes : Array[GameNode] = []
+@export var nodes : Array = []
 @export var insert_delayed := false
 @export var insert_queue := []
 

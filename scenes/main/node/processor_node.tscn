@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/main/node/processor_node.gd" id="1_ytw0t"]
 [ext_resource type="Texture2D" uid="uid://tcovup47adfu" path="res://sprites/icons/processor.svg" id="2_b4vk0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_suhtf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtqvp"]
 bg_color = Color(0.209187, 0.29, 0.1798, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -20,7 +20,7 @@ input_knob_count = 1
 output_knob_count = 1
 
 [node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_suhtf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtqvp")
 hue = 104.0
 icon = ExtResource("2_b4vk0")
 

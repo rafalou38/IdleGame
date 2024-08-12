@@ -16,7 +16,7 @@ func _on_Button_pressed():
 	animation_player.play("RESET")
 	animation_player.play("Ripple")
 
-func _end():
+func _end(_anim_name: StringName):
 	self.visible = false
 
 # Make sure to connect the Button's pressed signal to the _on_Button_pressed function.
