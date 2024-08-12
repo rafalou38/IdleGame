@@ -4,8 +4,8 @@ extends AspectRatioContainer
 
 
 # == GLOBAL STATE ==
-static var dragging_out : GameNode = null
-static var out_knobs : Array[OutKnob] = []
+static var dragging_out: GameNode = null
+static var out_knobs: Array[OutKnob] = []
 
 # == CONNECT PHASE ==
 var touch_pos := Vector2.ZERO
@@ -19,12 +19,15 @@ var connected := false
 @export var enabled := true
 
 # == NODE REFERENCES ==
-@onready var line : Line2D = $Line
-@onready var hitbox : CollisionShape2D = $Hitbox
+@onready var path: Path2D = $path
+@onready var line: Line2D = $line
+
+@onready var hitbox: CollisionShape2D = $Hitbox
 @onready var overlapping_node = get_node("../" + name.replace("out-knob", "in-knob")) as InKnob
 
 
 func _ready():
+	path.curve = path.curve.duplicate()
 	out_knobs.append(self)
 
 func _exit_tree():
@@ -65,7 +68,7 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		var world_pos = Util.screen_to_world(get_viewport(), event.position)
 		if event.pressed and !connection_initiated and !isTouchUsed(event.index):
-			if(hitbox.global_position.distance_to(world_pos) < hitbox.shape.radius):
+			if (hitbox.global_position.distance_to(world_pos) < hitbox.shape.radius):
 				touch_index = event.index
 				initiateConnection(hitbox.global_position)
 				
@@ -86,6 +89,9 @@ func _process(delta):
 	visible = enabled
 	if !enabled: return
 
+	line.points = path.curve.get_baked_points()
+
+
 	modulate.r = 1.0
 	if connected: 
 		if OS.is_debug_build():
@@ -93,15 +99,16 @@ func _process(delta):
 		return
 
 	if connection_initiated and touch_pos != Vector2.ZERO:
-		line.points[0] =  line.to_local(hitbox.global_position)
-		line.points[1] =  line.to_local(touch_pos)
+		path.curve.set_point_position(0, path.to_local(hitbox.global_position))
+		path.curve.set_point_position(1, path.to_local(touch_pos))
+
 
 		if InKnob.hoveringIn:
-			line.points[1] = line.to_local(InKnob.hoveringIn.global_position) + InKnob.hoveringIn.pivot_offset
+			path.curve.set_point_position(1, path.to_local(InKnob.hoveringIn.global_position) + InKnob.hoveringIn.pivot_offset)
 		
 	if dragging_out and !connection_initiated and !connected or overlapping_node.connected:
 		visible = false
 	else:
 		visible = true
 	if retract and !connected:
-		line.points[1] = line.points[1].lerp(line.points[0], 0.4 * delta * 60)
+		path.curve.set_point_position(1, path.curve.get_point_position(0).lerp(path.curve.get_point_position(1), 0.4 * delta * 60))

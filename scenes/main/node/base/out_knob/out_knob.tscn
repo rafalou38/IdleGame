@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://0rfk8ulnlean"]
+[gd_scene load_steps=5 format=3 uid="uid://0rfk8ulnlean"]
 
 [ext_resource type="Script" path="res://scenes/main/node/base/out_knob/out_knob.gd" id="1_vo188"]
 [ext_resource type="Texture2D" uid="uid://bfsblr6xm27in" path="res://scenes/main/node/base/out_knob/out_knob.svg" id="2_hveit"]
+
+[sub_resource type="Curve2D" id="Curve2D_612an"]
+bake_interval = 0.01
+_data = {
+"points": PackedVector2Array(40.0883, -43.0615, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tvn0q"]
 radius = 32.0
@@ -18,12 +25,13 @@ layout_mode = 2
 texture = ExtResource("2_hveit")
 expand_mode = 1
 
-[node name="Line" type="Line2D" parent="."]
+[node name="path" type="Path2D" parent="."]
 z_index = 1
-points = PackedVector2Array(0, 0, 0, 0)
-antialiased = true
+curve = SubResource("Curve2D_612an")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(16, 16)
 shape = SubResource("CircleShape2D_tvn0q")
+
+[node name="line" type="Line2D" parent="."]

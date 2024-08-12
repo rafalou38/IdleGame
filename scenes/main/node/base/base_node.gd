@@ -8,7 +8,7 @@ class Connection:
 	var toNode: GameNode = null
 	var toKnob: InKnob = null
 	
-	var line: Line2D = null
+	var path: Path2D = null
 
 
 @export var type: NodeHandler.NodeType = NodeHandler.NodeType.SHOP
@@ -27,11 +27,15 @@ func _process(_delta):
 	refreshLines()
 
 func _refresh_line(con: Connection):
-	con.line.points[0] = con.line.to_local(con.fromKnob.global_position + con.fromKnob.pivot_offset)
-	con.line.points[1] = con.line.to_local(con.toKnob.global_position + con.toKnob.pivot_offset)
-	
-	con.fromNode.body.apply_force((con.line.points[1] - con.line.points[0]) * 2 * Engine.physics_ticks_per_second / 60, con.fromKnob.position)
-	con.toNode.body.apply_force((con.line.points[0] - con.line.points[1]) * 2 * Engine.physics_ticks_per_second / 60, con.toKnob.position)
+	var pos_0 := con.path.to_local(con.fromKnob.global_position + con.fromKnob.pivot_offset)
+	var pos_1 := con.path.to_local(con.toKnob.global_position + con.toKnob.pivot_offset)
+
+	con.path.curve.set_point_position(0, pos_0)
+	con.path.curve.set_point_position(1, pos_1)
+
+
+	con.fromNode.body.apply_force((pos_1 - pos_0) * 2 * Engine.physics_ticks_per_second / 60, con.fromKnob.position)
+	con.toNode.body.apply_force((pos_0 - pos_1) * 2 * Engine.physics_ticks_per_second / 60, con.toKnob.position)
 
 func refreshLines():
 	_sync_knobs()
@@ -67,7 +71,7 @@ func connect_to(origin: OutKnob, target: InKnob):
 	origin.connected = true
 	target.connected = true
 
-	var con : Connection = Connection.new()
+	var con: Connection = Connection.new()
 	con.fromNode = self
 	con.fromKnob = origin
 
@@ -75,7 +79,7 @@ func connect_to(origin: OutKnob, target: InKnob):
 	con.toKnob = target
 
 	
-	con.line = origin.get_node("Line")
+	con.path = origin.get_node("path")
 
 
 	outbound_connections.append(con)
