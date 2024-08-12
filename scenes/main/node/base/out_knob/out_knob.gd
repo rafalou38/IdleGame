@@ -30,6 +30,15 @@ func _ready():
 	path.curve = path.curve.duplicate()
 	out_knobs.append(self)
 
+	if name.ends_with("t"):
+		path.curve.set_point_out(0, Vector2(0, -100))
+	elif name.ends_with("b"):
+		path.curve.set_point_out(0, Vector2(0, 100))
+	elif name.ends_with("l"):
+		path.curve.set_point_out(0, Vector2(-100, 0))
+	elif name.ends_with("r"):
+		path.curve.set_point_out(0, Vector2(100, 0))
+
 func _exit_tree():
 	out_knobs.erase(self)
 
@@ -91,11 +100,7 @@ func _process(delta):
 
 	line.points = path.curve.get_baked_points()
 
-
-	modulate.r = 1.0
 	if connected: 
-		if OS.is_debug_build():
-			modulate.r = 0.5
 		return
 
 	if connection_initiated and touch_pos != Vector2.ZERO:
@@ -105,6 +110,14 @@ func _process(delta):
 
 		if InKnob.hoveringIn:
 			path.curve.set_point_position(1, path.to_local(InKnob.hoveringIn.global_position) + InKnob.hoveringIn.pivot_offset)
+			if InKnob.hoveringIn.name.ends_with("t"):
+				path.curve.set_point_in(1, Vector2(0, -100))
+			elif InKnob.hoveringIn.name.ends_with("b"):
+				path.curve.set_point_in(1, Vector2(0, 100))
+			elif InKnob.hoveringIn.name.ends_with("l"):
+				path.curve.set_point_in(1, Vector2(-100, 0))
+			elif InKnob.hoveringIn.name.ends_with("r"):
+				path.curve.set_point_in(1, Vector2(100, 0))
 		
 	if dragging_out and !connection_initiated and !connected or overlapping_node.connected:
 		visible = false
