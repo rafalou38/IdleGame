@@ -36,10 +36,14 @@ func _ready():
 var time_since_last_insert : float = 0.0
 func _process(delta):
 	time_since_last_insert += delta
-	if !insert_delayed and insert_queue.size() > 0 and time_since_last_insert > 0.1:
-		var item = insert_queue.pop_front()
-		add_child(item)
-		time_since_last_insert = 0
+	if !insert_delayed and insert_queue.size() > 0:
+		for i in range(insert_queue.size()):
+			var item = insert_queue.pop_front()
+			item.get_children()[0].visible = false
+			item.get_children()[0].spawn_timeout = 0.5 * (i)
+
+			add_child(item)
+			
 
 
 func add_node(type: NodeType):

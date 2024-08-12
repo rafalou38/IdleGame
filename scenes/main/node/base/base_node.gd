@@ -22,8 +22,21 @@ var inbound_connections := []
 @export var output_knob_count := 0
 @onready var KnobContainer := $rb/Control/Knobs
 
+@export var spawn_timeout := 0.0
+var spawned := false
 
-func _process(_delta):
+func _ready():
+	# $AnimationPlayer.play("spawn")
+	pass
+
+
+func _process(delta):
+	if spawn_timeout <= 0 and not spawned:
+		spawned = true
+		spawn_timeout = 0
+		$AnimationPlayer.play("spawn")
+	elif not spawned:
+		spawn_timeout -= delta
 	refreshLines()
 
 func _refresh_line(con: Connection):
