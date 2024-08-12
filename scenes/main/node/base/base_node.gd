@@ -34,8 +34,9 @@ func _refresh_line(con: Connection):
 	con.path.curve.set_point_position(1, pos_1)
 
 
-	con.fromNode.body.apply_force((pos_1 - pos_0) * 2 * Engine.physics_ticks_per_second / 60, con.fromKnob.position)
-	con.toNode.body.apply_force((pos_0 - pos_1) * 2 * Engine.physics_ticks_per_second / 60, con.toKnob.position)
+	if pos_0.distance_to(pos_1) > 200:
+		con.fromNode.body.apply_force((pos_1 - pos_0) * 1 * Engine.physics_ticks_per_second / 60, con.fromKnob.position)
+		con.toNode.body.apply_force((pos_0 - pos_1) * 1 * Engine.physics_ticks_per_second / 60, con.toKnob.position)
 
 func refreshLines():
 	_sync_knobs()

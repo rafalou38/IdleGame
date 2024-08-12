@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccvgly11d6cbg"
-path="res://.godot/imported/box.svg-bd02a72c932f9f8b25401b846c5eb153.ctex"
+uid="uid://d2uasdvc4ai4u"
+path="res://.godot/imported/quantum.svg-57f3c04c2e764d61ef86e9a41d47940d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://views/shop/icons/box.svg"
-dest_files=["res://.godot/imported/box.svg-bd02a72c932f9f8b25401b846c5eb153.ctex"]
+source_file="res://sprites/icons/quantum.svg"
+dest_files=["res://.godot/imported/quantum.svg-57f3c04c2e764d61ef86e9a41d47940d.ctex"]
 
 [params]
 

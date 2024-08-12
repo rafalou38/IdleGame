@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3tyequec0mtg"
-path="res://.godot/imported/tether.svg-b345687944745d2be99c5f8854a1f948.ctex"
+uid="uid://b63ytok7xwyu4"
+path="res://.godot/imported/refinery.svg-722f7c726decc27d77b870076b75c693.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://views/shop/icons/tether.svg"
-dest_files=["res://.godot/imported/tether.svg-b345687944745d2be99c5f8854a1f948.ctex"]
+source_file="res://sprites/icons/refinery.svg"
+dest_files=["res://.godot/imported/refinery.svg-722f7c726decc27d77b870076b75c693.ctex"]
 
 [params]
 

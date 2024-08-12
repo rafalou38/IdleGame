@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_qkx4n"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm2ko"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qan4l"]
 bg_color = Color(0.30005, 0.289, 0.34, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -16,7 +16,7 @@ type = 1
 output_knob_count = 1
 
 [node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_bm2ko")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qan4l")
 hue = 253.0
 
 [editable path="BaseNode"]

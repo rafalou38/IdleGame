@@ -27,10 +27,7 @@ func _process(_delta):
 	visible = enabled
 	if !enabled: return
 
-	modulate.r = 1.0
 	if connected: 
-		if OS.is_debug_build():
-			modulate.r = 0.5
 		return
 
 	if (is_target_valid() or connected) :

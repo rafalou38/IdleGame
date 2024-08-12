@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfsb3qlietv5l"]
+[gd_scene load_steps=5 format=3 uid="uid://dfsb3qlietv5l"]
 
 [ext_resource type="Script" path="res://scenes/main/node/base/ui/node_ui.gd" id="2_5t51d"]
+[ext_resource type="Texture2D" uid="uid://b14tppiydctbk" path="res://sprites/icons/mine.svg" id="3_eltol"]
 [ext_resource type="Texture2D" uid="uid://dqj3xsv85rsfc" path="res://scenes/main/node/base/sprites/square.png" id="5_6c6aq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67iuc"]
-bg_color = Color(0.3026, 0.34, 0.289, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebd3v"]
+bg_color = Color(0.34, 0.289, 0.289, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -14,8 +15,9 @@ corner_radius_bottom_left = 10
 clip_children = 2
 offset_right = 142.0
 offset_bottom = 142.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_67iuc")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ebd3v")
 script = ExtResource("2_5t51d")
+icon = ExtResource("3_eltol")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 1
@@ -36,4 +38,19 @@ stretch_margin_top = 5
 stretch_margin_right = 5
 stretch_margin_bottom = 5
 texture_progress = ExtResource("5_6c6aq")
-tint_progress = Color(0.1515, 0.135, 0.3, 1)
+tint_progress = Color(0.28, 0.2352, 0.2352, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eltol")

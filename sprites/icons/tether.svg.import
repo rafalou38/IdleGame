@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d24hjoro4qkp6"
-path="res://.godot/imported/sell.svg-af3d2a5ff45dc342b78937136e5e56b6.ctex"
+uid="uid://3tyequec0mtg"
+path="res://.godot/imported/tether.svg-f79f1ce66c1d508563bc030ce43f2f5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://views/shop/icons/sell.svg"
-dest_files=["res://.godot/imported/sell.svg-af3d2a5ff45dc342b78937136e5e56b6.ctex"]
+source_file="res://sprites/icons/tether.svg"
+dest_files=["res://.godot/imported/tether.svg-f79f1ce66c1d508563bc030ce43f2f5e.ctex"]
 
 [params]
 

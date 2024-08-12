@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scenes/main/OpenShop.gd" id="6_e2gnf"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_tjkwy"]
 [ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="6_ypsot"]
-[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://views/shop/icons/sell.svg" id="7_ujugr"]
+[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="7_ujugr"]
 [ext_resource type="PackedScene" uid="uid://dwfhw7lpcjegr" path="res://scenes/main/node/mine_node.tscn" id="10_2a6vf"]
 [ext_resource type="PackedScene" uid="uid://blihsju516shy" path="res://scenes/main/node/shop_node.tscn" id="11_7ltny"]
 [ext_resource type="PackedScene" uid="uid://chknxyg3giltx" path="res://scenes/main/node/processor_node.tscn" id="12_metlv"]
