@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://buranv82ycvhi"]
+[gd_scene load_steps=5 format=3 uid="uid://buranv82ycvhi"]
 
 [ext_resource type="Script" path="res://scenes/main/unit.gd" id="1_1chh7"]
 [ext_resource type="Texture2D" uid="uid://bwws2qjpuuxps" path="res://sprites/particles/x64-circle.svg" id="2_vecwu"]
+[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="3_66rdl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pj3cy"]
+font = ExtResource("3_66rdl")
+font_size = 48
+font_color = Color(0, 0, 0, 0.788235)
 
 [node name="Unit" type="PathFollow2D"]
 rotates = false
@@ -11,3 +17,14 @@ script = ExtResource("1_1chh7")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_vecwu")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 99.0
+offset_bottom = 99.0
+scale = Vector2(0.15, 0.15)
+text = "1"
+label_settings = SubResource("LabelSettings_pj3cy")
+horizontal_alignment = 1
+vertical_alignment = 1

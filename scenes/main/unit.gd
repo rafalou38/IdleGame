@@ -22,8 +22,21 @@ func destroy():
 	if self.get_parent():
 		self.get_parent().remove_child(self)
 
+func _ready():
+	$Label.label_settings = $Label.label_settings.duplicate(true)
+
 func _process(delta):
 	if active:
+		$Label.text = str(value)
+		if value < 100:
+			$Label.label_settings.font_size = 48
+		elif value < 1000:
+			$Label.label_settings.font_size = 32
+		elif value < 10000:
+			$Label.label_settings.font_size = 24
+		elif value < 100000:
+			$Label.label_settings.font_size = 16
+
 		progress = progress + delta * speed
 
 		if progress_ratio >= 1.0:
