@@ -26,17 +26,18 @@ var inbound_connections := []
 var spawned := false
 
 func _ready():
-	# $AnimationPlayer.play("spawn")
+	$rb/CollisionShape2D.shape = $rb/CollisionShape2D.shape.duplicate()
+	$AnimationPlayer.play("spawn")
 	pass
 
 
 func _process(delta):
-	if spawn_timeout <= 0 and not spawned:
-		spawned = true
-		spawn_timeout = 0
-		$AnimationPlayer.play("spawn")
-	elif not spawned:
-		spawn_timeout -= delta
+	# if spawn_timeout <= 0 and not spawned:
+	# 	spawned = true
+	# 	spawn_timeout = 0
+	# 	$AnimationPlayer.play("spawn")
+	# elif not spawned:
+	# 	spawn_timeout -= delta
 	refreshLines()
 
 func _refresh_line(con: Connection):
