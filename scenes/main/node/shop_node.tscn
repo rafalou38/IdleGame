@@ -1,16 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://blihsju516shy"]
+[gd_scene load_steps=3 format=3 uid="uid://blihsju516shy"]
 
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_c7gfm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cf0ix"]
+bg_color = Color(0.34, 0.289, 0.289, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="ShopNode" type="Node2D"]
 
 [node name="BaseNode" parent="." instance=ExtResource("1_c7gfm")]
 input_knob_count = 1
 
-[node name="Knobs" parent="BaseNode/rb/Control" index="1"]
-visible = false
-
-[node name="CollisionShape2D" parent="BaseNode/rb" index="1"]
-visible = false
+[node name="node_ui" parent="BaseNode/rb/Control" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_cf0ix")
 
 [editable path="BaseNode"]

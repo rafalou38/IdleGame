@@ -44,12 +44,11 @@ func _input(event):
 	if overlapping_node.connected:
 		return
 
-	
-	var world_pos = Util.screen_to_world(get_viewport(), event.position)
-	var innit = hitbox.global_position.distance_to(world_pos) < hitbox.shape.radius
 
 
 	if event is InputEventScreenDrag:
+		var world_pos = Util.screen_to_world(get_viewport(), event.position)
+		var innit = hitbox.global_position.distance_to(world_pos) < hitbox.shape.radius
 		if(innit and !connected and is_target_valid()):
 			hoveringIn = self
 		elif hoveringIn == self:

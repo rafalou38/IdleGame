@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bfsblr6xm27in" path="res://scenes/main/node/base/out_knob/out_knob.svg" id="2_hveit"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tvn0q"]
-radius = 50.0
+radius = 32.0
 
 [node name="out-knob" type="AspectRatioContainer"]
 offset_right = 32.0
@@ -24,5 +24,6 @@ points = PackedVector2Array(0, 0, 0, 0)
 antialiased = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(16, 16)
 shape = SubResource("CircleShape2D_tvn0q")

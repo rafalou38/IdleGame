@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dy7lg6glergvy"]
+[gd_scene load_steps=9 format=3 uid="uid://dy7lg6glergvy"]
 
 [ext_resource type="Script" path="res://scenes/main/node/base/node_displacement.gd" id="1_g1t8c"]
 [ext_resource type="Script" path="res://scenes/main/node/base/base_node.gd" id="1_yiria"]
@@ -9,9 +9,16 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ohq2l"]
 friction = 0.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_faqn6"]
+bg_color = Color(0.34, 0.289, 0.289, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhfto"]
-radius = 148.04
-height = 360.98
+radius = 146.55
+height = 293.1
 
 [node name="BaseNode" type="Node2D"]
 script = ExtResource("1_yiria")
@@ -45,6 +52,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_faqn6")
 
 [node name="Knobs" type="Control" parent="rb/Control"]
 z_index = 2

@@ -19,5 +19,6 @@ texture = ExtResource("2_o53ld")
 expand_mode = 1
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(16, 16)
 shape = SubResource("CircleShape2D_k05j5")
