@@ -139,6 +139,7 @@ item_name = "Shop"
 item_description = "Units can be sold here."
 icon = ExtResource("2_vv042")
 icon_bg_color = Color(0.396078, 0.290196, 0.290196, 1)
+unlocked = true
 
 [node name="Mine" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
@@ -146,8 +147,10 @@ type = 1
 item_name = "Mine"
 item_description = "Generates units at a fixed rate"
 icon_bg_color = Color(0.313726, 0.290196, 0.396078, 1)
+unlocked = true
 
 [node name="Processor" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+visible = false
 layout_mode = 2
 type = 2
 item_name = "Processor"
@@ -156,6 +159,7 @@ icon = ExtResource("3_yit7n")
 icon_bg_color = Color(0.317647, 0.396078, 0.290196, 1)
 
 [node name="Refinery" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+visible = false
 layout_mode = 2
 type = 3
 item_name = "Refinery"
@@ -165,6 +169,7 @@ icon_bg_color = Color(0.556863, 0.501961, 0.309804, 1)
 can_buy = false
 
 [node name="Tether" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+visible = false
 layout_mode = 2
 type = 4
 item_name = "Tether"
@@ -173,6 +178,7 @@ icon_bg_color = Color(0.290196, 0.376471, 0.396078, 1)
 can_buy = false
 
 [node name="Quantum Processor" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+visible = false
 layout_mode = 2
 type = 5
 item_name = "Quantum processor"

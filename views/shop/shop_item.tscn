@@ -36,7 +36,6 @@ Button/styles/pressed = ExtResource("6_28xom")
 [node name="ShopItem" type="HBoxContainer"]
 theme_override_constants/separation = 35
 script = ExtResource("1_6cyv7")
-type = null
 item_name = "Node"
 item_description = "Node description here"
 icon = ExtResource("2_0g43x")
