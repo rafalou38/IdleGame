@@ -8,7 +8,7 @@ extends HBoxContainer
 @export var icon: Texture2D = null
 @export var icon_bg_color := Color(0, 0, 0, 1)
 
-@export var can_buy: bool = false
+@export var can_buy: bool = true
 @export var unlocked: bool = false
 @export var bought: int = 0
 @export var price: float = 0
@@ -16,10 +16,11 @@ extends HBoxContainer
 signal buy
 
 func apply_props():
-	unlocked = Economy.research[type]["unlocked"]
+	# This seems to be what breaks it
+	unlocked = Economy.research[type]["unlocked"] 
+
 	price = Prices.node_buy(type, bought)
 
-	can_buy = price <= Economy.money or (OS.is_debug_build() and Input.is_key_pressed(KEY_SHIFT))
 
 	visible = unlocked
 	if not unlocked: return
