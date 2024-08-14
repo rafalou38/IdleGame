@@ -1,13 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://degu5ftaio8gf"]
+[gd_scene load_steps=6 format=3 uid="uid://degu5ftaio8gf"]
 
 [ext_resource type="PackedScene" uid="uid://cpe2p1qu8ir8n" path="res://views/shop/shop_item.tscn" id="1_3kr2x"]
-[ext_resource type="Script" path="res://views/shop/shop.gd" id="1_8xcdu"]
-[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="2_vv042"]
-[ext_resource type="Texture2D" uid="uid://tcovup47adfu" path="res://sprites/icons/processor.svg" id="3_yit7n"]
-[ext_resource type="Texture2D" uid="uid://b63ytok7xwyu4" path="res://sprites/icons/refinery.svg" id="4_518ue"]
-[ext_resource type="Texture2D" uid="uid://d2uasdvc4ai4u" path="res://sprites/icons/quantum.svg" id="5_cd5vc"]
-[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_uwj70"]
-[ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="8_gwp22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebddv"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
@@ -33,66 +26,6 @@ content_margin_top = 48.0
 content_margin_bottom = 48.0
 bg_color = Color(0.176471, 0.176471, 0.176471, 1)
 
-[sub_resource type="Animation" id="Animation_ekkej"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 3000)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_jkebr"]
-resource_name = "slide_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.420448, 1.00001),
-"update": 0,
-"values": [Vector2(0, 3000), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PanelContainer:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_liasq"]
-_data = {
-"RESET": SubResource("Animation_ekkej"),
-"slide_in": SubResource("Animation_jkebr")
-}
-
 [node name="Shop" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -101,15 +34,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_8xcdu")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 3000.0
-offset_bottom = 3000.0
+offset_top = 500.0
+offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ebddv")
@@ -134,10 +66,8 @@ theme_override_constants/separation = 50
 
 [node name="Shop" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
-type = 0
 item_name = "Shop"
 item_description = "Units can be sold here."
-icon = ExtResource("2_vv042")
 icon_bg_color = Color(0.396078, 0.290196, 0.290196, 1)
 unlocked = true
 
@@ -149,48 +79,9 @@ item_description = "Generates units at a fixed rate"
 icon_bg_color = Color(0.313726, 0.290196, 0.396078, 1)
 unlocked = true
 
-[node name="Processor" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
-visible = false
-layout_mode = 2
-type = 2
-item_name = "Processor"
-item_description = "Increases unit value."
-icon = ExtResource("3_yit7n")
-icon_bg_color = Color(0.317647, 0.396078, 0.290196, 1)
-
-[node name="Refinery" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
-visible = false
-layout_mode = 2
-type = 3
-item_name = "Refinery"
-item_description = "Multiplies unit by fixed value."
-icon = ExtResource("4_518ue")
-icon_bg_color = Color(0.556863, 0.501961, 0.309804, 1)
-can_buy = false
-
-[node name="Tether" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
-visible = false
-layout_mode = 2
-type = 4
-item_name = "Tether"
-item_description = "Distributes inputs to multiple nodes."
-icon_bg_color = Color(0.290196, 0.376471, 0.396078, 1)
-can_buy = false
-
-[node name="Quantum Processor" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
-visible = false
-layout_mode = 2
-type = 5
-item_name = "Quantum processor"
-item_description = "Duplicates units."
-icon = ExtResource("5_cd5vc")
-icon_bg_color = Color(0.203922, 0.180392, 0.4, 1)
-can_buy = false
-
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
 clip_children = 2
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_uwj70")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_32qpr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_32qpr")
@@ -198,14 +89,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_32qpr")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_32qpr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_32qpr")
 text = "CLOSE"
-
-[node name="Ripple" parent="PanelContainer/VBoxContainer/Button" instance=ExtResource("8_gwp22")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-reset_on_save = false
-libraries = {
-"": SubResource("AnimationLibrary_liasq")
-}
-speed_scale = 2.0
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_handle_button_close"]

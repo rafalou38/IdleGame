@@ -1,44 +1,27 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpe2p1qu8ir8n"]
+[gd_scene load_steps=6 format=3 uid="uid://cpe2p1qu8ir8n"]
 
 [ext_resource type="Script" path="res://views/shop/shop_item.gd" id="1_6cyv7"]
-[ext_resource type="Texture2D" uid="uid://tlua3vycrbi" path="res://views/shop/icon_background.svg" id="1_q84ax"]
-[ext_resource type="Texture2D" uid="uid://b14tppiydctbk" path="res://sprites/icons/mine.svg" id="2_0g43x"]
-[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="3_lmo0s"]
-[ext_resource type="Texture2D" uid="uid://ccvgly11d6cbg" path="res://sprites/icons/box.svg" id="4_2i1um"]
-[ext_resource type="StyleBox" uid="uid://bogt6pvwmfset" path="res://views/shop/ButtonStyleBox.tres" id="6_28xom"]
-[ext_resource type="Texture2D" uid="uid://dkwqmhuiwt6xu" path="res://sprites/bit_32.svg" id="6_ue3vd"]
-[ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="8_om7kf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fady3"]
-font = ExtResource("3_lmo0s")
 font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_toksv"]
-font = ExtResource("3_lmo0s")
 font_size = 24
 font_color = Color(1, 1, 1, 0.501961)
 
 [sub_resource type="LabelSettings" id="LabelSettings_w1mg8"]
-font = ExtResource("3_lmo0s")
 font_size = 24
 
 [sub_resource type="Theme" id="Theme_fbxdc"]
-default_font = ExtResource("3_lmo0s")
 default_font_size = 32
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 18
-Button/styles/disabled = ExtResource("6_28xom")
-Button/styles/focus = ExtResource("6_28xom")
-Button/styles/hover = ExtResource("6_28xom")
-Button/styles/normal = ExtResource("6_28xom")
-Button/styles/pressed = ExtResource("6_28xom")
 
 [node name="ShopItem" type="HBoxContainer"]
 theme_override_constants/separation = 35
 script = ExtResource("1_6cyv7")
 item_name = "Node"
 item_description = "Node description here"
-icon = ExtResource("2_0g43x")
 icon_bg_color = Color(0.202, 0.18, 0.4, 1)
 can_buy = true
 
@@ -49,11 +32,9 @@ layout_mode = 2
 self_modulate = Color(0.202, 0.18, 0.4, 1)
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = ExtResource("1_q84ax")
 
 [node name="Icon" type="TextureRect" parent="CenterContainer"]
 layout_mode = 2
-texture = ExtResource("2_0g43x")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -79,7 +60,6 @@ label_settings = SubResource("LabelSettings_w1mg8")
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_2i1um")
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(142, 142)
@@ -94,8 +74,5 @@ focus_mode = 0
 theme = SubResource("Theme_fbxdc")
 action_mode = 0
 text = "100k"
-icon = ExtResource("6_ue3vd")
-
-[node name="Ripple" parent="CenterContainer2/Button" instance=ExtResource("8_om7kf")]
 
 [connection signal="pressed" from="CenterContainer2/Button" to="." method="_buy_button_pressed"]
