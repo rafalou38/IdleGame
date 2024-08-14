@@ -1,0 +1,174 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbqiu8uvna5hn"]
+
+[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="1_3qhxu"]
+[ext_resource type="Script" path="res://views/BottomBar/bottom_bar_button.gd" id="1_vrhwn"]
+[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_c0axc"]
+[ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="3_rt5p6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydqc8"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="Animation" id="Animation_ft0lq"]
+resource_name = "Focus"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_wo1vo"]
+resource_name = "FocusOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.392157)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_f3q4q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tx70i"]
+_data = {
+"Focus": SubResource("Animation_ft0lq"),
+"FocusOut": SubResource("Animation_wo1vo"),
+"RESET": SubResource("Animation_f3q4q")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_f563y"]
+font = ExtResource("2_c0axc")
+font_size = 22
+
+[node name="BottomBarButton" type="Button"]
+clip_children = 2
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -780.0
+offset_bottom = -1770.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ydqc8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ydqc8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ydqc8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ydqc8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ydqc8")
+action_mode = 0
+text = "
+"
+script = ExtResource("1_vrhwn")
+ref_icon = ExtResource("1_3qhxu")
+ref_name = "HOME"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tx70i")
+}
+
+[node name="Ripple" parent="." instance=ExtResource("3_rt5p6")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="CenterContainer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CenterContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("1_3qhxu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "HOME"
+label_settings = SubResource("LabelSettings_f563y")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

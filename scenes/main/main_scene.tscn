@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=20 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -11,13 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="6_ypsot"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="7_ujugr"]
 [ext_resource type="Script" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5lvk"]
-bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
+[ext_resource type="PackedScene" uid="uid://cbqiu8uvna5hn" path="res://views/BottomBar/bottom_bar_button.tscn" id="10_vg3el"]
+[ext_resource type="Texture2D" uid="uid://d2uasdvc4ai4u" path="res://sprites/icons/quantum.svg" id="11_jc2cv"]
+[ext_resource type="Texture2D" uid="uid://b14tppiydctbk" path="res://sprites/icons/mine.svg" id="12_12b6i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d5hs"]
 content_margin_left = 40.0
@@ -32,6 +28,16 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_2d5hs")
 [sub_resource type="LabelSettings" id="LabelSettings_d2las"]
 font = ExtResource("6_tjkwy")
 font_size = 42
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5lvk"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ujlr"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
 
 [node name="root" type="Node2D"]
 
@@ -60,44 +66,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_5su2o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Button" type="Button" parent="CanvasLayer"]
-clip_children = 2
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -168.0
-offset_top = -168.0
-offset_right = -48.0
-offset_bottom = -48.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/focus = SubResource("StyleBoxFlat_m5lvk")
-script = ExtResource("6_e2gnf")
-
-[node name="Ripple" parent="CanvasLayer/Button" instance=ExtResource("6_ypsot")]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Button"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_ujugr")
-expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -136,11 +104,77 @@ text = "0
 "
 label_settings = SubResource("LabelSettings_d2las")
 
-[node name="Shop" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("node_handler") instance=ExtResource("5_wbxbt")]
-z_index = 1
+[node name="Main" type="Control" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-node_handler = NodePath("../../../Node Handler")
+
+[node name="Shop" parent="CanvasLayer/VBoxContainer/Main" node_paths=PackedStringArray("node_handler") instance=ExtResource("5_wbxbt")]
+z_index = 1
+layout_mode = 2
+anchors_preset = 0
+size_flags_vertical = 3
+node_handler = NodePath("../../../../Node Handler")
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Main"]
+visible = false
+clip_children = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(100, 100)
+size_flags_horizontal = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_m5lvk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m5lvk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m5lvk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_m5lvk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_m5lvk")
+script = ExtResource("6_e2gnf")
+
+[node name="Ripple" parent="CanvasLayer/VBoxContainer/Main/Button" instance=ExtResource("6_ypsot")]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer/Main/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ujugr")
+expand_mode = 1
+
+[node name="BottomBar" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3ujlr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/BottomBar"]
+layout_mode = 2
+
+[node name="BottomBarButton" parent="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer" instance=ExtResource("10_vg3el")]
+layout_mode = 2
+ref_icon = ExtResource("11_jc2cv")
+ref_name = "RESEARCH"
+
+[node name="BottomBarButton2" parent="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer" instance=ExtResource("10_vg3el")]
+layout_mode = 2
+ref_icon = ExtResource("12_12b6i")
+
+[node name="BottomBarButton3" parent="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer" instance=ExtResource("10_vg3el")]
+layout_mode = 2
+ref_name = "SHOP"
 
 [node name="Node Handler" type="Node2D" parent="."]
 script = ExtResource("3_de16d")
@@ -148,4 +182,4 @@ script = ExtResource("3_de16d")
 [node name="Economy" type="Node2D" parent="."]
 script = ExtResource("10_3tfdc")
 
-[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main/Button" to="CanvasLayer/VBoxContainer/Main/Button" method="_on_pressed"]

@@ -1,4 +1,4 @@
-@tool
+# @tool
 extends HBoxContainer
 
 @export var type: NodeHandler.NodeType = NodeHandler.NodeType.SHOP
