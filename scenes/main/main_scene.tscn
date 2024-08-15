@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=21 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="6_ypsot"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="7_ujugr"]
 [ext_resource type="Script" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
+[ext_resource type="Script" path="res://scenes/main/BottomBar.gd" id="10_8yo8q"]
 [ext_resource type="PackedScene" uid="uid://cbqiu8uvna5hn" path="res://views/BottomBar/bottom_bar_button.tscn" id="10_vg3el"]
 [ext_resource type="Texture2D" uid="uid://d2uasdvc4ai4u" path="res://sprites/icons/quantum.svg" id="11_jc2cv"]
 [ext_resource type="Texture2D" uid="uid://b14tppiydctbk" path="res://sprites/icons/mine.svg" id="12_12b6i"]
@@ -159,6 +160,7 @@ expand_mode = 1
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3ujlr")
+script = ExtResource("10_8yo8q")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/BottomBar"]
 layout_mode = 2
@@ -183,3 +185,5 @@ script = ExtResource("3_de16d")
 script = ExtResource("10_3tfdc")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Main/Button" to="CanvasLayer/VBoxContainer/Main/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer/BottomBarButton2" to="CanvasLayer/VBoxContainer/BottomBar" method="_on_home_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer/BottomBarButton3" to="CanvasLayer/VBoxContainer/BottomBar" method="_on_shop_button_pressed"]

@@ -170,5 +170,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "HOME"
 label_settings = SubResource("LabelSettings_f563y")
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

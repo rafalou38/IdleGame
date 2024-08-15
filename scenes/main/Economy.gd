@@ -1,7 +1,7 @@
 class_name Economy
 extends Node2D
 
-static var money := 0.0
+static var money := 20.0
 
 
 static var research := {

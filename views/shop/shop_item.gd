@@ -42,6 +42,7 @@ func _process(_delta):
 
 func _buy_button_pressed():
 	if can_buy:
+		Economy.money -= price
 		bought += 1
 		owner.buy(type)
 

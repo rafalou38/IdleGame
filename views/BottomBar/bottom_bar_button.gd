@@ -1,4 +1,5 @@
 @tool
+class_name BottomBarButton
 extends Button
 
 @export var ref_icon : Texture2D
@@ -15,7 +16,7 @@ func _ready():
 
 func _process(_delta):
 	$VBoxContainer.size = size
-	
+
 	if self_focused and focused.to_lower() != ref_name.to_lower():
 		self_focused = false
 		$AnimationPlayer.play("FocusOut")
@@ -23,9 +24,3 @@ func _process(_delta):
 	if not self_focused and focused.to_lower() == ref_name.to_lower():
 		self_focused = true
 		$AnimationPlayer.play("Focus")
-
-
-
-func _on_pressed():
-	focused = ref_name
-	_process(0)
