@@ -3,6 +3,8 @@ extends Control
 @onready var animation_player = $AnimationPlayer
 @onready var btn = $".."
 
+@export var speedScale := 1.0
+
 # Function to start the ripple effect
 func _on_Button_pressed():
 	self.visible = true
@@ -18,3 +20,5 @@ func _ready():
 	btn.connect("button_down", self._on_Button_pressed)
 	animation_player.connect("animation_finished", self._end)
 	animation_player.play("RESET")
+
+	animation_player.speed_scale = speedScale

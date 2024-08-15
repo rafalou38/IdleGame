@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/main/node/shop_node.gd" id="1_q5rge"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="2_6encq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trqvl"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqknf"]
 bg_color = Color(0.29, 0.1798, 0.1798, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -18,7 +18,7 @@ script = ExtResource("1_q5rge")
 input_knob_count = 1
 
 [node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_trqvl")
+theme_override_styles/panel = SubResource("StyleBoxFlat_iqknf")
 icon = ExtResource("2_6encq")
 
 [editable path="BaseNode"]

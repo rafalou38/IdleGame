@@ -213,11 +213,11 @@ clip_children = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_uwj70")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_32qpr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_32qpr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_32qpr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_32qpr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_32qpr")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_32qpr")
-theme_override_styles/focus = SubResource("StyleBoxFlat_32qpr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_32qpr")
 text = "CLOSE"
 
 [node name="Ripple" parent="PanelContainer/VBoxContainer/Button" instance=ExtResource("8_gwp22")]

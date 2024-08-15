@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=22 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/main/TopBar.gd" id="6_qu1qt"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_tjkwy"]
 [ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="6_ypsot"]
+[ext_resource type="PackedScene" uid="uid://b6ii2jloehgu1" path="res://views/research/research.tscn" id="7_05bfq"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="7_ujugr"]
 [ext_resource type="Script" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
 [ext_resource type="Script" path="res://scenes/main/BottomBar.gd" id="10_8yo8q"]
@@ -75,6 +76,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/separation = 0
 
 [node name="TopBar" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
 z_index = 5
@@ -116,6 +118,9 @@ anchors_preset = 0
 size_flags_vertical = 3
 node_handler = NodePath("../../../../Node Handler")
 
+[node name="Research" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("7_05bfq")]
+layout_mode = 1
+
 [node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Main"]
 visible = false
 clip_children = 2
@@ -131,11 +136,11 @@ grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(100, 100)
 size_flags_horizontal = 8
-theme_override_styles/normal = SubResource("StyleBoxFlat_m5lvk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_m5lvk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_m5lvk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_m5lvk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/focus = SubResource("StyleBoxFlat_m5lvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_m5lvk")
 script = ExtResource("6_e2gnf")
 
 [node name="Ripple" parent="CanvasLayer/VBoxContainer/Main/Button" instance=ExtResource("6_ypsot")]
@@ -157,7 +162,7 @@ texture = ExtResource("7_ujugr")
 expand_mode = 1
 
 [node name="BottomBar" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 140)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3ujlr")
 script = ExtResource("10_8yo8q")
@@ -185,5 +190,6 @@ script = ExtResource("3_de16d")
 script = ExtResource("10_3tfdc")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Main/Button" to="CanvasLayer/VBoxContainer/Main/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer/BottomBarButton" to="CanvasLayer/VBoxContainer/BottomBar" method="_on_research_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer/BottomBarButton2" to="CanvasLayer/VBoxContainer/BottomBar" method="_on_home_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer/BottomBarButton3" to="CanvasLayer/VBoxContainer/BottomBar" method="_on_shop_button_pressed"]

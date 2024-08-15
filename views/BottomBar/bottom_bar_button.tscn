@@ -113,11 +113,11 @@ offset_bottom = -1770.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_ydqc8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ydqc8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ydqc8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ydqc8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ydqc8")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_ydqc8")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ydqc8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ydqc8")
 action_mode = 0
 text = "
 "
@@ -131,14 +131,13 @@ libraries = {
 }
 
 [node name="Ripple" parent="." instance=ExtResource("3_rt5p6")]
+speedScale = 4.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 300.0
-offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
