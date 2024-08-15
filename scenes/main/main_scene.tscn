@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=23 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -30,6 +30,11 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_2d5hs")
 [sub_resource type="LabelSettings" id="LabelSettings_d2las"]
 font = ExtResource("6_tjkwy")
 font_size = 42
+
+[sub_resource type="LabelSettings" id="LabelSettings_yonvl"]
+font = ExtResource("6_tjkwy")
+font_size = 30
+font_color = Color(0.466181, 0.466181, 0.466181, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5lvk"]
 bg_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -106,6 +111,11 @@ layout_mode = 2
 text = "0
 "
 label_settings = SubResource("LabelSettings_d2las")
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/TopBar/Wallet"]
+layout_mode = 2
+text = " · 0/s"
+label_settings = SubResource("LabelSettings_yonvl")
 
 [node name="Main" type="Control" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2

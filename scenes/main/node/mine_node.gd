@@ -8,7 +8,7 @@ var unit_scene = preload("res://scenes/main/unit.tscn")
 
 func _process(delta):
 	spawn_delay += delta
-	if spawn_delay >= spawn_interval:
+	if spawn_delay >= spawn_interval / (NodeHandler.speed_up_factor):
 		spawn_delay = 0
 
 		var unit: Unit = unit_scene.instantiate()

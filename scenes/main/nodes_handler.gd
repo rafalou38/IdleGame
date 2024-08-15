@@ -23,10 +23,11 @@ enum NodeType {
 @export var insert_delayed := false
 @export var insert_queue := []
 
+static var speed_up_factor := 1.0
 
 func _ready():
-	# add_node(NodeType.SHOP)
-	# add_node(NodeType.MINE)
+	add_node(NodeType.SHOP)
+	add_node(NodeType.MINE)
 	# add_node(NodeType.PROCESSOR)
 	# add_node(NodeType.PROCESSOR)
 	# add_node(NodeType.PROCESSOR)
@@ -36,6 +37,8 @@ func _ready():
 
 var time_since_last_insert : float = 0.0
 func _process(delta):
+	speed_up_factor = min((speed_up_factor-1) * 0.8 * (1/(delta * 60)) + 1, 2.5)
+
 	time_since_last_insert += delta
 	if !insert_delayed and insert_queue.size() > 0 and time_since_last_insert > 0.5:
 		time_since_last_insert = 0

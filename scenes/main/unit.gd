@@ -37,7 +37,7 @@ func _process(delta):
 		elif value < 100000:
 			$Label.label_settings.font_size = 16
 
-		progress = progress + delta * speed
+		progress = progress + delta * speed * min(1.5, NodeHandler.speed_up_factor)
 
 		if progress_ratio >= 1.0:
 			print("Done!")

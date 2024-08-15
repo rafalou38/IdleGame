@@ -56,6 +56,9 @@ func initiate_drag(event: InputEventScreenTouch):
 	timer_start = Time.get_ticks_msec()
 
 func cancel_drag():
+	if drag_initiated and Time.get_ticks_msec() - timer_start < long_press_delay_ms  and !CameraMovement.control_locks.has("knob-manager/" + str(drag_index)):
+		# print("taped")
+		NodeHandler.speed_up_factor += 1
 	drag_initiated = false
 			
 	dragging = false
