@@ -10,27 +10,12 @@ bg_color = Color(0.082063, 0.082063, 0.082063, 1)
 font = ExtResource("2_e0mrl")
 font_size = 120
 
-[sub_resource type="Animation" id="Animation_jg7ey"]
-resource_name = "slide_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Container:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.42, 1.00001),
-"update": 0,
-"values": [Vector2(-1080, 0), Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ck5nr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Container:position")
+tracks/0/path = NodePath("PanelContainer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,12 +25,27 @@ tracks/0/keys = {
 "values": [Vector2(-1080, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_jg7ey"]
+resource_name = "slide_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.42, 1.00001),
+"update": 0,
+"values": [Vector2(-1080, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_egea6"]
 resource_name = "slide_out"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Container:position")
+tracks/0/path = NodePath("PanelContainer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -72,7 +72,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_lvo6m")
 
-[node name="Container" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,10 +83,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tuy1y")
 
-[node name="Control" type="Control" parent="Container"]
+[node name="Control" type="Control" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Container/Control"]
+[node name="Label" type="Label" parent="PanelContainer/Control"]
 layout_mode = 2
 offset_left = 300.0
 offset_top = 561.0
@@ -95,6 +95,9 @@ offset_bottom = 707.0
 rotation = 0.899616
 text = "RESEARCH"
 label_settings = SubResource("LabelSettings_yxqe0")
+
+[node name="Line2D" type="Line2D" parent="PanelContainer/Control"]
+points = PackedVector2Array(3, 12, 1079, 53)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

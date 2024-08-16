@@ -1,16 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=19 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
 [ext_resource type="Script" path="res://scenes/main/nodes_handler.gd" id="3_de16d"]
 [ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="5_3f3gl"]
 [ext_resource type="PackedScene" uid="uid://degu5ftaio8gf" path="res://views/shop/shop.tscn" id="5_wbxbt"]
-[ext_resource type="Script" path="res://scenes/main/OpenShop.gd" id="6_e2gnf"]
 [ext_resource type="Script" path="res://scenes/main/TopBar.gd" id="6_qu1qt"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_tjkwy"]
-[ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="6_ypsot"]
 [ext_resource type="PackedScene" uid="uid://b6ii2jloehgu1" path="res://views/research/research.tscn" id="7_05bfq"]
-[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="7_ujugr"]
 [ext_resource type="Script" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
 [ext_resource type="Script" path="res://scenes/main/BottomBar.gd" id="10_8yo8q"]
 [ext_resource type="PackedScene" uid="uid://cbqiu8uvna5hn" path="res://views/BottomBar/bottom_bar_button.tscn" id="10_vg3el"]
@@ -35,13 +32,6 @@ font_size = 42
 font = ExtResource("6_tjkwy")
 font_size = 30
 font_color = Color(0.466181, 0.466181, 0.466181, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5lvk"]
-bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ujlr"]
 bg_color = Color(0.101961, 0.101961, 0.101961, 1)
@@ -117,59 +107,21 @@ layout_mode = 2
 text = " · 0/s"
 label_settings = SubResource("LabelSettings_yonvl")
 
-[node name="Main" type="Control" parent="CanvasLayer/VBoxContainer"]
+[node name="Main" type="Container" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Shop" parent="CanvasLayer/VBoxContainer/Main" node_paths=PackedStringArray("node_handler") instance=ExtResource("5_wbxbt")]
 z_index = 1
 layout_mode = 2
-anchors_preset = 0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 node_handler = NodePath("../../../../Node Handler")
 
 [node name="Research" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("7_05bfq")]
-layout_mode = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Main"]
-visible = false
-clip_children = 2
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -100.0
-grow_horizontal = 0
-grow_vertical = 0
-pivot_offset = Vector2(100, 100)
-size_flags_horizontal = 8
-theme_override_styles/focus = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_m5lvk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_m5lvk")
-script = ExtResource("6_e2gnf")
-
-[node name="Ripple" parent="CanvasLayer/VBoxContainer/Main/Button" instance=ExtResource("6_ypsot")]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer/Main/Button"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_ujugr")
-expand_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="BottomBar" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
@@ -199,7 +151,6 @@ script = ExtResource("3_de16d")
 [node name="Economy" type="Node2D" parent="."]
 script = ExtResource("10_3tfdc")
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main/Button" to="CanvasLayer/VBoxContainer/Main/Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer/BottomBarButton" to="CanvasLayer/VBoxContainer/BottomBar" method="_on_research_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer/BottomBarButton2" to="CanvasLayer/VBoxContainer/BottomBar" method="_on_home_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BottomBar/HBoxContainer/BottomBarButton3" to="CanvasLayer/VBoxContainer/BottomBar" method="_on_shop_button_pressed"]

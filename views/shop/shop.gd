@@ -10,10 +10,10 @@ func _ready():
 	var trackID = anim.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 
 	var anim_out = $AnimationPlayer.get_animation("slide_out")
-	var trackID_out = anim.find_track("PanelContainer:position", Animation.TYPE_VALUE)
+	var trackID_out = anim_out.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 
 	var anim_RESET = $AnimationPlayer.get_animation("RESET")
-	var trackID_RESET = anim.find_track("PanelContainer:position", Animation.TYPE_VALUE)
+	var trackID_RESET = anim_RESET.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 
 	if trackID != -1 and trackID_out != -1:
 		anim.track_set_key_value(trackID, 0, Vector2(get_viewport_rect().size.x, 0))
@@ -51,6 +51,8 @@ func _ready():
 			t += Util.number_to_human(Prices.node_buy(NodeHandler.NodeType.REFINERY, i)) + " "
 		print(t)
 
+func _process(delta):
+	$PanelContainer.size = size
 
 func _anim_finished(anim_name):
 	if anim_name == "slide_out":

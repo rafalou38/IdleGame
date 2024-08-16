@@ -49,7 +49,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("PanelContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -121,7 +121,8 @@ _data = {
 "slide_out": SubResource("Animation_7d603")
 }
 
-[node name="Shop" type="HBoxContainer"]
+[node name="Shop" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -132,6 +133,9 @@ script = ExtResource("1_8xcdu")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
+offset_left = 1080.0
+offset_right = 2160.0
+offset_bottom = 1920.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ebddv")
 

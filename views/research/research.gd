@@ -7,20 +7,25 @@ func _ready():
 	var trackID = anim.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 
 	var anim_out = $AnimationPlayer.get_animation("slide_out")
-	var trackID_out = anim.find_track("PanelContainer:position", Animation.TYPE_VALUE)
+	var trackID_out = anim_out.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 
 	var anim_RESET = $AnimationPlayer.get_animation("RESET")
-	var trackID_RESET = anim.find_track("PanelContainer:position", Animation.TYPE_VALUE)
+	var trackID_RESET = anim_RESET.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 
 	if trackID != -1 and trackID_out != -1:
-		anim.track_set_key_value(trackID, 0, Vector2(get_viewport_rect().size.x, 0))
-		anim_out.track_set_key_value(trackID_out, 1, Vector2(get_viewport_rect().size.x, 0))
-		anim_RESET.track_set_key_value(trackID_RESET, 0, Vector2(get_viewport_rect().size.x, 0))
+		# print(get_viewport_rect().size.x)
+		# $Container.size.x = get_viewport_rect().size.x
+		anim.track_set_key_value(trackID, 0, Vector2(-get_viewport_rect().size.x, 0))
+		anim_out.track_set_key_value(trackID_out, 1, Vector2(-get_viewport_rect().size.x, 0))
+		anim_RESET.track_set_key_value(trackID_RESET, 0, Vector2(-get_viewport_rect().size.x, 0))
 	else:
 		print("track not found")
 
 	$AnimationPlayer.play("RESET")
 	# $AnimationPlayer.connect("animation_finished", _anim_finished)
+
+func _process(delta):
+	$PanelContainer.size = size
 
 func show_research():
 	open = true
