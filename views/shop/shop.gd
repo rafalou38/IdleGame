@@ -1,6 +1,7 @@
 extends Control
 
 var open := false
+static var overlayed := false
 var timer := 0
 
 @export var node_handler: NodeHandler
@@ -56,10 +57,10 @@ func _process(delta):
 
 func _anim_finished(anim_name):
 	if anim_name == "slide_out":
-		node_handler.insert_delayed = false
+		overlayed = false
 
 func show_shop():
-	node_handler.insert_delayed = true
+	overlayed = true
 	open = true
 	$AnimationPlayer.play("slide_in")
 
@@ -72,5 +73,14 @@ func _handle_button_close():
 	hide_shop()
 
 func buy(type: NodeHandler.NodeType):
-	node_handler.add_node(type)
+	# node_handler.add_node(type)
+	Economy.owned.append(
+		{
+			"id": randi(),
+			"type": type,
+		 	"placed": false,
+		  	"position": Vector2(0, 0),
+		  	"outbound": [],
+		}
+	)
 	# hide_shop()

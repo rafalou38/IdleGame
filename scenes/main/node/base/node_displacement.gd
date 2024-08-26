@@ -19,6 +19,9 @@ func _ready():
 	handler = find_parent("Node Handler")
 	assert(handler != null, "Node should be in a node Handler")
 
+func set_target_from_drag(point: Vector2):
+	target_position = point - $Control.size / 2 + offset
+
 func _input(event):
 	if event is InputEventScreenTouch:
 		if (event.pressed and !drag_initiated):
@@ -57,7 +60,6 @@ func initiate_drag(event: InputEventScreenTouch):
 
 func cancel_drag():
 	if drag_initiated and Time.get_ticks_msec() - timer_start < long_press_delay_ms  and !CameraMovement.control_locks.has("knob-manager/" + str(drag_index)):
-		# print("taped")
 		NodeHandler.speed_up_factor += 1
 	drag_initiated = false
 			

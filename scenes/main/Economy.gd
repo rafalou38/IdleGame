@@ -27,6 +27,13 @@ static var owned := [
     #     ]
     #     "position": Vector2
     # }
+    # {
+    #     "id": 0,
+    #     "type": NodeHandler.NodeType.SHOP,
+    #     "placed": false,
+    #     "outbound": [],
+    #     "position": Vector2(0, 0)
+    # }
 ]
 
 static var _prev_money := 0.0

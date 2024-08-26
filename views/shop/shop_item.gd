@@ -37,10 +37,20 @@ func apply_props():
 func _ready():
 	apply_props()
 
-func _process(_delta):
+var last_node_count = -1
+func _process(_delta: float) -> void:
+	if last_node_count != Economy.owned.size():
+		last_node_count = Economy.owned.size()
+		bought = 0
+		for node in Economy.owned:
+			if node["type"] == type:
+				bought += 1
+
 	apply_props()
 
 func _buy_button_pressed():
+	apply_props() # To check if can_buy
+	
 	if can_buy:
 		Economy.money -= price
 		bought += 1

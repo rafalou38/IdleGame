@@ -13,7 +13,6 @@ func _ready():
 	var trackID_RESET = anim_RESET.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 
 	if trackID != -1 and trackID_out != -1:
-		# print(get_viewport_rect().size.x)
 		# $Container.size.x = get_viewport_rect().size.x
 		anim.track_set_key_value(trackID, 0, Vector2(-get_viewport_rect().size.x, 0))
 		anim_out.track_set_key_value(trackID_out, 1, Vector2(-get_viewport_rect().size.x, 0))

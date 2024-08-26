@@ -36,7 +36,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_0p5ct")
+open = null
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -94,8 +96,10 @@ layout_mode = 2
 count = 0
 
 [node name="Processor" parent="Panel/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer" instance=ExtResource("1_qh4sb")]
+visible = false
 layout_mode = 2
 node_type = 2
+count = 0
 
 [node name="Refinery" parent="Panel/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer" instance=ExtResource("1_qh4sb")]
 visible = false

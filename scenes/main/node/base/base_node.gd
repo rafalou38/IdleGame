@@ -43,7 +43,7 @@ func receive_unit(unit: Unit):
 
 func _ready():
 	$rb/CollisionShape2D.shape = $rb/CollisionShape2D.shape.duplicate()
-	$AnimationPlayer.play("spawn")
+	# $AnimationPlayer.play("spawn")
 
 func _process(_delta):
 	refreshLines()
@@ -78,9 +78,7 @@ func reset_connections():
 
 
 func dispose_connection(origin: OutKnob, target: InKnob):
-	print("Disposing connection ", origin, target)
 	for con in outbound_connections:
-		print(con)
 		if origin != null and con.fromKnob == origin or target != null and con.toKnob == target:
 			con.fromKnob.connected = false
 			con.toKnob.connected = false
@@ -91,7 +89,6 @@ func dispose_connection(origin: OutKnob, target: InKnob):
 
 
 func connect_to(origin: OutKnob, target: InKnob):
-	print("Connecting ", origin, target)
 	origin.connected = true
 	target.connected = true
 

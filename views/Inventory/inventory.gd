@@ -17,22 +17,33 @@ var right_pos := -1
 
 @onready var hbox = $Panel/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer
 
-
+var last_node_count := 0
 func _process(_a: float) -> void:
+	var allGone = true
+	for child in hbox.get_children():
+		if child.visible:
+			allGone = false
+			break
+
+	if allGone:
+		open = false
+
+	if Economy.owned.size() != last_node_count and not $"../Shop".overlayed:
+		last_node_count = Economy.owned.size()
+		open = true
+
 	if top_pos == -1:
 		top_pos = $Panel.position.y
 		bottom_pos = $Panel.position.y + $Panel.size.y - 16 * 3
 
 		var hbox_rect = hbox.get_global_rect()
-		# print(hbox_rect.size.x - hbox.get_parent().get_global_rect().size.x)
-		print(hbox.get_parent().get_global_rect().size.x," ", hbox_rect.size.x)
 		left_pos = (hbox.get_parent().get_global_rect().size.x - hbox_rect.size.x) - 32
 		right_pos = 0
 	
 	if open:
-		$Panel.position.y = lerpf($Panel.position.y, top_pos, 0.3) 
+		$Panel.position.y = lerpf($Panel.position.y, top_pos, 0.2) 
 	else :
-		$Panel.position.y = lerpf($Panel.position.y, bottom_pos, 0.3)
+		$Panel.position.y = lerpf($Panel.position.y, bottom_pos, 0.2)
 	
 
 
@@ -53,8 +64,6 @@ func _input(event: InputEvent) -> void:
 			touch_id = -1
 			CameraMovement.control_locks.erase("inventory")
 	elif event is InputEventScreenDrag:
-		
-		# print(top_pos, " ", to_local(event.position), " ", bottom_pos)
 		if event.index == touch_id:
 			var delta = touch_start - event.position
 
