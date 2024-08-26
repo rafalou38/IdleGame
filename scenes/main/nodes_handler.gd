@@ -10,13 +10,13 @@ enum NodeType {
 	DUPLICATOR
 }
 
-@export var node_ref_by_type : Dictionary = {
+static var node_ref_by_type : Dictionary = {
 	NodeType.SHOP: preload("res://scenes/main/node/shop_node.tscn"),
 	NodeType.MINE: preload("res://scenes/main/node/mine_node.tscn"),
 	NodeType.PROCESSOR: preload("res://scenes/main/node/processor_node.tscn"),
-	# NodeType.REFINERY: null,
-	# NodeType.TETHER: null,
-	# NodeType.DUPLICATOR: null
+	NodeType.REFINERY: null,
+	NodeType.TETHER: null,
+	NodeType.DUPLICATOR: null
 }
 
 @export var nodes : Array = []

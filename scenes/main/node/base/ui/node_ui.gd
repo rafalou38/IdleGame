@@ -4,6 +4,7 @@ extends Panel
 
 @export_range(0, 360) var hue := 0.0
 @export var icon : Texture2D = null
+@export var displayName := ""
 
 func apply():
 	# TODO: Fix this so that it is unique and not global

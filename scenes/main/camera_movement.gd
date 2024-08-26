@@ -34,6 +34,12 @@ func _input(event):
 			zoom *= Vector2(1.05, 1.05)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			zoom /= Vector2(1.05, 1.05)
+		if zoom.length() > 2.0:
+			var v = sqrt(2.0)
+			zoom = Vector2(v, v)
+		elif zoom.length() < 0.5:
+			var v = sqrt(0.5 ** 2 / 2)
+			zoom = Vector2(v, v)
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			# Started a press

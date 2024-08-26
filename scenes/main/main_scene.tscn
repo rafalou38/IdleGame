@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=20 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/main/TopBar.gd" id="6_qu1qt"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="6_tjkwy"]
 [ext_resource type="PackedScene" uid="uid://b6ii2jloehgu1" path="res://views/research/research.tscn" id="7_05bfq"]
+[ext_resource type="PackedScene" uid="uid://cdwl6oyxucyto" path="res://views/Inventory/inventory.tscn" id="8_r8hkb"]
 [ext_resource type="Script" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
 [ext_resource type="Script" path="res://scenes/main/BottomBar.gd" id="10_8yo8q"]
 [ext_resource type="PackedScene" uid="uid://cbqiu8uvna5hn" path="res://views/BottomBar/bottom_bar_button.tscn" id="10_vg3el"]
@@ -122,6 +123,10 @@ node_handler = NodePath("../../../../Node Handler")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Inventory" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("8_r8hkb")]
+layout_mode = 2
+open = null
 
 [node name="BottomBar" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
