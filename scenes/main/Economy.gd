@@ -23,8 +23,10 @@ static func var_money() -> float:
     if _prev_money > money:
         _prev_money = money
         _prev_money_time = now
-    if _prev_money < money:
-        _dvm = min(lerpf(_dvm, (money - _prev_money) / (now - _prev_money_time), 0.8), _dvm * 1.8)
+    elif _prev_money < money:
+        var nv := lerpf(_dvm, (money - _prev_money) / (now - _prev_money_time), 0.8)
+        if _dvm > 1 and nv > _dvm * 1.8: _dvm = _dvm * 1.8
+        else: _dvm = nv
 
         _prev_money_time = now
         _prev_money = money

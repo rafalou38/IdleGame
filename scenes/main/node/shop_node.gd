@@ -8,3 +8,5 @@ func _process(_delta):
 		var unit = node.input_queue.pop_front()
 		unit.destroy()
 		Economy.money += unit.value
+
+		unit.queue_free()
