@@ -10,7 +10,7 @@ enum NodeType {
 	DUPLICATOR
 }
 
-static var node_ref_by_type : Dictionary = {
+static var node_ref_by_type: Dictionary = {
 	NodeType.SHOP: preload("res://scenes/main/node/shop_node.tscn"),
 	NodeType.MINE: preload("res://scenes/main/node/mine_node.tscn"),
 	NodeType.PROCESSOR: preload("res://scenes/main/node/processor_node.tscn"),
@@ -19,7 +19,7 @@ static var node_ref_by_type : Dictionary = {
 	NodeType.DUPLICATOR: null
 }
 
-@export var nodes : Array = []
+@export var nodes: Array = []
 @export var insert_queue := []
 
 static var speed_up_factor := 1.0
@@ -35,16 +35,7 @@ func _ready():
 
 
 func _process(delta):
-	speed_up_factor = min((speed_up_factor-1) * 0.8 * (1/(delta * 60)) + 1, 2.5)
-
-	# if insert_queue.size() > 0:
-	# 	var item = insert_queue.pop_front()
-	# 	item.get_children()[0].visible = false
-	# 	item.get_children()[0]._ready()
-	# 	item.find_child("CollisionShape2D").shape.height = 0
-	# 	item.find_child("CollisionShape2D").shape.radius = 0
-
-	# 	add_child(item)
+	speed_up_factor = min((speed_up_factor - 1) * 0.95 + 1, 2.5)
 
 func drag_node(nodeInfo: Dictionary, touch_id: int, point: Vector2):
 	var node = add_node(nodeInfo, point)

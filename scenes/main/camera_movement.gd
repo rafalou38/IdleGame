@@ -10,8 +10,8 @@ static var control_locks := []
 
 @export var dragging := false
 
-var intitialCameraPos := Vector2(0,0)
-var velocity := Vector2(0,0)
+var intitialCameraPos := Vector2(0, 0)
+var velocity := Vector2(0, 0)
 var initialZoom := 1.0
 
 var points: Dictionary
@@ -34,18 +34,12 @@ func _input(event):
 			zoom *= Vector2(1.05, 1.05)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			zoom /= Vector2(1.05, 1.05)
-		if zoom.length() > 2.0:
-			var v = sqrt(2.0)
-			zoom = Vector2(v, v)
-		elif zoom.length() < 0.5:
-			var v = sqrt(0.5 ** 2 / 2)
-			zoom = Vector2(v, v)
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			# Started a press
 			Engine.physics_ticks_per_second = 60 * 4
 			
-			points[event.index] = [Vector2(0,0), Vector2(0,0)]
+			points[event.index] = [Vector2(0, 0), Vector2(0, 0)]
 			points[event.index][0] = event.position
 			points[event.index][1] = event.position
 			
@@ -68,13 +62,20 @@ func _input(event):
 				
 	elif event is InputEventScreenDrag:
 		handle_drag(event)
+	
+	if zoom.length() > 2.5:
+		var v = sqrt(2.5 ** 2 / 2)
+		zoom = Vector2(v, v)
+	elif zoom.length() < 0.5:
+		var v = sqrt(0.5 ** 2 / 2)
+		zoom = Vector2(v, v)
 
 func _process(delta: float) -> void:
 	$"../Node Handler/CanvasLayer".transform = get_canvas_transform()
 
 func _physics_process(delta):
 	if is_locked(): return
-	if velocity != Vector2(0,0) and points.size() == 0:
+	if velocity != Vector2(0, 0) and points.size() == 0:
 		velocity *= pow(dampening, delta * Engine.physics_ticks_per_second)
 		offset -= velocity * delta
 		if velocity.length() < 100: # Threshold to stop
@@ -84,9 +85,9 @@ var prev_event_time := 0
 func handle_drag(event: InputEventScreenDrag):
 	if is_locked(): return
 	points[event.index][1] = event.position
-	if(points.size() == 1):
+	if (points.size() == 1):
 		var displacement: Vector2 = (event.position - points[event.index][0]) / zoom.x
-		if displacement.length() < 15 and !dragging: 
+		if displacement.length() < 15 and !dragging:
 			return
 		
 		dragging = true
@@ -101,20 +102,17 @@ func handle_drag(event: InputEventScreenDrag):
 		if prev_event_time != 0:
 			var time_diff = (current_time - prev_event_time) / 1_000_000.0 # convert usec to sec
 			velocity = event.relative / time_diff
-			if(velocity.length() > MAX_CAM_SPEED):
+			if (velocity.length() > MAX_CAM_SPEED):
 				velocity = velocity.normalized() * MAX_CAM_SPEED
 		prev_event_time = Time.get_ticks_usec()
-	elif(points.size() == 2):
+	elif (points.size() == 2):
 		var start_d = (points.values()[0][0] as Vector2).distance_to(points.values()[1][0])
 		var new_d = (points.values()[0][1] as Vector2).distance_to(points.values()[1][1])
 		var factor = new_d / start_d
 		zoom.x = initialZoom * factor
 		zoom.y = initialZoom * factor
 		
-		var displacement = points.values()[0][0] + points.values()[1][0] - ( points.values()[0][1] + points.values()[1][1] )
-		if displacement.length() < 30: 
+		var displacement = points.values()[0][0] + points.values()[1][0] - (points.values()[0][1] + points.values()[1][1])
+		if displacement.length() < 30:
 			return
 		offset = intitialCameraPos + displacement / (initialZoom * factor * 2)
-	
-	
-
