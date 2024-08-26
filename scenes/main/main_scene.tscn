@@ -126,7 +126,6 @@ size_flags_vertical = 3
 
 [node name="Inventory" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("8_r8hkb")]
 layout_mode = 2
-open = null
 
 [node name="BottomBar" type="PanelContainer" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
@@ -152,6 +151,9 @@ ref_name = "SHOP"
 
 [node name="Node Handler" type="Node2D" parent="."]
 script = ExtResource("3_de16d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node Handler"]
+layer = 4
 
 [node name="Economy" type="Node2D" parent="."]
 script = ExtResource("10_3tfdc")

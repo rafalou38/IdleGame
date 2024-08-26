@@ -14,7 +14,7 @@ friction = 0.0
 _data = [Vector2(0.00917432, 1), 0.0, -3.39921, 0, 0, Vector2(1, 0), -0.0753149, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fj7bq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40txn"]
 bg_color = Color(0.29, 0.1798, 0.1798, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -210,7 +210,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fj7bq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_40txn")
 displayName = null
 
 [node name="Knobs" type="Control" parent="rb/Control"]

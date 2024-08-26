@@ -69,6 +69,9 @@ func _input(event):
 	elif event is InputEventScreenDrag:
 		handle_drag(event)
 
+func _process(delta: float) -> void:
+	$"../Node Handler/CanvasLayer".transform = get_canvas_transform()
+
 func _physics_process(delta):
 	if is_locked(): return
 	if velocity != Vector2(0,0) and points.size() == 0:

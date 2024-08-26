@@ -79,13 +79,25 @@ func _integrate_forces(delta):
 			set_axis_velocity(global_position * - attraction_factor * delta.step)
 
 func _process(_delta):
+
+
 	if (!dragging and drag_initiated and Time.get_ticks_msec() - timer_start >= long_press_delay_ms and !CameraMovement.control_locks.has("knob-manager/" + str(drag_index))):
 		# Start the drag
 		CameraMovement.control_locks.append("NodeDisplacement/" + str(drag_index))
 		dragging = true
 	
-	if (dragging): $Control.scale = Vector2(1.1, 1.1)
-	else: $Control.scale = Vector2(1, 1)
+	if (dragging): 
+		$Control.scale = Vector2(1.1, 1.1)
+		if $"../../.." is not CanvasLayer:
+			var new_parent = $"../../../CanvasLayer"
+			$"../../..".remove_child($"../..")
+			new_parent.add_child($"../..")
+	else: 
+		$Control.scale = Vector2(1, 1)
+		if $"../../.." is CanvasLayer:
+			var new_parent = $"../../../.."
+			$"../../..".remove_child($"../..")
+			new_parent.add_child($"../..")
 
 	get_parent().refreshLines()
 
