@@ -3,6 +3,7 @@ class_name ResearchTreeItem
 extends Control
 
 enum State {
+	NULL,
 	HIDDEN,
 	LOCKED,
 	AVAILABLE,
@@ -16,40 +17,45 @@ enum State {
 @export var research_name := ""
 @export var description := ""
 @export var price := 0
-@export var state := State.AVAILABLE
+@export var state := State.NULL
 @export var dirty := false
 @export var line_texture: Texture2D
 
 @export var targets: Array[ResearchTreeItem] = []
+@onready var out_point := $container/ConnectorBox/Control3/Control/Out
+@onready var in_point := $container/ConnectorBox/Control/Control/In
+@onready var animator := $AnimationPlayer
+
+var prev_state : State = State.NULL
+
+func _ready():
+	prev_state = State.NULL
+	call_deferred("sync_size")
+
+func sync_size():
+	$container/VBoxContainer/ResearchBox/Panel.size = $container/VBoxContainer/ResearchBox.size
+	$container/VBoxContainer/ResearchBox/VBoxContainer.size = $container/VBoxContainer/ResearchBox.size
 
 func refresh_state() -> void:
+	if state == prev_state: return
+	if prev_state == State.NULL: animator.speed_scale = 100
+	else: animator.speed_scale = 2
+
 	match state:
 		State.HIDDEN:
 			visible = false
 		State.LOCKED:
 			visible = true
-			$container/VBoxContainer/Label.visible = true
-			$container/VBoxContainer/HBoxContainer.visible = false
-			$container/VBoxContainer/Button.visible = false
+			animator.play("appear")
 		State.AVAILABLE:
-			visible = true
-			$container/VBoxContainer/Label.visible = false
-			$container/VBoxContainer/HBoxContainer.visible = true
-			$container/VBoxContainer/Button.visible = true
+			animator.play("unlock")
 		State.RESEARCHING:
-			visible = true
-			$container/VBoxContainer/Label.visible = false
-			$container/VBoxContainer/HBoxContainer.visible = true
-			$container/VBoxContainer/Button.visible = false
+			animator.play("start_research")
 		State.BOUGHT:
-			visible = true
-			$container/VBoxContainer/Label.visible = false
-			$container/VBoxContainer/HBoxContainer.visible = true
-			$container/VBoxContainer/Button.visible = false
-
+			animator.play("bought")
 	
-	for c in $Out.get_children():
-		$Out.remove_child(c)
+	for c in out_point.get_children():
+		out_point.remove_child(c)
 
 	for target in targets:
 		if target == null: continue
@@ -71,8 +77,8 @@ func refresh_state() -> void:
 		line.add_child(path)
 		line.path = path
 
-		line.origin = $Out
-		line.target = target.find_child("In")
+		line.origin = out_point
+		line.target = target.in_point
 
 
 		if target.state == State.LOCKED:
@@ -83,9 +89,12 @@ func refresh_state() -> void:
 
 		line.visible = target.state != State.HIDDEN
 		
-		$Out.add_child(line)
+		out_point.add_child(line)
 
 		target.refresh_state()
+	
+
+	prev_state = state
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -100,17 +109,25 @@ func _process(delta: float) -> void:
 	$container/VBoxContainer/HBoxContainer/Title/Name.text = research_name
 	$container/VBoxContainer/HBoxContainer/Title/Description.text = description
 
-	$container/VBoxContainer/Button/HBoxContainer/Label.text = Util.number_to_human(price)
+	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
 
-	if $Out.get_child_count() != targets.size() or dirty:
+	if out_point.get_child_count() != targets.size() or dirty:
 		dirty = false
 		refresh_state()
 
+
+func _input(event: InputEvent) -> void:
+	if OS.is_debug_build() and event is InputEventKey:
+		if event.pressed and event.keycode == KEY_TAB:
+			if state == State.RESEARCHING:
+				state = State.BOUGHT
+		
+		dirty = true
 
 
 func _on_buy_button_pressed() -> void:
 	if state != State.AVAILABLE: return
 
-	state = State.BOUGHT
+	state = State.RESEARCHING
 
 	dirty = true

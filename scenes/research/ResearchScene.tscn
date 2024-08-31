@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bosn8h1g7vb74"]
+[gd_scene load_steps=8 format=3 uid="uid://bosn8h1g7vb74"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_4gvar"]
 [ext_resource type="PackedScene" uid="uid://bbos71oi0rhwg" path="res://views/TopBar/top_bar.tscn" id="2_d2dml"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="4_r8qxp"]
 [ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="5_yovhv"]
 [ext_resource type="Texture2D" uid="uid://byfr26h6l15ni" path="res://sprites/icons/CarbonCicsExplorer.svg" id="6_qd8oq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qa2g"]
+bg_color = Color(0.317647, 0.396078, 0.290196, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="root" type="Node2D"]
 
@@ -44,7 +51,23 @@ script = ExtResource("1_4gvar")
 research_name = "Mine"
 description = "Generates Units at a fixed rate"
 price = 10
+state = 3
 targets = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
+
+[node name="Logo" parent="ResearchTree/Mine Container/Mine/container/VBoxContainer/HBoxContainer" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_3qa2g")
+
+[node name="Name" parent="ResearchTree/Mine Container/Mine/container/VBoxContainer/HBoxContainer/Title" index="0"]
+text = "Mine"
+
+[node name="Description" parent="ResearchTree/Mine Container/Mine/container/VBoxContainer/HBoxContainer/Title" index="1"]
+text = "Generates Units at a fixed rate"
+
+[node name="Label" parent="ResearchTree/Mine Container/Mine/container/VBoxContainer/Button/HBoxContainer" index="1"]
+text = "10"
+
+[node name="AnimationPlayer" parent="ResearchTree/Mine Container/Mine" index="1"]
+speed_scale = 100.0
 
 [node name="Speed Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
 offset_left = -448.0
@@ -56,7 +79,6 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
-state = 1
 targets = [NodePath("../Speed Upgrade2")]
 
 [node name="Value Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
@@ -69,7 +91,6 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Value Upgrade"
 description = "Units are generated with a higher value"
 price = 100
-state = 1
 targets = [NodePath("../Value Upgrade2")]
 
 [node name="Speed Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
@@ -83,7 +104,7 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade 2"
 description = "Units are generated faster"
 price = 100
-state = 0
+state = 1
 
 [node name="Value Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
 visible = false
@@ -96,4 +117,6 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Value Upgrade 2"
 description = "Units are generated with a higher value"
 price = 100
-state = 0
+state = 1
+
+[editable path="ResearchTree/Mine Container/Mine"]
