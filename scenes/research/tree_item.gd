@@ -30,6 +30,9 @@ var prev_state : State = State.NULL
 
 func _ready():
 	prev_state = State.NULL
+	animator.speed_scale = 1000
+	visible = false
+	$container.modulate.a = 0
 	call_deferred("sync_size")
 
 func sync_size():
@@ -38,21 +41,32 @@ func sync_size():
 
 func refresh_state() -> void:
 	if state == prev_state: return
-	if prev_state == State.NULL: animator.speed_scale = 100
-	else: animator.speed_scale = 2
+	if prev_state != State.NULL: animator.speed_scale = 2
+
 
 	match state:
+		State.NULL:
+			visible = false
+			$container.modulate.a = 0
 		State.HIDDEN:
 			visible = false
+			$container.modulate.a = 0
 		State.LOCKED:
 			visible = true
+			$container.modulate.a = 0
 			animator.play("appear")
 		State.AVAILABLE:
+			visible = true
 			animator.play("unlock")
+			$container.modulate.a = 1
 		State.RESEARCHING:
+			visible = true
 			animator.play("start_research")
+			$container.modulate.a = 1
 		State.BOUGHT:
+			visible = true
 			animator.play("bought")
+			$container.modulate.a = 1
 	
 	for c in out_point.get_children():
 		out_point.remove_child(c)
@@ -99,6 +113,11 @@ func refresh_state() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		animator.play("RESET")
+		visible = true
+		$container.modulate.a = 1
+
 	var logo = $container/VBoxContainer/HBoxContainer/Logo
 	logo.get_child(0).texture = icon
 
