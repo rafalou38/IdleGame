@@ -70,8 +70,9 @@ func _input(event):
 		var v = sqrt(0.5 ** 2 / 2)
 		zoom = Vector2(v, v)
 
+@onready var canvas_layer = $"../Node Handler/CanvasLayer"
 func _process(delta: float) -> void:
-	$"../Node Handler/CanvasLayer".transform = get_canvas_transform()
+	if canvas_layer: canvas_layer.transform = get_canvas_transform()
 
 func _physics_process(delta):
 	if is_locked(): return

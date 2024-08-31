@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://bosn8h1g7vb74"]
+
+[ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_4gvar"]
+[ext_resource type="PackedScene" uid="uid://bbos71oi0rhwg" path="res://views/TopBar/top_bar.tscn" id="2_d2dml"]
+[ext_resource type="PackedScene" uid="uid://ctrbq4nx72wlm" path="res://views/BottomBar/bottom_bar.tscn" id="3_4ni8h"]
+[ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="4_r8qxp"]
+[ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="5_yovhv"]
+[ext_resource type="Texture2D" uid="uid://byfr26h6l15ni" path="res://sprites/icons/CarbonCicsExplorer.svg" id="6_qd8oq"]
+
+[node name="root" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="TopBar" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_d2dml")]
+layout_mode = 2
+
+[node name="Main" type="Container" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomBar" parent="CanvasLayer/VBoxContainer" instance=ExtResource("3_4ni8h")]
+layout_mode = 2
+
+[node name="CameraMovement" type="Camera2D" parent="."]
+visible = false
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("1_4gvar")
+
+[node name="ResearchTree" type="Node2D" parent="."]
+
+[node name="Mine Container" type="Node" parent="ResearchTree"]
+
+[node name="Mine" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
+research_name = "Mine"
+description = "Generates Units at a fixed rate"
+price = 10
+targets = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
+
+[node name="Speed Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
+offset_left = -448.0
+offset_top = 640.0
+offset_right = -448.0
+offset_bottom = 640.0
+icon = ExtResource("5_yovhv")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+state = 1
+targets = [NodePath("../Speed Upgrade2")]
+
+[node name="Value Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
+offset_left = 448.0
+offset_top = 640.0
+offset_right = 448.0
+offset_bottom = 640.0
+icon = ExtResource("6_qd8oq")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade"
+description = "Units are generated with a higher value"
+price = 100
+state = 1
+targets = [NodePath("../Value Upgrade2")]
+
+[node name="Speed Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
+visible = false
+offset_left = -448.0
+offset_top = 1216.0
+offset_right = -448.0
+offset_bottom = 1216.0
+icon = ExtResource("5_yovhv")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade 2"
+description = "Units are generated faster"
+price = 100
+state = 0
+
+[node name="Value Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
+visible = false
+offset_left = 448.0
+offset_top = 1216.0
+offset_right = 448.0
+offset_bottom = 1216.0
+icon = ExtResource("6_qd8oq")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade 2"
+description = "Units are generated with a higher value"
+price = 100
+state = 0

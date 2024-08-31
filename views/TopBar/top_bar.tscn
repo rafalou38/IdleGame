@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbos71oi0rhwg"]
+
+[ext_resource type="Script" path="res://scenes/main/TopBar.gd" id="1_armjv"]
+[ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="2_2mlba"]
+[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="3_2phfa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qj5g3"]
+content_margin_left = 40.0
+content_margin_top = 20.0
+content_margin_right = 40.0
+content_margin_bottom = 20.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="Theme" id="Theme_fr0sw"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_qj5g3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2las"]
+font = ExtResource("3_2phfa")
+font_size = 42
+
+[sub_resource type="LabelSettings" id="LabelSettings_yonvl"]
+font = ExtResource("3_2phfa")
+font_size = 30
+font_color = Color(0.466181, 0.466181, 0.466181, 1)
+
+[node name="TopBar" type="PanelContainer"]
+z_index = 5
+custom_minimum_size = Vector2(0, 128)
+theme = SubResource("Theme_fr0sw")
+script = ExtResource("1_armjv")
+
+[node name="Wallet" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Wallet"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_vertical = 4
+ratio = 0.6667
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Wallet/AspectRatioContainer"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+texture = ExtResource("2_2mlba")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Wallet"]
+layout_mode = 2
+text = "0
+"
+label_settings = SubResource("LabelSettings_d2las")
+
+[node name="Label2" type="Label" parent="Wallet"]
+layout_mode = 2
+text = " · 0/s"
+label_settings = SubResource("LabelSettings_yonvl")

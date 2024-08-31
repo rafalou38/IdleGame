@@ -20,6 +20,7 @@ script = ExtResource("2_5t51d")
 icon = ExtResource("3_eltol")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

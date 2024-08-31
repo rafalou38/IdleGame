@@ -1,14 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6ii2jloehgu1"]
+[gd_scene load_steps=7 format=3 uid="uid://b6ii2jloehgu1"]
 
 [ext_resource type="Script" path="res://views/research/research.gd" id="1_lvo6m"]
-[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_e0mrl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuy1y"]
 bg_color = Color(0.082063, 0.082063, 0.082063, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_yxqe0"]
-font = ExtResource("2_e0mrl")
-font_size = 120
 
 [sub_resource type="Animation" id="Animation_ck5nr"]
 length = 0.001
@@ -82,22 +77,6 @@ offset_right = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tuy1y")
-
-[node name="Control" type="Control" parent="PanelContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Control"]
-layout_mode = 2
-offset_left = 300.0
-offset_top = 561.0
-offset_right = 1380.0
-offset_bottom = 707.0
-rotation = 0.899616
-text = "RESEARCH"
-label_settings = SubResource("LabelSettings_yxqe0")
-
-[node name="Line2D" type="Line2D" parent="PanelContainer/Control"]
-points = PackedVector2Array(3, 12, 1079, 53)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
