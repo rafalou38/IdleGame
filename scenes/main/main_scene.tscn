@@ -1,14 +1,216 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=16 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
 [ext_resource type="Script" path="res://scenes/main/nodes_handler.gd" id="3_de16d"]
 [ext_resource type="PackedScene" uid="uid://bbos71oi0rhwg" path="res://views/TopBar/top_bar.tscn" id="3_lnnve"]
+[ext_resource type="Script" path="res://views/research/research.gd" id="4_uagff"]
 [ext_resource type="PackedScene" uid="uid://degu5ftaio8gf" path="res://views/shop/shop.tscn" id="5_wbxbt"]
-[ext_resource type="PackedScene" uid="uid://b6ii2jloehgu1" path="res://views/research/research.tscn" id="7_05bfq"]
 [ext_resource type="PackedScene" uid="uid://ctrbq4nx72wlm" path="res://views/BottomBar/bottom_bar.tscn" id="7_bwwt3"]
 [ext_resource type="PackedScene" uid="uid://cdwl6oyxucyto" path="res://views/Inventory/inventory.tscn" id="8_r8hkb"]
 [ext_resource type="Script" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
+[ext_resource type="PackedScene" uid="uid://dmr2r8p0cqo3" path="res://scenes/research/research_tree.tscn" id="10_uexyn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuy1y"]
+bg_color = Color(0.082063, 0.082063, 0.082063, 1)
+
+[sub_resource type="Animation" id="Animation_ws2o4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2270, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Home:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../../ResearchTree:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Inventory:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3ibk4"]
+resource_name = "slide_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.42, 1.00001),
+"update": 0,
+"values": [Vector2(-2270, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.83333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Home:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../../ResearchTree:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 1.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Inventory:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_gxg8h"]
+resource_name = "slide_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(0.42, 0.42),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2270, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../../ResearchTree:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Home:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelContainer:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Inventory:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_svasp"]
+_data = {
+"RESET": SubResource("Animation_ws2o4"),
+"slide_in": SubResource("Animation_3ibk4"),
+"slide_out": SubResource("Animation_gxg8h")
+}
 
 [node name="root" type="Node2D"]
 
@@ -17,24 +219,6 @@ position = Vector2(-14, -7)
 offset = Vector2(0.51, 0)
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("1_3m6la")
-
-[node name="Background" type="Node2D" parent="."]
-
-[node name="Pattern" type="Sprite2D" parent="Background"]
-self_modulate = Color(1, 1, 1, 0.0784314)
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(80, 80)
-scale = Vector2(2, 2)
-texture = ExtResource("2_5su2o")
-region_enabled = true
-region_rect = Rect2(0, 0, 10000, 10000)
-
-[node name="Pattern2" type="Sprite2D" parent="Background"]
-self_modulate = Color(1, 1, 1, 0.196078)
-texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("2_5su2o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -53,19 +237,40 @@ layout_mode = 2
 [node name="Main" type="Container" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Shop" parent="CanvasLayer/VBoxContainer/Main" node_paths=PackedStringArray("node_handler") instance=ExtResource("5_wbxbt")]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-node_handler = NodePath("../../../../Node Handler")
+node_handler = NodePath("../../../../Home/Node Handler")
 
-[node name="Research" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("7_05bfq")]
+[node name="Research" type="Control" parent="CanvasLayer/VBoxContainer/Main"]
 z_index = 1
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+script = ExtResource("4_uagff")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer/Main/Research"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2270.0
+offset_right = -2270.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tuy1y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/VBoxContainer/Main/Research"]
+libraries = {
+"": SubResource("AnimationLibrary_svasp")
+}
+speed_scale = 2.0
 
 [node name="Inventory" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("8_r8hkb")]
 layout_mode = 2
@@ -73,11 +278,34 @@ layout_mode = 2
 [node name="BottomBar" parent="CanvasLayer/VBoxContainer" instance=ExtResource("7_bwwt3")]
 layout_mode = 2
 
-[node name="Node Handler" type="Node2D" parent="."]
-script = ExtResource("3_de16d")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Node Handler"]
-layer = 4
-
 [node name="Economy" type="Node2D" parent="."]
 script = ExtResource("10_3tfdc")
+
+[node name="Home" type="Node2D" parent="."]
+
+[node name="Background" type="Node2D" parent="Home"]
+
+[node name="Pattern" type="Sprite2D" parent="Home/Background"]
+self_modulate = Color(1, 1, 1, 0.0784314)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(80, 80)
+scale = Vector2(2, 2)
+texture = ExtResource("2_5su2o")
+region_enabled = true
+region_rect = Rect2(0, 0, 10000, 10000)
+
+[node name="Pattern2" type="Sprite2D" parent="Home/Background"]
+self_modulate = Color(1, 1, 1, 0.196078)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_5su2o")
+
+[node name="Node Handler" type="Node2D" parent="Home"]
+script = ExtResource("3_de16d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Home/Node Handler"]
+layer = 4
+
+[node name="ResearchTree" parent="." instance=ExtResource("10_uexyn")]
+visible = false

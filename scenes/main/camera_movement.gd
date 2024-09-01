@@ -70,7 +70,7 @@ func _input(event):
 		var v = sqrt(0.5 ** 2 / 2)
 		zoom = Vector2(v, v)
 
-@onready var canvas_layer = $"../Node Handler/CanvasLayer"
+@onready var canvas_layer = $"../Home/Node Handler/CanvasLayer"
 func _process(delta: float) -> void:
 	if canvas_layer: canvas_layer.transform = get_canvas_transform()
 
