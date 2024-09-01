@@ -20,16 +20,18 @@ func _ready() -> void:
 	texture_mode = LineTextureMode.LINE_TEXTURE_TILE
 	
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if path == null or origin == null or target == null: return
 
-
 	path.curve.set_point_position(0, path.to_local(origin.global_position))
-	path.curve.set_point_out(0, Vector2(0, 200))
 	path.curve.set_point_position(1, path.to_local(target.global_position))
-	path.curve.set_point_in(1, Vector2(0, -200))
+
+	if abs(origin.global_position.y - target.global_position.y) < 100:
+		path.curve.set_point_out(0, Vector2(200, 0))
+		path.curve.set_point_in(1, Vector2(-200, 0))
+	else:
+		path.curve.set_point_out(0, Vector2(0, 200))
+		path.curve.set_point_in(1, Vector2(0, -200))
 
 	points = path.curve.get_baked_points()
-	

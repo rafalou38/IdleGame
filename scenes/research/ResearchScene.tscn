@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bosn8h1g7vb74"]
+[gd_scene load_steps=8 format=3 uid="uid://bosn8h1g7vb74"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_4gvar"]
 [ext_resource type="PackedScene" uid="uid://bbos71oi0rhwg" path="res://views/TopBar/top_bar.tscn" id="2_d2dml"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="4_r8qxp"]
 [ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="5_yovhv"]
 [ext_resource type="Texture2D" uid="uid://byfr26h6l15ni" path="res://sprites/icons/CarbonCicsExplorer.svg" id="6_qd8oq"]
+[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="7_27xq1"]
 
 [node name="root" type="Node2D"]
 
@@ -38,14 +39,18 @@ script = ExtResource("1_4gvar")
 
 [node name="ResearchTree" type="Node2D" parent="."]
 
-[node name="Mine Container" type="Node" parent="ResearchTree"]
+[node name="Mine Container" type="Control" parent="ResearchTree"]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="Mine" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
+[node name="Mine" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets", "targets_r") instance=ExtResource("4_r8qxp")]
+research_color = Color(0.313726, 0.290196, 0.396078, 1)
 research_name = "Mine"
 description = "Generates Units at a fixed rate"
 price = 10
 state = 3
 targets = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
+targets_r = [NodePath("../../Shop Container/Shop")]
 
 [node name="Speed Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
 offset_left = -448.0
@@ -84,6 +89,72 @@ price = 100
 state = 1
 
 [node name="Value Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
+offset_left = 448.0
+offset_top = 1216.0
+offset_right = 448.0
+offset_bottom = 1216.0
+icon = ExtResource("6_qd8oq")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade 2"
+description = "Units are generated with a higher value"
+price = 100
+state = 1
+
+[node name="Shop Container" type="Control" parent="ResearchTree"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1920.0
+offset_right = 1920.0
+
+[node name="Shop" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
+offset_left = -64.0
+offset_right = -64.0
+icon = ExtResource("7_27xq1")
+research_color = Color(0.396078, 0.290196, 0.290196, 1)
+research_name = "Shop"
+description = "Sell you units here"
+price = 10
+targets = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
+
+[node name="Speed Upgrade" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
+offset_left = -448.0
+offset_top = 640.0
+offset_right = -448.0
+offset_bottom = 640.0
+icon = ExtResource("5_yovhv")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+state = 1
+targets = [NodePath("../Speed Upgrade2")]
+
+[node name="Value Upgrade" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
+offset_left = 448.0
+offset_top = 640.0
+offset_right = 448.0
+offset_bottom = 640.0
+icon = ExtResource("6_qd8oq")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade"
+description = "Units are generated with a higher value"
+price = 100
+state = 1
+targets = [NodePath("../Value Upgrade2")]
+
+[node name="Speed Upgrade2" parent="ResearchTree/Shop Container" instance=ExtResource("4_r8qxp")]
+offset_left = -448.0
+offset_top = 1216.0
+offset_right = -448.0
+offset_bottom = 1216.0
+icon = ExtResource("5_yovhv")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade 2"
+description = "Units are generated faster"
+price = 100
+state = 1
+
+[node name="Value Upgrade2" parent="ResearchTree/Shop Container" instance=ExtResource("4_r8qxp")]
 offset_left = 448.0
 offset_top = 1216.0
 offset_right = 448.0

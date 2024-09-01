@@ -22,8 +22,11 @@ enum State {
 @export var line_texture: Texture2D
 
 @export var targets: Array[ResearchTreeItem] = []
+@export var targets_r : Array[ResearchTreeItem] = []
 @onready var out_point := $container/ConnectorBox/Control3/Control/Out
+@onready var out_point_r := $container/ConnectorBox/Control2/CenterContainer/Control2/OutR
 @onready var in_point := $container/ConnectorBox/Control/Control/In
+@onready var in_point_l := $container/ConnectorBox/Control2/CenterContainer2/Control2/OutL
 @onready var animator := $AnimationPlayer
 
 var prev_state : State = State.NULL
@@ -72,44 +75,52 @@ func refresh_state() -> void:
 		out_point.remove_child(c)
 
 	for target in targets:
-		if target == null: continue
-
-		match state:
-			State.LOCKED:
-				target.state = State.HIDDEN
-			State.AVAILABLE:
-				target.state = State.LOCKED
-			State.RESEARCHING:
-				target.state = State.LOCKED
-			State.BOUGHT:
-				target.state = State.AVAILABLE
-		
-
-		var line = ResearchLine.new()
-		var path = Path2D.new()
-
-		line.add_child(path)
-		line.path = path
-
-		line.origin = out_point
-		line.target = target.in_point
-
-
-		if target.state == State.LOCKED:
-			line.texture = line_texture
-		else:
-			line.texture = null
-		
-
-		line.visible = target.state != State.HIDDEN
-		
-		out_point.add_child(line)
-
-		target.refresh_state()
+		if target != null:
+			check_target(target, false)
+	for target in targets_r:
+		if target != null:
+			check_target(target, true)
 	
 
 	prev_state = state
 
+func check_target(target: ResearchTreeItem, right: bool) -> void:
+	match state:
+		State.LOCKED:
+			target.state = State.HIDDEN
+		State.AVAILABLE:
+			target.state = State.LOCKED
+		State.RESEARCHING:
+			target.state = State.LOCKED
+		State.BOUGHT:
+			target.state = State.AVAILABLE
+	
+
+	var line = ResearchLine.new()
+	var path = Path2D.new()
+
+	line.add_child(path)
+	line.path = path
+
+	if right:
+		line.origin = out_point_r
+		line.target = target.in_point_l
+	else:
+		line.origin = out_point
+		line.target = target.in_point
+
+
+	if target.state == State.LOCKED:
+		line.texture = line_texture
+	else:
+		line.texture = null
+	
+
+	line.visible = target.state != State.HIDDEN
+	
+	out_point.add_child(line)
+
+	target.refresh_state()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
