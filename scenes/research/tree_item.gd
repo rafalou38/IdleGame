@@ -27,6 +27,8 @@ enum Direction {
 @export var dirty := false
 @export var line_texture: Texture2D
 
+@export var duration := 10.0
+
 @export var targets_t: Array[ResearchTreeItem] = []
 @export var targets_r: Array[ResearchTreeItem] = []
 @export var targets_b: Array[ResearchTreeItem] = []
@@ -40,6 +42,7 @@ enum Direction {
 @onready var animator := $AnimationPlayer
 
 var prev_state: State = State.NULL
+var research_start_time := 0.0
 
 func _ready():
 	prev_state = State.NULL
@@ -123,7 +126,6 @@ func check_target(target: ResearchTreeItem, origin_point: Node, target_point: No
 	line.target = target_point
 
 
-
 	if target.state == State.LOCKED or target.state == State.HIDDEN:
 		line.texture = line_texture
 	else:
@@ -152,8 +154,16 @@ func _process(delta: float) -> void:
 
 	$container/VBoxContainer/HBoxContainer/Title/Name.text = research_name
 	$container/VBoxContainer/HBoxContainer/Title/Description.text = description
-
 	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
+
+	var remaining = duration - (Time.get_unix_time_from_system() - research_start_time)
+	var progress = 1 - remaining / duration
+	if research_start_time > 0 and remaining < 0:
+		state = State.BOUGHT
+		dirty = true
+	else:
+		$container/VBoxContainer/ResearchBox/VBoxContainer/Label2.text = str(abs(round(remaining))) + "s"
+		$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
 
 	if dirty or targets_b.size() + targets_r.size() + targets_t.size() + targets_l.size() != point_b.get_child_count():
 		if Engine.is_editor_hint():
@@ -176,5 +186,6 @@ func _on_buy_button_pressed() -> void:
 	if state != State.AVAILABLE: return
 
 	state = State.RESEARCHING
+	research_start_time = Time.get_unix_time_from_system()
 
 	dirty = true

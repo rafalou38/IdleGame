@@ -31,13 +31,13 @@ func _process(delta: float) -> void:
 		path.curve.set_point_out(0, Vector2(200, 0))
 		path.curve.set_point_in(1, Vector2(-200, 0))
 	elif origin.name == "top":
-		path.curve.set_point_out(0, Vector2(0, 200))
-		path.curve.set_point_in(1, Vector2(0, -200))
+		path.curve.set_point_out(0, Vector2(0, -200))
+		path.curve.set_point_in(1, Vector2(0, 200))
 	elif origin.name == "left":
 		path.curve.set_point_out(0, Vector2(-200, 0))
 		path.curve.set_point_in(1, Vector2(200, 0))
 	elif origin.name == "bottom":
-		path.curve.set_point_out(0, Vector2(0, -200))
-		path.curve.set_point_in(1, Vector2(0, 200))
+		path.curve.set_point_out(0, Vector2(0, 200))
+		path.curve.set_point_in(1, Vector2(0, -200))
 
 	points = path.curve.get_baked_points()
