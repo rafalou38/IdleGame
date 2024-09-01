@@ -10,6 +10,12 @@ enum State {
 	RESEARCHING,
 	BOUGHT
 }
+enum Direction {
+	TOP,
+	RIGHT,
+	BOTTOM,
+	LEFT
+}
 
 
 @export var icon: Texture2D = null
@@ -21,15 +27,19 @@ enum State {
 @export var dirty := false
 @export var line_texture: Texture2D
 
-@export var targets: Array[ResearchTreeItem] = []
-@export var targets_r : Array[ResearchTreeItem] = []
-@onready var out_point := $container/ConnectorBox/Control3/Control/Out
-@onready var out_point_r := $container/ConnectorBox/Control2/CenterContainer/Control2/OutR
-@onready var in_point := $container/ConnectorBox/Control/Control/In
-@onready var in_point_l := $container/ConnectorBox/Control2/CenterContainer2/Control2/OutL
+@export var targets_t: Array[ResearchTreeItem] = []
+@export var targets_r: Array[ResearchTreeItem] = []
+@export var targets_b: Array[ResearchTreeItem] = []
+@export var targets_l: Array[ResearchTreeItem] = []
+
+
+@onready var point_b := $container/ConnectorBox/Control3/Control/bottom
+@onready var point_r := $container/ConnectorBox/Control2/CenterContainer/Control2/right
+@onready var point_t := $container/ConnectorBox/Control/Control/top
+@onready var point_l := $container/ConnectorBox/Control2/CenterContainer2/Control2/left
 @onready var animator := $AnimationPlayer
 
-var prev_state : State = State.NULL
+var prev_state: State = State.NULL
 
 func _ready():
 	prev_state = State.NULL
@@ -71,20 +81,26 @@ func refresh_state() -> void:
 			animator.play("bought")
 			$container.modulate.a = 1
 	
-	for c in out_point.get_children():
-		out_point.remove_child(c)
+	for c in point_b.get_children():
+		point_b.remove_child(c)
 
-	for target in targets:
+	for target in targets_b:
 		if target != null:
-			check_target(target, false)
+			check_target(target, point_b, target.point_t)
 	for target in targets_r:
 		if target != null:
-			check_target(target, true)
+			check_target(target, point_r, target.point_l)
+	for target in targets_t:
+		if target != null:
+			check_target(target, point_t, target.point_b)
+	for target in targets_l:
+		if target != null:
+			check_target(target, point_l, target.point_r)
 	
 
 	prev_state = state
 
-func check_target(target: ResearchTreeItem, right: bool) -> void:
+func check_target(target: ResearchTreeItem, origin_point: Node, target_point: Node) -> void:
 	match state:
 		State.LOCKED:
 			target.state = State.HIDDEN
@@ -102,23 +118,21 @@ func check_target(target: ResearchTreeItem, right: bool) -> void:
 	line.add_child(path)
 	line.path = path
 
-	if right:
-		line.origin = out_point_r
-		line.target = target.in_point_l
-	else:
-		line.origin = out_point
-		line.target = target.in_point
+
+	line.origin = origin_point
+	line.target = target_point
 
 
-	if target.state == State.LOCKED:
+
+	if target.state == State.LOCKED or target.state == State.HIDDEN:
 		line.texture = line_texture
 	else:
 		line.texture = null
 	
 
-	line.visible = target.state != State.HIDDEN or Engine.is_editor_hint()
+	line.visible = (target.state != State.HIDDEN) or Engine.is_editor_hint()
 	
-	out_point.add_child(line)
+	point_b.add_child(line)
 
 	target.refresh_state()
 
@@ -141,7 +155,10 @@ func _process(delta: float) -> void:
 
 	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
 
-	if out_point.get_child_count() != (targets.size() + targets_r.size())  or dirty:
+	if dirty or targets_b.size() + targets_r.size() + targets_t.size() + targets_l.size() != point_b.get_child_count():
+		if Engine.is_editor_hint():
+			prev_state = State.NULL
+
 		dirty = false
 		refresh_state()
 

@@ -27,7 +27,7 @@ corner_radius_bottom_left = 40
 font = ExtResource("2_4maex")
 font_size = 76
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmwiy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2an4p"]
 bg_color = Color(0.317647, 0.396078, 0.290196, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -665,7 +665,7 @@ theme_override_constants/separation = 36
 clip_children = 2
 custom_minimum_size = Vector2(142, 142)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_kmwiy")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2an4p")
 
 [node name="Icon" type="TextureRect" parent="container/VBoxContainer/HBoxContainer/Logo"]
 layout_mode = 1
@@ -797,7 +797,7 @@ layout_mode = 2
 [node name="Control" type="Control" parent="container/ConnectorBox/Control"]
 layout_mode = 2
 
-[node name="In" type="Control" parent="container/ConnectorBox/Control/Control"]
+[node name="top" type="Control" parent="container/ConnectorBox/Control/Control"]
 layout_mode = 2
 anchors_preset = 0
 offset_top = -35.0
@@ -814,7 +814,7 @@ layout_mode = 2
 [node name="Control2" type="Control" parent="container/ConnectorBox/Control2/CenterContainer2"]
 layout_mode = 2
 
-[node name="OutL" type="Control" parent="container/ConnectorBox/Control2/CenterContainer2/Control2"]
+[node name="left" type="Control" parent="container/ConnectorBox/Control2/CenterContainer2/Control2"]
 anchors_preset = 0
 offset_left = -35.0
 offset_right = -35.0
@@ -830,7 +830,7 @@ layout_mode = 2
 [node name="Control2" type="Control" parent="container/ConnectorBox/Control2/CenterContainer"]
 layout_mode = 2
 
-[node name="OutR" type="Control" parent="container/ConnectorBox/Control2/CenterContainer/Control2"]
+[node name="right" type="Control" parent="container/ConnectorBox/Control2/CenterContainer/Control2"]
 anchors_preset = 0
 offset_left = 35.0
 offset_right = 35.0
@@ -841,7 +841,7 @@ layout_mode = 2
 [node name="Control" type="Control" parent="container/ConnectorBox/Control3"]
 layout_mode = 2
 
-[node name="Out" type="Control" parent="container/ConnectorBox/Control3/Control"]
+[node name="bottom" type="Control" parent="container/ConnectorBox/Control3/Control"]
 layout_mode = 2
 anchors_preset = 0
 offset_top = 35.0

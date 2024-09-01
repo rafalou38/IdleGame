@@ -42,8 +42,10 @@ script = ExtResource("1_4gvar")
 [node name="Mine Container" type="Control" parent="ResearchTree"]
 layout_mode = 3
 anchors_preset = 0
+offset_top = -256.0
+offset_bottom = -256.0
 
-[node name="Mine" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets", "targets_r") instance=ExtResource("4_r8qxp")]
+[node name="Mine" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets_r", "targets_b") instance=ExtResource("4_r8qxp")]
 offset_top = 64.0
 offset_bottom = 64.0
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
@@ -51,26 +53,27 @@ research_name = "Mine"
 description = "Generates Units at a fixed rate"
 price = 10
 state = 3
-targets = [NodePath("../../Shop Container/Shop")]
 targets_r = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
+targets_b = [NodePath("../../Shop Container/Shop")]
 
 [node name="Speed Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("4_r8qxp")]
 offset_left = 1024.0
-offset_top = -192.0
+offset_top = -256.0
 offset_right = 1024.0
-offset_bottom = -192.0
+offset_bottom = -256.0
 icon = ExtResource("5_yovhv")
 research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
+state = 1
 targets_r = [NodePath("../Speed Upgrade2")]
 
 [node name="Speed Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
 offset_left = 1984.0
-offset_top = -192.0
+offset_top = -256.0
 offset_right = 1984.0
-offset_bottom = -192.0
+offset_bottom = -256.0
 icon = ExtResource("5_yovhv")
 research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade 2"
@@ -88,6 +91,7 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Value Upgrade"
 description = "Units are generated with a higher value"
 price = 100
+state = 1
 targets_r = [NodePath("../Value Upgrade2")]
 
 [node name="Value Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
@@ -106,11 +110,11 @@ state = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = -832.0
-offset_top = 1920.0
+offset_top = 1856.0
 offset_right = -832.0
-offset_bottom = 1920.0
+offset_bottom = 1856.0
 
-[node name="Shop" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("4_r8qxp")]
+[node name="Shop" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets_r", "targets_l") instance=ExtResource("4_r8qxp")]
 offset_left = 832.0
 offset_top = -1024.0
 offset_right = 832.0
@@ -121,6 +125,7 @@ research_name = "Shop"
 description = "Sell you units here"
 price = 10
 targets_r = [NodePath("../Speed Upgrade")]
+targets_l = [NodePath("../../Processor Container/Processor")]
 
 [node name="Speed Upgrade" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("4_r8qxp")]
 offset_left = 1856.0
@@ -140,6 +145,49 @@ offset_left = 2816.0
 offset_top = -1024.0
 offset_right = 2816.0
 offset_bottom = -1024.0
+icon = ExtResource("5_yovhv")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+state = 1
+
+[node name="Processor Container" type="Control" parent="ResearchTree"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -2240.0
+offset_top = 1920.0
+offset_right = -2240.0
+offset_bottom = 1920.0
+
+[node name="Processor" parent="ResearchTree/Processor Container" node_paths=PackedStringArray("targets_l") instance=ExtResource("4_r8qxp")]
+offset_left = 1024.0
+offset_top = -1088.0
+offset_right = 1024.0
+offset_bottom = -1088.0
+research_color = Color(0.317647, 0.396078, 0.290196, 1)
+description = "Increase the value of your units"
+price = 10
+state = 1
+targets_l = [NodePath("../Speed Upgrade"), NodePath("../Speed Upgrade2")]
+
+[node name="Speed Upgrade" parent="ResearchTree/Processor Container" instance=ExtResource("4_r8qxp")]
+offset_left = 64.0
+offset_top = -1408.0
+offset_right = 64.0
+offset_bottom = -1408.0
+icon = ExtResource("5_yovhv")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+state = 1
+
+[node name="Speed Upgrade2" parent="ResearchTree/Processor Container" instance=ExtResource("4_r8qxp")]
+offset_left = 64.0
+offset_top = -832.0
+offset_right = 64.0
+offset_bottom = -832.0
 icon = ExtResource("5_yovhv")
 research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
