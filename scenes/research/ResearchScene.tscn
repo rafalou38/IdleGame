@@ -44,43 +44,33 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Mine" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets", "targets_r") instance=ExtResource("4_r8qxp")]
+offset_top = 64.0
+offset_bottom = 64.0
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
 research_name = "Mine"
 description = "Generates Units at a fixed rate"
 price = 10
 state = 3
-targets = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
-targets_r = [NodePath("../../Shop Container/Shop")]
+targets = [NodePath("../../Shop Container/Shop")]
+targets_r = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
 
-[node name="Speed Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
-offset_left = -448.0
-offset_top = 640.0
-offset_right = -448.0
-offset_bottom = 640.0
+[node name="Speed Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("4_r8qxp")]
+offset_left = 1024.0
+offset_top = -192.0
+offset_right = 1024.0
+offset_bottom = -192.0
 icon = ExtResource("5_yovhv")
 research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
-targets = [NodePath("../Speed Upgrade2")]
-
-[node name="Value Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
-offset_left = 448.0
-offset_top = 640.0
-offset_right = 448.0
-offset_bottom = 640.0
-icon = ExtResource("6_qd8oq")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Value Upgrade"
-description = "Units are generated with a higher value"
-price = 100
-targets = [NodePath("../Value Upgrade2")]
+targets_r = [NodePath("../Speed Upgrade2")]
 
 [node name="Speed Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
-offset_left = -448.0
-offset_top = 1216.0
-offset_right = -448.0
-offset_bottom = 1216.0
+offset_left = 1984.0
+offset_top = -192.0
+offset_right = 1984.0
+offset_bottom = -192.0
 icon = ExtResource("5_yovhv")
 research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade 2"
@@ -88,11 +78,23 @@ description = "Units are generated faster"
 price = 100
 state = 1
 
+[node name="Value Upgrade" parent="ResearchTree/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("4_r8qxp")]
+offset_left = 1024.0
+offset_top = 320.0
+offset_right = 1024.0
+offset_bottom = 320.0
+icon = ExtResource("6_qd8oq")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade"
+description = "Units are generated with a higher value"
+price = 100
+targets_r = [NodePath("../Value Upgrade2")]
+
 [node name="Value Upgrade2" parent="ResearchTree/Mine Container" instance=ExtResource("4_r8qxp")]
-offset_left = 448.0
-offset_top = 1216.0
-offset_right = 448.0
-offset_bottom = 1216.0
+offset_left = 1984.0
+offset_top = 320.0
+offset_right = 1984.0
+offset_bottom = 320.0
 icon = ExtResource("6_qd8oq")
 research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Value Upgrade 2"
@@ -103,65 +105,44 @@ state = 1
 [node name="Shop Container" type="Control" parent="ResearchTree"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1920.0
-offset_right = 1920.0
+offset_left = -832.0
+offset_top = 1920.0
+offset_right = -832.0
+offset_bottom = 1920.0
 
-[node name="Shop" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
-offset_left = -64.0
-offset_right = -64.0
+[node name="Shop" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("4_r8qxp")]
+offset_left = 832.0
+offset_top = -1024.0
+offset_right = 832.0
+offset_bottom = -1024.0
 icon = ExtResource("7_27xq1")
 research_color = Color(0.396078, 0.290196, 0.290196, 1)
 research_name = "Shop"
 description = "Sell you units here"
 price = 10
-targets = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
+targets_r = [NodePath("../Speed Upgrade")]
 
-[node name="Speed Upgrade" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
-offset_left = -448.0
-offset_top = 640.0
-offset_right = -448.0
-offset_bottom = 640.0
+[node name="Speed Upgrade" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("4_r8qxp")]
+offset_left = 1856.0
+offset_top = -1024.0
+offset_right = 1856.0
+offset_bottom = -1024.0
 icon = ExtResource("5_yovhv")
 research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
 state = 1
-targets = [NodePath("../Speed Upgrade2")]
-
-[node name="Value Upgrade" parent="ResearchTree/Shop Container" node_paths=PackedStringArray("targets") instance=ExtResource("4_r8qxp")]
-offset_left = 448.0
-offset_top = 640.0
-offset_right = 448.0
-offset_bottom = 640.0
-icon = ExtResource("6_qd8oq")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Value Upgrade"
-description = "Units are generated with a higher value"
-price = 100
-state = 1
-targets = [NodePath("../Value Upgrade2")]
+targets_r = [NodePath("../Speed Upgrade2")]
 
 [node name="Speed Upgrade2" parent="ResearchTree/Shop Container" instance=ExtResource("4_r8qxp")]
-offset_left = -448.0
-offset_top = 1216.0
-offset_right = -448.0
-offset_bottom = 1216.0
+offset_left = 2816.0
+offset_top = -1024.0
+offset_right = 2816.0
+offset_bottom = -1024.0
 icon = ExtResource("5_yovhv")
 research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade 2"
+research_name = "Speed Upgrade"
 description = "Units are generated faster"
-price = 100
-state = 1
-
-[node name="Value Upgrade2" parent="ResearchTree/Shop Container" instance=ExtResource("4_r8qxp")]
-offset_left = 448.0
-offset_top = 1216.0
-offset_right = 448.0
-offset_bottom = 1216.0
-icon = ExtResource("6_qd8oq")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Value Upgrade 2"
-description = "Units are generated with a higher value"
 price = 100
 state = 1

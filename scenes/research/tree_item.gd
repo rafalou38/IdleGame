@@ -116,7 +116,7 @@ func check_target(target: ResearchTreeItem, right: bool) -> void:
 		line.texture = null
 	
 
-	line.visible = target.state != State.HIDDEN
+	line.visible = target.state != State.HIDDEN or Engine.is_editor_hint()
 	
 	out_point.add_child(line)
 
@@ -141,7 +141,7 @@ func _process(delta: float) -> void:
 
 	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
 
-	if out_point.get_child_count() != targets.size() or dirty:
+	if out_point.get_child_count() != (targets.size() + targets_r.size())  or dirty:
 		dirty = false
 		refresh_state()
 

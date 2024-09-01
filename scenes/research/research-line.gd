@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	path.curve.set_point_position(0, path.to_local(origin.global_position))
 	path.curve.set_point_position(1, path.to_local(target.global_position))
 
-	if abs(origin.global_position.y - target.global_position.y) < 100:
+	if origin.name == "OutR":
 		path.curve.set_point_out(0, Vector2(200, 0))
 		path.curve.set_point_in(1, Vector2(-200, 0))
 	else:
