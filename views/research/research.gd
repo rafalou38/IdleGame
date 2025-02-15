@@ -2,6 +2,7 @@
 extends Control
 
 @export var open := false
+@export var camera: CameraMovement
 
 func _ready():
 	var anim = $AnimationPlayer.get_animation("slide_in")
@@ -12,6 +13,7 @@ func _ready():
 
 	var anim_RESET = $AnimationPlayer.get_animation("RESET")
 	var trackID_RESET = anim_RESET.find_track("PanelContainer:position", Animation.TYPE_VALUE)
+	
 
 	if trackID != -1 and trackID_out != -1:
 		# $Container.size.x = get_viewport_rect().size.x
@@ -32,8 +34,10 @@ func _process(delta):
 func show_research():
 	open = true
 	$AnimationPlayer.play("slide_in")
+	camera.load_state("research")
 
 func hide_research():
+	camera.load_state("home")
 	open = false
 	$AnimationPlayer.play("slide_out")
 

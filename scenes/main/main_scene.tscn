@@ -246,13 +246,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 node_handler = NodePath("../../../../Home/Node Handler")
 
-[node name="Research" type="Control" parent="CanvasLayer/VBoxContainer/Main"]
+[node name="Research" type="Control" parent="CanvasLayer/VBoxContainer/Main" node_paths=PackedStringArray("camera")]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 mouse_filter = 2
 script = ExtResource("4_uagff")
+camera = NodePath("../../../../Camera2D")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer/Main/Research"]
 layout_mode = 1

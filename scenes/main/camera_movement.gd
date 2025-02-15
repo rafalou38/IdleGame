@@ -71,7 +71,7 @@ func _input(event):
 		zoom = Vector2(v, v)
 
 @onready var canvas_layer = $"../Home/Node Handler/CanvasLayer"
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if canvas_layer: canvas_layer.transform = get_canvas_transform()
 
 func _physics_process(delta):
@@ -117,3 +117,18 @@ func handle_drag(event: InputEventScreenDrag):
 		if displacement.length() < 30:
 			return
 		offset = intitialCameraPos + displacement / (initialZoom * factor * 2)
+
+
+var current_state := "home"
+var saved_states : Dictionary = {}
+func load_state(label : String):
+	saved_states[current_state] = {
+		"offset": offset,
+		"zoom": zoom
+	}
+
+	if saved_states.has(label):
+		offset = saved_states[label]["offset"]
+		zoom = saved_states[label]["zoom"]
+	
+	current_state = label

@@ -1,4 +1,5 @@
 - [ ] Research tree
+    - [x]  Save camera
     - [ ]  Hours timer
     - [ ]  Add functionality
         - [ ]  Time
