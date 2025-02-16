@@ -1,7 +1,7 @@
 # @tool
 extends HBoxContainer
 
-@export var type: NodeHandler.NodeType = NodeHandler.NodeType.SHOP
+@export var type: NodeData.NodeType = NodeData.NodeType.SHOP
 
 @export var item_name: String = ""
 @export var item_description: String = ""

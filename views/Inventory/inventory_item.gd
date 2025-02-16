@@ -1,6 +1,6 @@
 extends Control
 
-@export var node_type: NodeHandler.NodeType = NodeHandler.NodeType.SHOP
+@export var node_type: NodeData.NodeType = NodeData.NodeType.SHOP
 @export var count := 1
 
 var long_press_id := -1
@@ -48,7 +48,7 @@ func _input(event: InputEvent) -> void:
 			long_press_current_point = event.position
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if long_press_id != -1 and Time.get_ticks_msec() - long_press_start_time > 200 and long_press_current_point.distance_to(long_press_start_point) < 10:
 		take_out()
 		long_press_id = -1
@@ -70,8 +70,6 @@ func _process(delta: float) -> void:
 		visible = true
 	
 func take_out() -> void:
-	var a = Economy.owned
-
 	var nodes = Economy.owned.filter(func(node): return node["type"] == node_type and not node["placed"])
 	if(nodes.size() == 0): 
 		print("This should not happen")

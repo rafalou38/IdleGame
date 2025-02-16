@@ -15,7 +15,7 @@ var connected := false
 
 
 func is_target_valid() -> bool:
-	return enabled and OutKnob.dragging_out and OutKnob.dragging_out.node_type == "basic" and OutKnob.dragging_out != self.owner and not overlapping_node.connected
+	return enabled and OutKnob.dragging_out and OutKnob.dragging_out != self.owner and not overlapping_node.connected
 
 func _ready():
 	in_knobs.append(self)

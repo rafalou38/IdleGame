@@ -1,6 +1,7 @@
 class_name GameNode
 extends Node2D
 
+
 class Connection:
 	var fromNode: GameNode = null
 	var fromKnob: OutKnob = null
@@ -10,28 +11,27 @@ class Connection:
 	
 	var path: Path2D = null
 
+@export var type: NodeData.NodeType = NodeData.NodeType.SHOP
 
-@export var type: NodeHandler.NodeType = NodeHandler.NodeType.SHOP
-@onready var body: RigidBody2D = $rb
-
-var node_type := "basic"
-var outbound_connections := []
+var data : NodeData
 var inbound_connections := []
 
 @export var input_knob_count := 0
 @export var output_knob_count := 0
+
+@onready var body: RigidBody2D = $rb
 @onready var KnobContainer := $rb/Control/Knobs
 
-@export var spawn_timeout := 0.0
 var spawned := false
+@export var spawn_timeout := 0.0
 
 var out_queue : Array[Unit] = []
 @export var input_queue : Array[Unit] = []
 
 func update_units():
-	if(out_queue.size() > 0 and outbound_connections.size() > 0):
+	if(out_queue.size() > 0 and data.outbound_connections.size() > 0):
 		var unit : Unit = out_queue.pop_front()
-		var con : Connection = outbound_connections[0]
+		var con : Connection = data.outbound_connections[0]
 		
 		unit.spawn(con)
 
@@ -63,7 +63,7 @@ func _refresh_line(con: Connection):
 
 func refreshLines():
 	_sync_knobs()
-	for con in outbound_connections:
+	for con in data.outbound_connections:
 		_refresh_line(con)
 
 func reset_connections():
@@ -72,19 +72,19 @@ func reset_connections():
 	for outk in OutKnob.out_knobs:
 		outk.connected = false
 
-	for con in outbound_connections:
+	for con in data.outbound_connections:
 		con.fromKnob.connected = true
 		con.toKnob.connected = true
 
 
 func dispose_connection(origin: OutKnob, target: InKnob):
-	for con in outbound_connections:
+	for con in data.outbound_connections:
 		if origin != null and con.fromKnob == origin or target != null and con.toKnob == target:
 			con.fromKnob.connected = false
 			con.toKnob.connected = false
 
 			
-			outbound_connections.erase(con)
+			data.outbound_connections.erase(con)
 			con.toNode.inbound_connections.erase(con)
 
 
@@ -103,7 +103,7 @@ func connect_to(origin: OutKnob, target: InKnob):
 	con.path = origin.get_node("path")
 
 
-	outbound_connections.append(con)
+	data.outbound_connections.append(con)
 	con.toNode.inbound_connections.append(con)
 
 
@@ -117,7 +117,7 @@ func _sync_knobs():
 	
 	var outs := KnobContainer.find_children("out-knob-*")
 	for out_knob in outs:
-		if output_knob_count == 0 or (output_knob_count == outbound_connections.size() and !out_knob.connected):
+		if output_knob_count == 0 or (output_knob_count == data.outbound_connections.size() and !out_knob.connected):
 			out_knob.enabled = false
 		else:
 			out_knob.enabled = true

@@ -1,25 +1,16 @@
 class_name NodeHandler
 extends Node2D
 
-enum NodeType {
-	SHOP,
-	MINE,
-	PROCESSOR,
-	REFINERY,
-	TETHER,
-	DUPLICATOR
-}
-
 static var node_ref_by_type: Dictionary = {
-	NodeType.SHOP: preload("res://scenes/main/node/shop_node.tscn"),
-	NodeType.MINE: preload("res://scenes/main/node/mine_node.tscn"),
-	NodeType.PROCESSOR: preload("res://scenes/main/node/processor_node.tscn"),
-	NodeType.REFINERY: null,
-	NodeType.TETHER: null,
-	NodeType.DUPLICATOR: null
+	NodeData.NodeType.SHOP: preload("res://scenes/main/node/shop_node.tscn"),
+	NodeData.NodeType.MINE: preload("res://scenes/main/node/mine_node.tscn"),
+	NodeData.NodeType.PROCESSOR: preload("res://scenes/main/node/processor_node.tscn"),
+	NodeData.NodeType.REFINERY: null,
+	NodeData.NodeType.TETHER: null,
+	NodeData.NodeType.DUPLICATOR: null
 }
 
-@export var nodes: Array = []
+@export var nodes: Array[GameNode] = []
 @export var insert_queue := []
 
 static var speed_up_factor := 1.0
@@ -37,7 +28,7 @@ func _ready():
 func _process(delta):
 	speed_up_factor = min((speed_up_factor - 1) * 0.95 + 1, 2.5)
 
-func drag_node(nodeInfo: Dictionary, touch_id: int, point: Vector2):
+func drag_node(nodeInfo: NodeData, touch_id: int, point: Vector2):
 	var node = add_node(nodeInfo, point)
 
 	var displacement = node.find_child("rb")
@@ -46,10 +37,15 @@ func drag_node(nodeInfo: Dictionary, touch_id: int, point: Vector2):
 	displacement.drag_index = touch_id
 
 
-func add_node(nodeInfo: Dictionary, pos: Vector2):
-	var node_ref = node_ref_by_type[nodeInfo.type]
+func add_node(nodeInfo: NodeData, pos: Vector2):
+	var node_ref = NodeHandler.node_ref_by_type[nodeInfo.type]
 	var node = node_ref.instantiate()
-	nodes.append(node)
+	var baseNode : GameNode = node.find_child("BaseNode")
+	if(baseNode == null):
+		push_error("Base node not found")
+
+	baseNode.data = nodeInfo
+	nodes.append(baseNode)
 
 	node.position = pos
 

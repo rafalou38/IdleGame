@@ -56,15 +56,12 @@ func hide_shop():
 func _handle_button_close():
 	hide_shop()
 
-func buy(type: NodeHandler.NodeType):
+func buy(type: NodeData.NodeType):
 	# node_handler.add_node(type)
-	Economy.owned.append(
-		{
-			"id": randi(),
-			"type": type,
-		 	"placed": false,
-		  	"position": Vector2(0, 0),
-		  	"outbound": [],
-		}
-	)
-	# hide_shop()
+	var data := NodeData.new()
+	data.id = randi()
+	data.type = type
+	data.placed = false
+	data.position = Vector2(0,0)
+	data.outbound_connections = []
+	Economy.owned.append(data)

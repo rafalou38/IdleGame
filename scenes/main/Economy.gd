@@ -3,20 +3,19 @@ extends Node2D
 
 static var money := 20.0
 
-
 static var research := {
-    NodeHandler.NodeType.SHOP: {"unlocked": true},
-    NodeHandler.NodeType.MINE: {"unlocked": true},
-    NodeHandler.NodeType.PROCESSOR: {"unlocked": true},
-    NodeHandler.NodeType.REFINERY: {"unlocked": true},
-    NodeHandler.NodeType.TETHER: {"unlocked": false},
-    NodeHandler.NodeType.DUPLICATOR: {"unlocked": false},
+    NodeData.NodeType.SHOP: {"unlocked": true},
+    NodeData.NodeType.MINE: {"unlocked": true},
+    NodeData.NodeType.PROCESSOR: {"unlocked": true},
+    NodeData.NodeType.REFINERY: {"unlocked": true},
+    NodeData.NodeType.TETHER: {"unlocked": false},
+    NodeData.NodeType.DUPLICATOR: {"unlocked": false},
 }
 
-static var owned := [
+static var owned: Array[NodeData] = [
     # {
     #     "id": int,
-    #     "type": NodeHandler.NodeType,
+    #     "type": NodeData.NodeType,
     #     "placed": bool
     #     "outbound": [
     #         {
@@ -29,12 +28,28 @@ static var owned := [
     # }
     # {
     #     "id": 0,
-    #     "type": NodeHandler.NodeType.SHOP,
+    #     "type": NodeData.NodeType.SHOP,
     #     "placed": false,
     #     "outbound": [],
     #     "position": Vector2(0, 0)
     # }
 ]
+
+static func _save():
+    var serialized_economy = {
+        "research": research,
+        "owned": owned.map(func(e): return e.serialize()),
+        "money": money
+    }
+
+    # JSON provides a static method to serialized JSON string.
+    var json_string = JSON.stringify(serialized_economy)
+
+    # print(serialized_economy)
+    # print(json_string)
+
+    # # Store the save dictionary as a new line in the save file.
+    # save_file.store_line(json_string)
 
 static var _prev_money := 0.0
 static var _prev_money_time := 0.0
