@@ -27,7 +27,7 @@ corner_radius_bottom_left = 40
 font = ExtResource("2_4maex")
 font_size = 76
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfe7l"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmjtr"]
 bg_color = Color(0.317647, 0.396078, 0.290196, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -456,6 +456,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("container/VBoxContainer/Button:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_p2kd6"]
 resource_name = "start_research"
@@ -623,7 +635,6 @@ _data = {
 }
 
 [node name="TreeItem" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_yrr6c")
@@ -636,6 +647,7 @@ state = 2
 line_texture = ExtResource("3_am7js")
 
 [node name="container" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(768, 0)
 layout_mode = 0
 offset_right = 768.0
 offset_bottom = 448.0
@@ -666,7 +678,7 @@ theme_override_constants/separation = 36
 clip_children = 2
 custom_minimum_size = Vector2(142, 142)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dfe7l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nmjtr")
 
 [node name="Icon" type="TextureRect" parent="container/VBoxContainer/HBoxContainer/Logo"]
 layout_mode = 1
@@ -757,6 +769,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -283.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vmr2t")
@@ -782,7 +795,7 @@ horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="container/VBoxContainer/ResearchBox/VBoxContainer"]
 layout_mode = 2
-text = "1725205960s"
+text = "1739723850s"
 label_settings = SubResource("LabelSettings_xcy6d")
 horizontal_alignment = 1
 

@@ -4,12 +4,7 @@ extends Node2D
 static var money := 20.0
 
 static var research := {
-	NodeData.NodeType.SHOP: {"unlocked": true},
-	NodeData.NodeType.MINE: {"unlocked": true},
-	NodeData.NodeType.PROCESSOR: {"unlocked": true},
-	NodeData.NodeType.REFINERY: {"unlocked": true},
-	NodeData.NodeType.TETHER: {"unlocked": false},
-	NodeData.NodeType.DUPLICATOR: {"unlocked": false},
+
 }
 
 static var owned: Array[NodeData] = []
@@ -49,8 +44,7 @@ static func load_save():
 	var serialized_economy = json.data
 	money = serialized_economy["money"]
 	for r_id in serialized_economy["research"]:
-		var id: int = r_id.to_int()
-		research[id] = serialized_economy["research"][r_id]
+		research[r_id] = serialized_economy["research"][r_id]
 	
 	print(research)
 

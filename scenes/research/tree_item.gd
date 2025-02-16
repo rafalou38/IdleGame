@@ -18,10 +18,11 @@ enum Direction {
 }
 
 
+@export var id := ""
 @export var icon: Texture2D = null
 @export var research_color := Color(0, 0, 0, 1)
 @export var research_name := ""
-@export var description := ""
+@export_multiline var description := ""
 @export var price := 0
 @export var state := State.NULL
 @export var dirty := false
@@ -51,6 +52,12 @@ func _ready():
 	$container.modulate.a = 0
 	call_deferred("sync_size")
 
+
+	if (Economy.research.has(id)):
+		state = Economy.research[id]["state"]
+		research_start_time = Economy.research[id]["research_start_time"]
+		dirty = true
+
 func sync_size():
 	$container/VBoxContainer/ResearchBox/Panel.size = $container/VBoxContainer/ResearchBox.size
 	$container/VBoxContainer/ResearchBox/VBoxContainer.size = $container/VBoxContainer/ResearchBox.size
@@ -59,6 +66,13 @@ func refresh_state() -> void:
 	if state == prev_state: return
 	if prev_state != State.NULL: animator.speed_scale = 2
 
+	if (Economy.research.has(id)):
+		Economy.research[id]["state"] = state;
+	else:
+		Economy.research[id] = {
+			"state": state,
+			"research_start_time": research_start_time
+		}
 
 	match state:
 		State.NULL:
@@ -112,7 +126,8 @@ func check_target(target: ResearchTreeItem, origin_point: Node, target_point: No
 		State.RESEARCHING:
 			target.state = State.LOCKED
 		State.BOUGHT:
-			target.state = State.AVAILABLE
+			if (target.state not in [State.BOUGHT, State.RESEARCHING]):
+				target.state = State.AVAILABLE
 	
 
 	var line = ResearchLine.new()
@@ -154,7 +169,10 @@ func _process(delta: float) -> void:
 
 	$container/VBoxContainer/HBoxContainer/Title/Name.text = research_name
 	$container/VBoxContainer/HBoxContainer/Title/Description.text = description
-	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
+	if (price == 0):
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = "FREE"
+	else:
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
 
 	var remaining = duration - (Time.get_unix_time_from_system() - research_start_time)
 	var progress = 1 - remaining / duration

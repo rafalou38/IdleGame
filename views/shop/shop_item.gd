@@ -16,7 +16,11 @@ extends HBoxContainer
 signal buy
 
 func apply_props():
-	unlocked = Economy.research[type]["unlocked"]
+	if (Economy.research.has(item_name)):
+		unlocked = Economy.research[item_name]["unlocked"]
+	else:
+		unlocked = false
+		
 	price = Prices.node_buy(type, bought)
 
 	can_buy = price <= Economy.money or (OS.is_debug_build() and Input.is_key_pressed(KEY_SHIFT))
