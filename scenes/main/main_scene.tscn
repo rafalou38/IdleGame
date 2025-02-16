@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-2270, 0)]
+"values": [Vector2(-1080, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -90,7 +90,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.42, 1.00001),
 "update": 0,
-"values": [Vector2(-2270, 0), Vector2(0, 0)]
+"values": [Vector2(-1080, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -154,7 +154,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(1, 2),
 "transitions": PackedFloat32Array(0.42, 0.42),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-2270, 0)]
+"values": [Vector2(0, 0), Vector2(-1080, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -260,8 +260,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2270.0
-offset_right = -2270.0
+offset_left = -1080.0
+offset_right = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -275,6 +275,7 @@ speed_scale = 2.0
 
 [node name="Inventory" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("8_r8hkb")]
 layout_mode = 2
+open = false
 
 [node name="BottomBar" parent="CanvasLayer/VBoxContainer" instance=ExtResource("7_bwwt3")]
 layout_mode = 2

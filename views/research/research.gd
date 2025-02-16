@@ -5,31 +5,36 @@ extends Control
 @export var camera: CameraMovement
 
 func _ready():
-	var anim = $AnimationPlayer.get_animation("slide_in")
-	var trackID = anim.find_track("PanelContainer:position", Animation.TYPE_VALUE)
+	sync_dims()
 
-	var anim_out = $AnimationPlayer.get_animation("slide_out")
-	var trackID_out = anim_out.find_track("PanelContainer:position", Animation.TYPE_VALUE)
+	$AnimationPlayer.play("RESET")
+	# $AnimationPlayer.connect("animation_finished", _anim_finished)
+
+func _process(_delta):
+	sync_dims()
+
+func sync_dims():
+	size = $"..".size
+	$PanelContainer.size = size
+
+	var anim_slide_in = $AnimationPlayer.get_animation("slide_in")
+	var trackID_slide_in = anim_slide_in.find_track("PanelContainer:position", Animation.TYPE_VALUE)
+
+	var anim_slide_out = $AnimationPlayer.get_animation("slide_out")
+	var trackID_slide_out = anim_slide_out.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 
 	var anim_RESET = $AnimationPlayer.get_animation("RESET")
 	var trackID_RESET = anim_RESET.find_track("PanelContainer:position", Animation.TYPE_VALUE)
 	
 
-	if trackID != -1 and trackID_out != -1:
+	if trackID_slide_in != -1 and trackID_slide_out != -1:
 		# $Container.size.x = get_viewport_rect().size.x
-		anim.track_set_key_value(trackID, 0, Vector2(-get_viewport_rect().size.x, 0))
-		anim_out.track_set_key_value(trackID_out, 1, Vector2(-get_viewport_rect().size.x, 0))
-		anim_RESET.track_set_key_value(trackID_RESET, 0, Vector2(-get_viewport_rect().size.x, 0))
+		anim_slide_in.track_set_key_value(trackID_slide_in, 0, Vector2(-size.x, 0))
+		anim_slide_out.track_set_key_value(trackID_slide_out, 1, Vector2(-size.x, 0))
+		anim_RESET.track_set_key_value(trackID_RESET, 0, Vector2(-size.x, 0))
 	else:
 		print("track not found")
 
-	$AnimationPlayer.play("RESET")
-	# $AnimationPlayer.connect("animation_finished", _anim_finished)
-
-func _process(delta):
-	size = $"..".size
-	$PanelContainer.size = size
-	# pass
 
 func show_research():
 	open = true
