@@ -120,8 +120,19 @@ func handle_drag(event: InputEventScreenDrag):
 
 
 var current_state := "home"
-var saved_states : Dictionary = {}
-func load_state(label : String):
+var saved_states: Dictionary = {
+	"home": {
+		"offset": Vector2(-68.58183, -2.362454),
+		"zoom": Vector2(0.897928, 0.897928)
+	},
+	"research": {
+		"offset": Vector2(690.2512, 332.8744),
+		"zoom": Vector2(0.607753, 0.607753)
+	}
+}
+
+func load_state(label: String):
+	print(saved_states)
 	saved_states[current_state] = {
 		"offset": offset,
 		"zoom": zoom
@@ -132,3 +143,6 @@ func load_state(label : String):
 		zoom = saved_states[label]["zoom"]
 	
 	current_state = label
+
+func _ready() -> void:
+	load_state(current_state)
