@@ -39,18 +39,7 @@ func sync_dims():
 func show_research():
 	open = true
 	$AnimationPlayer.play("slide_in")
-	camera.load_state("research")
 
 func hide_research():
-	camera.load_state("home")
 	open = false
 	$AnimationPlayer.play("slide_out")
-
-
-# func _anim_finished(anim_name):
-	# if anim_name == "slide_in":
-	# 	owner.find_child("ResearchTree").visible = true
-	# 	owner.find_child("Home").visible = false
-	# elif anim_name == "slide_out":
-	# 	owner.find_child("ResearchTree").visible = false
-	# 	owner.find_child("Home").visible = true
