@@ -305,6 +305,10 @@ speed_scale = 2.0
 layout_mode = 2
 open = false
 
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Main"]
+layout_mode = 2
+text = "Argh"
+
 [node name="BottomBar" parent="CanvasLayer/VBoxContainer" instance=ExtResource("7_bwwt3")]
 layout_mode = 2
 
@@ -339,3 +343,5 @@ layer = 4
 
 [node name="ResearchTree" parent="." instance=ExtResource("10_uexyn")]
 visible = false
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main/Button" to="Economy" method="save"]

@@ -56,6 +56,15 @@ func _refresh_line(con: Connection):
 	con.path.curve.set_point_position(0, pos_0)
 	con.path.curve.set_point_position(1, pos_1)
 
+	if con.toKnob.name.ends_with("t"):
+		con.path.curve.set_point_in(1, Vector2(0, -100))
+	elif con.toKnob.name.ends_with("b"):
+		con.path.curve.set_point_in(1, Vector2(0, 100))
+	elif con.toKnob.name.ends_with("l"):
+		con.path.curve.set_point_in(1, Vector2(-100, 0))
+	elif con.toKnob.name.ends_with("r"):
+		con.path.curve.set_point_in(1, Vector2(100, 0))
+
 
 	if pos_0.distance_to(pos_1) > 200:
 		con.fromNode.body.apply_force((pos_1 - pos_0) * 1 * Engine.physics_ticks_per_second / 60, con.fromKnob.position)
@@ -105,6 +114,8 @@ func connect_to(origin: OutKnob, target: InKnob):
 
 	data.outbound_connections.append(con)
 	con.toNode.inbound_connections.append(con)
+
+	# origin.update_in_path(con.path, target)
 
 
 func _sync_knobs():

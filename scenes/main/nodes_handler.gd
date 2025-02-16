@@ -16,13 +16,29 @@ static var node_ref_by_type: Dictionary = {
 static var speed_up_factor := 1.0
 
 func _ready():
-	# add_node(NodeType.SHOP)
-	# add_node(NodeType.MINE)
-	# add_node(NodeType.PROCESSOR)
-	# add_node(NodeType.PROCESSOR)
-	# add_node(NodeType.PROCESSOR)
-	# add_node(NodeType.PROCESSOR)
 	pass
+
+func load_nodes():
+	for node in Economy.owned:
+		if (!node.placed): continue
+
+		add_node(node, node.position)
+	
+	for node in nodes:
+		if !node.data.stale_outbound_connections: continue
+		
+		for conn in node.data.stale_outbound_connections_list:
+			var from_knob = node.find_child(conn["fromKnob"])
+
+			var target_node : GameNode
+			for node_b in nodes:
+				if (node_b.data.id == conn["to"]):
+					target_node = node_b
+					break
+
+			var to_knob = target_node.find_child(conn["toKnob"])
+
+			node.connect_to(from_knob, to_knob)
 
 
 func _process(delta):
@@ -40,14 +56,14 @@ func drag_node(nodeInfo: NodeData, touch_id: int, point: Vector2):
 func add_node(nodeInfo: NodeData, pos: Vector2):
 	var node_ref = NodeHandler.node_ref_by_type[nodeInfo.type]
 	var node = node_ref.instantiate()
-	var baseNode : GameNode = node.find_child("BaseNode")
-	if(baseNode == null):
+	var baseNode: GameNode = node.find_child("BaseNode")
+	if (baseNode == null):
 		push_error("Base node not found")
 
 	baseNode.data = nodeInfo
 	nodes.append(baseNode)
 
-	node.position = pos
+	node.find_child("rb").position = pos
 
 	add_child(node)
 

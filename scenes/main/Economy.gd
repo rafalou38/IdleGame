@@ -4,70 +4,86 @@ extends Node2D
 static var money := 20.0
 
 static var research := {
-    NodeData.NodeType.SHOP: {"unlocked": true},
-    NodeData.NodeType.MINE: {"unlocked": true},
-    NodeData.NodeType.PROCESSOR: {"unlocked": true},
-    NodeData.NodeType.REFINERY: {"unlocked": true},
-    NodeData.NodeType.TETHER: {"unlocked": false},
-    NodeData.NodeType.DUPLICATOR: {"unlocked": false},
+	NodeData.NodeType.SHOP: {"unlocked": true},
+	NodeData.NodeType.MINE: {"unlocked": true},
+	NodeData.NodeType.PROCESSOR: {"unlocked": true},
+	NodeData.NodeType.REFINERY: {"unlocked": true},
+	NodeData.NodeType.TETHER: {"unlocked": false},
+	NodeData.NodeType.DUPLICATOR: {"unlocked": false},
 }
 
-static var owned: Array[NodeData] = [
-    # {
-    #     "id": int,
-    #     "type": NodeData.NodeType,
-    #     "placed": bool
-    #     "outbound": [
-    #         {
-    #             "target_id": int,
-    #             "origin_knob_name": String
-    #             "target_knob_name": String
-    #         }
-    #     ]
-    #     "position": Vector2
-    # }
-    # {
-    #     "id": 0,
-    #     "type": NodeData.NodeType.SHOP,
-    #     "placed": false,
-    #     "outbound": [],
-    #     "position": Vector2(0, 0)
-    # }
-]
+static var owned: Array[NodeData] = []
 
-static func _save():
-    var serialized_economy = {
-        "research": research,
-        "owned": owned.map(func(e): return e.serialize()),
-        "money": money
-    }
+static var SAVE_FILE := "res://tmp/economy.save.json"
 
-    # JSON provides a static method to serialized JSON string.
-    var json_string = JSON.stringify(serialized_economy)
+static func save():
+	var serialized_economy = {
+		"research": research,
+		"owned": owned.map(func(e): return e.serialize()),
+		"money": money
+	}
 
-    # print(serialized_economy)
-    # print(json_string)
 
-    # # Store the save dictionary as a new line in the save file.
-    # save_file.store_line(json_string)
+	var json_string = JSON.stringify(serialized_economy)
+
+	print("saved", json_string)
+
+	var save_file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	save_file.store_line(json_string)
+	print("Game sucessfully saved")
+
+static func load_save():
+	if not FileAccess.file_exists(SAVE_FILE):
+		return
+	
+	var save_file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	var json_string = save_file.get_line()
+	var json = JSON.new()
+
+	var parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		return
+
+	# Get the data from the JSON object.
+	var serialized_economy = json.data
+	money = serialized_economy["money"]
+	for r_id in serialized_economy["research"]:
+		var id: int = r_id.to_int()
+		research[id] = serialized_economy["research"][r_id]
+	
+	print(research)
+
+	for serialized_node in serialized_economy.owned:
+		var data := NodeData.deserialize(serialized_node)
+		owned.append(data)
+	
+
+func _ready() -> void:
+	load_save()
+	owner.find_child("Node Handler").load_nodes()
 
 static var _prev_money := 0.0
 static var _prev_money_time := 0.0
 static var _dvm := 0.0
 static func var_money() -> float:
-    var now = Time.get_unix_time_from_system()
+	var now = Time.get_unix_time_from_system()
 
-    if _prev_money > money:
-        _prev_money = money
-        _prev_money_time = now
-    elif _prev_money < money:
-        var nv := lerpf(_dvm, (money - _prev_money) / (now - _prev_money_time), 0.8)
-        # if _dvm > 1 and nv > _dvm * 1.8: _dvm = _dvm * 1.8
-        # else: _dvm = nv
+	if _prev_money > money:
+		_prev_money = money
+		_prev_money_time = now
+	elif _prev_money < money:
+		var nv := lerpf(_dvm, (money - _prev_money) / (now - _prev_money_time), 0.8)
+		# if _dvm > 1 and nv > _dvm * 1.8: _dvm = _dvm * 1.8
+		# else: _dvm = nv
 
-        _dvm = nv
+		_dvm = nv
 
-        _prev_money_time = now
-        _prev_money = money
+		_prev_money_time = now
+		_prev_money = money
 
-    return _dvm
+	return _dvm
+
+func _notification(what):
+	if what in [NOTIFICATION_WM_CLOSE_REQUEST, NOTIFICATION_WM_GO_BACK_REQUEST, NOTIFICATION_WM_WINDOW_FOCUS_OUT]:
+		save()

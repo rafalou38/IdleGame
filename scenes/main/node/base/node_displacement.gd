@@ -79,8 +79,8 @@ func _integrate_forces(delta):
 			set_axis_velocity(global_position * - attraction_factor * delta.step)
 
 func _process(_delta):
-
-
+	get_parent().data.position = position
+	
 	if (!dragging and drag_initiated and Time.get_ticks_msec() - timer_start >= long_press_delay_ms and !CameraMovement.control_locks.has("knob-manager/" + str(drag_index))):
 		# Start the drag
 		CameraMovement.control_locks.append("NodeDisplacement/" + str(drag_index))
