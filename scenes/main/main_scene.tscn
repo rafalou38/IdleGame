@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=17 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -240,6 +240,18 @@ _data = {
 "slide_out": SubResource("Animation_gxg8h")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjqxi"]
+bg_color = Color(0.348583, 0.2403, 0.89, 1)
+border_width_left = 20
+border_width_top = 10
+border_width_right = 20
+border_width_bottom = 10
+border_color = Color(0.34902, 0.239216, 0.890196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="root" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -261,21 +273,19 @@ theme_override_constants/separation = 0
 [node name="TopBar" parent="CanvasLayer/VBoxContainer" instance=ExtResource("3_lnnve")]
 layout_mode = 2
 
-[node name="Main" type="Container" parent="CanvasLayer/VBoxContainer"]
+[node name="Main" type="Control" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Shop" parent="CanvasLayer/VBoxContainer/Main" node_paths=PackedStringArray("node_handler") instance=ExtResource("5_wbxbt")]
-z_index = 1
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-node_handler = NodePath("../../../../Home/Node Handler")
-
 [node name="Research" type="Control" parent="CanvasLayer/VBoxContainer/Main" node_paths=PackedStringArray("camera")]
 z_index = 1
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 mouse_filter = 2
@@ -300,13 +310,33 @@ libraries = {
 }
 speed_scale = 2.0
 
+[node name="Shop" parent="CanvasLayer/VBoxContainer/Main" node_paths=PackedStringArray("node_handler") instance=ExtResource("5_wbxbt")]
+z_index = 1
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+node_handler = NodePath("../../../../Home/Node Handler")
+
 [node name="Inventory" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("8_r8hkb")]
-layout_mode = 2
+layout_mode = 1
 open = false
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Main"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/Main"]
 layout_mode = 2
-text = "Argh"
+
+[node name="save" type="Button" parent="CanvasLayer/VBoxContainer/Main/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_qjqxi")
+text = "SAVE"
+
+[node name="reset" type="Button" parent="CanvasLayer/VBoxContainer/Main/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_qjqxi")
+text = "RESET"
 
 [node name="BottomBar" parent="CanvasLayer/VBoxContainer" instance=ExtResource("7_bwwt3")]
 layout_mode = 2
@@ -343,4 +373,5 @@ layer = 4
 [node name="ResearchTree" parent="." instance=ExtResource("10_uexyn")]
 visible = false
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main/Button" to="Economy" method="save"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main/VBoxContainer/save" to="Economy" method="save"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main/VBoxContainer/reset" to="Economy" method="start_new_save"]

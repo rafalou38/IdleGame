@@ -17,7 +17,7 @@ signal buy
 
 func apply_props():
 	if (Economy.research.has(item_name)):
-		unlocked = Economy.research[item_name]["unlocked"]
+		unlocked = Economy.research[item_name]["state"] == ResearchTreeItem.State.BOUGHT
 	else:
 		unlocked = false
 		

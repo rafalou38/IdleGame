@@ -8,8 +8,10 @@ static var research := {
 }
 
 static var owned: Array[NodeData] = []
+static var new_save := false
 
-static var SAVE_FILE := "res://tmp/economy.save.json"
+
+static var SAVE_FILE := "res://economy.save.json"
 
 static func save():
 	var serialized_economy = {
@@ -29,6 +31,7 @@ static func save():
 
 static func load_save():
 	if not FileAccess.file_exists(SAVE_FILE):
+		new_save = true
 		return
 	
 	var save_file = FileAccess.open(SAVE_FILE, FileAccess.READ)
@@ -51,7 +54,19 @@ static func load_save():
 	for serialized_node in serialized_economy.owned:
 		var data := NodeData.deserialize(serialized_node)
 		owned.append(data)
-	
+
+func start_new_save():
+	print("new save")
+	money = 0
+	owned.clear()
+	research.clear()
+	owner.find_child("Shop").buy(NodeData.NodeType.SHOP)
+	owner.find_child("Shop").buy(NodeData.NodeType.MINE)
+
+func _process(_delta: float) -> void:
+	if (new_save):
+		new_save = false
+		start_new_save()
 
 func _ready() -> void:
 	load_save()

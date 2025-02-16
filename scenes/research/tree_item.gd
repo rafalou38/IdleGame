@@ -56,7 +56,7 @@ func _ready():
 	if (Economy.research.has(id)):
 		state = Economy.research[id]["state"]
 		research_start_time = Economy.research[id]["research_start_time"]
-		dirty = true
+	dirty = true
 
 func sync_size():
 	$container/VBoxContainer/ResearchBox/Panel.size = $container/VBoxContainer/ResearchBox.size
@@ -154,7 +154,7 @@ func check_target(target: ResearchTreeItem, origin_point: Node, target_point: No
 	target.refresh_state()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		animator.play("RESET")
 		visible = true

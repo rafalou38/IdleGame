@@ -1,18 +1,186 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmr2r8p0cqo3"]
+[gd_scene load_steps=5 format=3 uid="uid://dmr2r8p0cqo3"]
 
 [ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="1_4p8a7"]
 [ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="2_hfxsp"]
 [ext_resource type="Texture2D" uid="uid://byfr26h6l15ni" path="res://sprites/icons/CarbonCicsExplorer.svg" id="3_qrp15"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="4_04qv1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3shl"]
-bg_color = Color(0.313726, 0.290196, 0.396078, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [node name="ResearchTree" type="Node2D"]
+
+[node name="old" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mine Container" type="Control" parent="old"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2955.0
+offset_top = 3199.0
+offset_right = 2955.0
+offset_bottom = 3199.0
+
+[node name="Mine" parent="old/Mine Container" node_paths=PackedStringArray("targets_r", "targets_b") instance=ExtResource("1_4p8a7")]
+visible = false
+offset_top = 64.0
+offset_bottom = 64.0
+research_color = Color(0.313726, 0.290196, 0.396078, 1)
+research_name = "Mine"
+description = "Generates Units at a fixed rate"
+price = 10
+dirty = true
+targets_r = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
+targets_b = [NodePath("../../Shop Container/Shop")]
+
+[node name="Speed Upgrade" parent="old/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 1024.0
+offset_top = -256.0
+offset_right = 1024.0
+offset_bottom = -256.0
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+dirty = true
+targets_r = [NodePath("../Speed Upgrade2")]
+
+[node name="Speed Upgrade2" parent="old/Mine Container" instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 1984.0
+offset_top = -256.0
+offset_right = 1984.0
+offset_bottom = -256.0
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade 2"
+description = "Units are generated faster"
+price = 100
+dirty = true
+
+[node name="Value Upgrade" parent="old/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 1024.0
+offset_top = 320.0
+offset_right = 1024.0
+offset_bottom = 320.0
+icon = ExtResource("3_qrp15")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade"
+description = "Units are generated with a higher value"
+price = 100
+dirty = true
+targets_r = [NodePath("../Value Upgrade2")]
+
+[node name="Value Upgrade2" parent="old/Mine Container" instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 1984.0
+offset_top = 320.0
+offset_right = 1984.0
+offset_bottom = 320.0
+icon = ExtResource("3_qrp15")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade 2"
+description = "Units are generated with a higher value"
+price = 100
+dirty = true
+
+[node name="Shop Container" type="Control" parent="old"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2069.0
+offset_top = 5414.0
+offset_right = 2069.0
+offset_bottom = 5414.0
+
+[node name="Shop" parent="old/Shop Container" node_paths=PackedStringArray("targets_r", "targets_l") instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 832.0
+offset_top = -1024.0
+offset_right = 832.0
+offset_bottom = -1024.0
+icon = ExtResource("4_04qv1")
+research_color = Color(0.396078, 0.290196, 0.290196, 1)
+research_name = "Shop"
+description = "Sell you units here"
+price = 10
+dirty = true
+targets_r = [NodePath("../Speed Upgrade")]
+targets_l = [NodePath("../../Processor Container/Processor")]
+
+[node name="Speed Upgrade" parent="old/Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 1856.0
+offset_top = -1024.0
+offset_right = 1856.0
+offset_bottom = -1024.0
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+dirty = true
+targets_r = [NodePath("../Speed Upgrade2")]
+
+[node name="Speed Upgrade2" parent="old/Shop Container" instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 2816.0
+offset_top = -1024.0
+offset_right = 2816.0
+offset_bottom = -1024.0
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+dirty = true
+
+[node name="Processor Container" type="Control" parent="old"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 661.0
+offset_top = 5478.0
+offset_right = 661.0
+offset_bottom = 5478.0
+
+[node name="Processor" parent="old/Processor Container" node_paths=PackedStringArray("targets_l") instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 1024.0
+offset_top = -1088.0
+offset_right = 1024.0
+offset_bottom = -1088.0
+description = "Increase the value of your units"
+price = 10
+dirty = true
+targets_l = [NodePath("../Speed Upgrade"), NodePath("../Speed Upgrade2")]
+
+[node name="Speed Upgrade" parent="old/Processor Container" instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 64.0
+offset_top = -1408.0
+offset_right = 64.0
+offset_bottom = -1408.0
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+dirty = true
+
+[node name="Speed Upgrade2" parent="old/Processor Container" instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = 64.0
+offset_top = -832.0
+offset_right = 64.0
+offset_bottom = -832.0
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 100
+dirty = true
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 3
@@ -23,6 +191,7 @@ offset_right = 1505.0
 offset_bottom = 584.0
 
 [node name="Research center" parent="Container" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = false
 offset_left = -1343.0
 offset_top = -261.0
 offset_right = -1343.0
@@ -34,205 +203,60 @@ research_name = "Research center"
 description = "Needed to make more research."
 price = 0
 state = 3
+dirty = true
 targets_b = [NodePath("../lab")]
 
 [node name="lab" parent="Container" instance=ExtResource("1_4p8a7")]
-offset_left = -1179.0
-offset_top = 418.0
-offset_right = -1179.0
-offset_bottom = 418.0
+visible = false
+offset_left = -1380.0
+offset_top = 422.0
+offset_right = -1380.0
+offset_bottom = 422.0
 id = "research-lab"
 icon = ExtResource("4_04qv1")
 research_color = Color(0.148538, 0.406409, 0.515315, 1)
 research_name = "Lab"
 description = "Needed to convert basic units into research points."
 price = 10
+dirty = true
 
-[node name="Mine Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 2955.0
-offset_top = 3199.0
-offset_right = 2955.0
-offset_bottom = 3199.0
-
-[node name="Mine" parent="Mine Container" node_paths=PackedStringArray("targets_r", "targets_b") instance=ExtResource("1_4p8a7")]
-offset_top = 64.0
-offset_bottom = 64.0
-id = ""
+[node name="Mine" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = -1049.0
+offset_top = 273.0
+offset_right = -1049.0
+offset_bottom = 273.0
+id = "Mine"
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
 research_name = "Mine"
 description = "Generates Units at a fixed rate"
 price = 10
-state = 1
-targets_r = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
-targets_b = [NodePath("../../Shop Container/Shop")]
+state = 3
+dirty = true
+targets_b = [NodePath("../Shop")]
 
-[node name="Logo" parent="Mine Container/Mine/container/VBoxContainer/HBoxContainer" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_a3shl")
-
-[node name="Name" parent="Mine Container/Mine/container/VBoxContainer/HBoxContainer/Title" index="0"]
-text = "Mine"
-
-[node name="Description" parent="Mine Container/Mine/container/VBoxContainer/HBoxContainer/Title" index="1"]
-text = "Generates Units at a fixed rate"
-
-[node name="Label" parent="Mine Container/Mine/container/VBoxContainer/Button/CenterContainer/HBoxContainer" index="1"]
-text = "10"
-
-[node name="Panel" parent="Mine Container/Mine/container/VBoxContainer/ResearchBox" index="0"]
-offset_right = 409.0
-
-[node name="Label2" parent="Mine Container/Mine/container/VBoxContainer/ResearchBox/VBoxContainer" index="1"]
-text = "1739741037s"
-
-[node name="Speed Upgrade" parent="Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-offset_left = 1024.0
-offset_top = -256.0
-offset_right = 1024.0
-offset_bottom = -256.0
-id = ""
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-state = 1
-targets_r = [NodePath("../Speed Upgrade2")]
-
-[node name="Speed Upgrade2" parent="Mine Container" instance=ExtResource("1_4p8a7")]
-offset_left = 1984.0
-offset_top = -256.0
-offset_right = 1984.0
-offset_bottom = -256.0
-id = ""
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade 2"
-description = "Units are generated faster"
-price = 100
-state = 1
-
-[node name="Value Upgrade" parent="Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-offset_left = 1024.0
-offset_top = 320.0
-offset_right = 1024.0
-offset_bottom = 320.0
-id = ""
-icon = ExtResource("3_qrp15")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Value Upgrade"
-description = "Units are generated with a higher value"
-price = 100
-state = 1
-targets_r = [NodePath("../Value Upgrade2")]
-
-[node name="Value Upgrade2" parent="Mine Container" instance=ExtResource("1_4p8a7")]
-offset_left = 1984.0
-offset_top = 320.0
-offset_right = 1984.0
-offset_bottom = 320.0
-id = ""
-icon = ExtResource("3_qrp15")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Value Upgrade 2"
-description = "Units are generated with a higher value"
-price = 100
-state = 1
-
-[node name="Shop Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 2069.0
-offset_top = 5414.0
-offset_right = 2069.0
-offset_bottom = 5414.0
-
-[node name="Shop" parent="Shop Container" node_paths=PackedStringArray("targets_r", "targets_l") instance=ExtResource("1_4p8a7")]
-offset_left = 832.0
-offset_top = -1024.0
-offset_right = 832.0
-offset_bottom = -1024.0
-id = ""
+[node name="Shop" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = -1033.0
+offset_top = 908.0
+offset_right = -1033.0
+offset_bottom = 908.0
+id = "Shop"
 icon = ExtResource("4_04qv1")
 research_color = Color(0.396078, 0.290196, 0.290196, 1)
 research_name = "Shop"
 description = "Sell you units here"
 price = 10
-state = 1
-targets_r = [NodePath("../Speed Upgrade")]
-targets_l = [NodePath("../../Processor Container/Processor")]
+dirty = true
+targets_b = [NodePath("../Processor")]
 
-[node name="Speed Upgrade" parent="Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-offset_left = 1856.0
-offset_top = -1024.0
-offset_right = 1856.0
-offset_bottom = -1024.0
-id = ""
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-state = 1
-targets_r = [NodePath("../Speed Upgrade2")]
-
-[node name="Speed Upgrade2" parent="Shop Container" instance=ExtResource("1_4p8a7")]
-offset_left = 2816.0
-offset_top = -1024.0
-offset_right = 2816.0
-offset_bottom = -1024.0
-id = ""
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-state = 1
-
-[node name="Processor Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 661.0
-offset_top = 5478.0
-offset_right = 661.0
-offset_bottom = 5478.0
-
-[node name="Processor" parent="Processor Container" node_paths=PackedStringArray("targets_l") instance=ExtResource("1_4p8a7")]
-offset_left = 1024.0
-offset_top = -1088.0
-offset_right = 1024.0
-offset_bottom = -1088.0
-id = ""
+[node name="Processor" parent="." instance=ExtResource("1_4p8a7")]
+visible = false
+offset_left = -1027.0
+offset_top = 1508.0
+offset_right = -1027.0
+offset_bottom = 1508.0
+id = "Processor"
 description = "Increase the value of your units"
 price = 10
-state = 1
-targets_l = [NodePath("../Speed Upgrade"), NodePath("../Speed Upgrade2")]
-
-[node name="Speed Upgrade" parent="Processor Container" instance=ExtResource("1_4p8a7")]
-offset_left = 64.0
-offset_top = -1408.0
-offset_right = 64.0
-offset_bottom = -1408.0
-id = ""
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-state = 1
-
-[node name="Speed Upgrade2" parent="Processor Container" instance=ExtResource("1_4p8a7")]
-offset_left = 64.0
-offset_top = -832.0
-offset_right = 64.0
-offset_bottom = -832.0
-id = ""
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-state = 1
-
-[editable path="Mine Container/Mine"]
+dirty = true
