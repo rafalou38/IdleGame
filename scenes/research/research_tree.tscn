@@ -22,19 +22,19 @@ offset_right = 2955.0
 offset_bottom = 3199.0
 
 [node name="Mine" parent="old/Mine Container" node_paths=PackedStringArray("targets_r", "targets_b") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_top = 64.0
 offset_bottom = 64.0
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
 research_name = "Mine"
 description = "Generates Units at a fixed rate"
 price = 10
-dirty = true
+dirty = false
 targets_r = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
 targets_b = [NodePath("../../Shop Container/Shop")]
 
 [node name="Speed Upgrade" parent="old/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 1024.0
 offset_top = -256.0
 offset_right = 1024.0
@@ -44,11 +44,11 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
-dirty = true
+dirty = false
 targets_r = [NodePath("../Speed Upgrade2")]
 
 [node name="Speed Upgrade2" parent="old/Mine Container" instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 1984.0
 offset_top = -256.0
 offset_right = 1984.0
@@ -58,10 +58,10 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade 2"
 description = "Units are generated faster"
 price = 100
-dirty = true
+dirty = false
 
 [node name="Value Upgrade" parent="old/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 1024.0
 offset_top = 320.0
 offset_right = 1024.0
@@ -71,11 +71,11 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Value Upgrade"
 description = "Units are generated with a higher value"
 price = 100
-dirty = true
+dirty = false
 targets_r = [NodePath("../Value Upgrade2")]
 
 [node name="Value Upgrade2" parent="old/Mine Container" instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 1984.0
 offset_top = 320.0
 offset_right = 1984.0
@@ -85,7 +85,7 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Value Upgrade 2"
 description = "Units are generated with a higher value"
 price = 100
-dirty = true
+dirty = false
 
 [node name="Shop Container" type="Control" parent="old"]
 layout_mode = 3
@@ -96,7 +96,7 @@ offset_right = 2069.0
 offset_bottom = 5414.0
 
 [node name="Shop" parent="old/Shop Container" node_paths=PackedStringArray("targets_r", "targets_l") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 832.0
 offset_top = -1024.0
 offset_right = 832.0
@@ -106,12 +106,12 @@ research_color = Color(0.396078, 0.290196, 0.290196, 1)
 research_name = "Shop"
 description = "Sell you units here"
 price = 10
-dirty = true
+dirty = false
 targets_r = [NodePath("../Speed Upgrade")]
 targets_l = [NodePath("../../Processor Container/Processor")]
 
 [node name="Speed Upgrade" parent="old/Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 1856.0
 offset_top = -1024.0
 offset_right = 1856.0
@@ -121,11 +121,11 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
-dirty = true
+dirty = false
 targets_r = [NodePath("../Speed Upgrade2")]
 
 [node name="Speed Upgrade2" parent="old/Shop Container" instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 2816.0
 offset_top = -1024.0
 offset_right = 2816.0
@@ -135,7 +135,7 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
-dirty = true
+dirty = false
 
 [node name="Processor Container" type="Control" parent="old"]
 layout_mode = 3
@@ -146,18 +146,18 @@ offset_right = 661.0
 offset_bottom = 5478.0
 
 [node name="Processor" parent="old/Processor Container" node_paths=PackedStringArray("targets_l") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 1024.0
 offset_top = -1088.0
 offset_right = 1024.0
 offset_bottom = -1088.0
 description = "Increase the value of your units"
 price = 10
-dirty = true
+dirty = false
 targets_l = [NodePath("../Speed Upgrade"), NodePath("../Speed Upgrade2")]
 
 [node name="Speed Upgrade" parent="old/Processor Container" instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 64.0
 offset_top = -1408.0
 offset_right = 64.0
@@ -167,10 +167,10 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
-dirty = true
+dirty = false
 
 [node name="Speed Upgrade2" parent="old/Processor Container" instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = 64.0
 offset_top = -832.0
 offset_right = 64.0
@@ -180,7 +180,7 @@ research_color = Color(0.082063, 0.082063, 0.082063, 1)
 research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
-dirty = true
+dirty = false
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 3
@@ -191,7 +191,7 @@ offset_right = 1505.0
 offset_bottom = 584.0
 
 [node name="Research center" parent="Container" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = -1343.0
 offset_top = -261.0
 offset_right = -1343.0
@@ -203,11 +203,11 @@ research_name = "Research center"
 description = "Needed to make more research."
 price = 0
 state = 3
-dirty = true
+dirty = false
 targets_b = [NodePath("../lab")]
 
 [node name="lab" parent="Container" instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = -1380.0
 offset_top = 422.0
 offset_right = -1380.0
@@ -218,10 +218,11 @@ research_color = Color(0.148538, 0.406409, 0.515315, 1)
 research_name = "Lab"
 description = "Needed to convert basic units into research points."
 price = 10
-dirty = true
+state = 2
+dirty = false
 
 [node name="Mine" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = -1049.0
 offset_top = 273.0
 offset_right = -1049.0
@@ -232,11 +233,11 @@ research_name = "Mine"
 description = "Generates Units at a fixed rate"
 price = 10
 state = 3
-dirty = true
+dirty = false
 targets_b = [NodePath("../Shop")]
 
 [node name="Shop" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = -1033.0
 offset_top = 908.0
 offset_right = -1033.0
@@ -247,11 +248,12 @@ research_color = Color(0.396078, 0.290196, 0.290196, 1)
 research_name = "Shop"
 description = "Sell you units here"
 price = 10
-dirty = true
+state = 2
+dirty = false
 targets_b = [NodePath("../Processor")]
 
 [node name="Processor" parent="." instance=ExtResource("1_4p8a7")]
-visible = false
+visible = true
 offset_left = -1027.0
 offset_top = 1508.0
 offset_right = -1027.0
@@ -259,4 +261,4 @@ offset_bottom = 1508.0
 id = "Processor"
 description = "Increase the value of your units"
 price = 10
-dirty = true
+dirty = false
