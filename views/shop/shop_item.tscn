@@ -40,7 +40,8 @@ item_name = "Node"
 item_description = "Node description here"
 icon = ExtResource("2_0g43x")
 icon_bg_color = Color(0.202, 0.18, 0.4, 1)
-can_buy = true
+unlocked = true
+price = 9.0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
@@ -52,8 +53,10 @@ layout_mode = 2
 texture = ExtResource("1_q84ax")
 
 [node name="Icon" type="TextureRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 texture = ExtResource("2_0g43x")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -92,8 +95,9 @@ custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 focus_mode = 0
 theme = SubResource("Theme_fbxdc")
+disabled = true
 action_mode = 0
-text = "100k"
+text = "9"
 icon = ExtResource("6_ue3vd")
 
 [node name="Ripple" parent="CenterContainer2/Button" instance=ExtResource("8_om7kf")]

@@ -1,4 +1,4 @@
-# @tool
+@tool
 extends HBoxContainer
 
 @export var type: NodeData.NodeType = NodeData.NodeType.SHOP
@@ -16,8 +16,10 @@ extends HBoxContainer
 signal buy
 
 func apply_props():
-	if (Economy.research.has(item_name)):
-		unlocked = Economy.research[item_name]["state"] == ResearchTreeItem.State.BOUGHT
+	if Engine.is_editor_hint():
+		unlocked = true
+	elif (Economy.research.has(name)):
+		unlocked = Economy.research[name]["state"] == ResearchTreeItem.State.BOUGHT
 	else:
 		unlocked = false
 		

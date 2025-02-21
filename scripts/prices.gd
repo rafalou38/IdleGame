@@ -12,7 +12,7 @@ static func node_buy(type: NodeData.NodeType, own_count: int) -> float:
 		NodeData.NodeType.REFINERY:
 			return Util.factorial(x + 7)
 	
-	return 0
+	return 1
 
 
 static func test_prices():

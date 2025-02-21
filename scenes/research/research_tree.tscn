@@ -1,17 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmr2r8p0cqo3"]
+[gd_scene load_steps=8 format=3 uid="uid://dmr2r8p0cqo3"]
 
 [ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="1_4p8a7"]
 [ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="2_hfxsp"]
 [ext_resource type="Texture2D" uid="uid://byfr26h6l15ni" path="res://sprites/icons/CarbonCicsExplorer.svg" id="3_qrp15"]
+[ext_resource type="Texture2D" uid="uid://rsrkgey8fgdd" path="res://sprites/icons/science1.svg" id="4_2t4jk"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="4_04qv1"]
+[ext_resource type="Texture2D" uid="uid://decy4obiwriym" path="res://sprites/icons/research2.svg" id="5_146wd"]
+[ext_resource type="Texture2D" uid="uid://3tyequec0mtg" path="res://sprites/icons/tether.svg" id="5_ew1qi"]
 
 [node name="ResearchTree" type="Node2D"]
+position = Vector2(960, -128)
 
 [node name="old" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Mine Container" type="Control" parent="old"]
 layout_mode = 3
@@ -20,16 +25,6 @@ offset_left = 2955.0
 offset_top = 3199.0
 offset_right = 2955.0
 offset_bottom = 3199.0
-
-[node name="Mine" parent="old/Mine Container" node_paths=PackedStringArray("targets_r", "targets_b") instance=ExtResource("1_4p8a7")]
-offset_top = 64.0
-offset_bottom = 64.0
-research_color = Color(0.313726, 0.290196, 0.396078, 1)
-research_name = "Mine"
-description = "Generates Units at a fixed rate"
-price = 10
-targets_r = [NodePath("../Speed Upgrade"), NodePath("../Value Upgrade")]
-targets_b = [NodePath("../../Shop Container/Shop")]
 
 [node name="Speed Upgrade" parent="old/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
 offset_left = 1024.0
@@ -85,19 +80,6 @@ offset_top = 5414.0
 offset_right = 2069.0
 offset_bottom = 5414.0
 
-[node name="Shop" parent="old/Shop Container" node_paths=PackedStringArray("targets_r", "targets_l") instance=ExtResource("1_4p8a7")]
-offset_left = 832.0
-offset_top = -1024.0
-offset_right = 832.0
-offset_bottom = -1024.0
-icon = ExtResource("4_04qv1")
-research_color = Color(0.396078, 0.290196, 0.290196, 1)
-research_name = "Shop"
-description = "Sell you units here"
-price = 10
-targets_r = [NodePath("../Speed Upgrade")]
-targets_l = [NodePath("../../Processor Container/Processor")]
-
 [node name="Speed Upgrade" parent="old/Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
 offset_left = 1856.0
 offset_top = -1024.0
@@ -129,15 +111,6 @@ offset_top = 5478.0
 offset_right = 661.0
 offset_bottom = 5478.0
 
-[node name="Processor" parent="old/Processor Container" node_paths=PackedStringArray("targets_l") instance=ExtResource("1_4p8a7")]
-offset_left = 1024.0
-offset_top = -1088.0
-offset_right = 1024.0
-offset_bottom = -1088.0
-description = "Increase the value of your units"
-price = 10
-targets_l = [NodePath("../Speed Upgrade"), NodePath("../Speed Upgrade2")]
-
 [node name="Speed Upgrade" parent="old/Processor Container" instance=ExtResource("1_4p8a7")]
 offset_left = 64.0
 offset_top = -1408.0
@@ -160,73 +133,93 @@ research_name = "Speed Upgrade"
 description = "Units are generated faster"
 price = 100
 
-[node name="Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1465.0
-offset_top = 544.0
-offset_right = 1505.0
-offset_bottom = 584.0
-
-[node name="Research center" parent="Container" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-offset_left = -1343.0
-offset_top = -261.0
-offset_right = -1343.0
-offset_bottom = -261.0
+[node name="Research center" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+anchors_preset = -1
+anchor_left = 26.7
+anchor_top = -16.2
+anchor_right = 26.7
+anchor_bottom = -16.2
+offset_left = 108.0
+offset_top = -520.0
+offset_right = 108.0
+offset_bottom = -520.0
 id = "research-center"
-icon = ExtResource("4_04qv1")
+icon = ExtResource("4_2t4jk")
 research_color = Color(0.215874, 0.232684, 0.727312, 1)
 research_name = "Research center"
-description = "Needed to make more research."
+description = "Allows researching new technologies."
 price = 0
 state = 3
 targets_b = [NodePath("../lab")]
+metadata/_edit_use_anchors_ = true
 
-[node name="lab" parent="Container" instance=ExtResource("1_4p8a7")]
-offset_left = -1380.0
-offset_top = 422.0
-offset_right = -1380.0
-offset_bottom = 422.0
+[node name="lab" parent="." node_paths=PackedStringArray("targets_r", "targets_b") instance=ExtResource("1_4p8a7")]
+anchors_preset = -1
+anchor_left = -1.6
+anchor_top = -3.2
+anchor_right = -1.6
+anchor_bottom = -3.2
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 64.0
+offset_bottom = 128.0
 id = "research-lab"
-icon = ExtResource("4_04qv1")
-research_color = Color(0.148538, 0.406409, 0.515315, 1)
+icon = ExtResource("5_146wd")
+research_color = Color(0.169651, 0.533014, 0.764096, 1)
 research_name = "Lab"
-description = "Needed to convert basic units into research points."
+description = "Converts basic units into research points."
 price = 10
 state = 2
+targets_r = [NodePath("../Tether")]
+targets_b = [NodePath("../Processor")]
+metadata/_edit_use_anchors_ = true
 
-[node name="Mine" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-offset_left = -1049.0
-offset_top = 273.0
-offset_right = -1049.0
-offset_bottom = 273.0
+[node name="Tether" parent="." instance=ExtResource("1_4p8a7")]
+offset_left = 1152.0
+offset_top = 128.0
+offset_right = 1152.0
+offset_bottom = 128.0
+id = "Processor"
+icon = ExtResource("5_ew1qi")
+research_color = Color(0.290196, 0.376471, 0.396078, 1)
+research_name = "Tether"
+description = "Distributes units to different routes"
+price = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="Mine" parent="." instance=ExtResource("1_4p8a7")]
+offset_left = 1171.0
+offset_top = 951.0
+offset_right = 1171.0
+offset_bottom = 951.0
 id = "Mine"
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
 research_name = "Mine"
 description = "Generates Units at a fixed rate"
 price = 10
-state = 3
-targets_b = [NodePath("../Shop")]
+metadata/_edit_use_anchors_ = true
 
-[node name="Shop" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-offset_left = -1033.0
-offset_top = 908.0
-offset_right = -1033.0
-offset_bottom = 908.0
+[node name="Shop" parent="." instance=ExtResource("1_4p8a7")]
+offset_left = -931.0
+offset_top = 958.0
+offset_right = -931.0
+offset_bottom = 958.0
 id = "Shop"
 icon = ExtResource("4_04qv1")
 research_color = Color(0.396078, 0.290196, 0.290196, 1)
 research_name = "Shop"
 description = "Sell you units here"
 price = 10
-state = 2
-targets_b = [NodePath("../Processor")]
+metadata/_edit_use_anchors_ = true
 
-[node name="Processor" parent="." instance=ExtResource("1_4p8a7")]
-offset_left = -1027.0
-offset_top = 1508.0
-offset_right = -1027.0
-offset_bottom = 1508.0
+[node name="Processor" parent="." node_paths=PackedStringArray("targets_r", "targets_l") instance=ExtResource("1_4p8a7")]
+offset_left = 106.0
+offset_top = 865.0
+offset_right = 106.0
+offset_bottom = 865.0
 id = "Processor"
 description = "Increase the value of your units"
 price = 10
+targets_r = [NodePath("../Mine")]
+targets_l = [NodePath("../Shop")]
+metadata/_edit_use_anchors_ = true
