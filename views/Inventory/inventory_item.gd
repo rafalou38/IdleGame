@@ -9,7 +9,7 @@ var long_press_start_point := Vector2.ZERO
 var long_press_current_point := Vector2.ZERO
 
 var last_node_count = -1
-var dirty = false
+var dirty = true
 
 # Called when the node enters the scene tree for the first time.
 func refresh() -> void:
@@ -20,6 +20,7 @@ func refresh() -> void:
 
 	$node_ui.icon = base_ui.icon
 	$node_ui.hue = base_ui.hue
+	$node_ui.color = base_ui.color
 
 	$PanelContainer/Label.text = str(count)
 	$Label.text = base_ui.displayName

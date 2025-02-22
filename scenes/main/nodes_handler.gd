@@ -6,8 +6,10 @@ static var node_ref_by_type: Dictionary = {
 	NodeData.NodeType.MINE: preload("res://scenes/main/node/mine_node.tscn"),
 	NodeData.NodeType.PROCESSOR: preload("res://scenes/main/node/processor_node.tscn"),
 	NodeData.NodeType.REFINERY: null,
-	NodeData.NodeType.TETHER: null,
-	NodeData.NodeType.DUPLICATOR: null
+	NodeData.NodeType.TETHER: preload("res://scenes/main/node/tether_node.tscn"),
+	NodeData.NodeType.DUPLICATOR: null,
+	NodeData.NodeType.RESEARCH_CENTER: preload("res://scenes/main/node/research_center_node.tscn"),
+	NodeData.NodeType.LAB: preload("res://scenes/main/node/lab_node.tscn")
 }
 
 @export var nodes: Array[GameNode] = []

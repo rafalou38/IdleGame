@@ -38,7 +38,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_0p5ct")
-open = null
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -111,4 +110,16 @@ count = 0
 visible = false
 layout_mode = 2
 node_type = 4
+count = 0
+
+[node name="Lab" parent="Panel/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer" instance=ExtResource("1_qh4sb")]
+visible = false
+layout_mode = 2
+node_type = 7
+count = 0
+
+[node name="ResearchCenter" parent="Panel/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer" instance=ExtResource("1_qh4sb")]
+visible = false
+layout_mode = 2
+node_type = 6
 count = 0

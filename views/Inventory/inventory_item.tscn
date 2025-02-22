@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://views/Inventory/inventory_item.gd" id="1_tlu38"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_fcuq6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lnbc"]
-bg_color = Color(0.29, 0.1798, 0.1798, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_631ql"]
+bg_color = Color(0, 0, 0, 0)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -38,11 +38,11 @@ offset_bottom = -1732.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tlu38")
-count = 1
 
 [node name="node_ui" parent="." instance=ExtResource("1_ovrwr")]
 layout_mode = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_1lnbc")
+theme_override_styles/panel = SubResource("StyleBoxFlat_631ql")
+color = Color(0, 0, 0, 0)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -67,3 +67,4 @@ offset_bottom = 181.0
 text = "Mine"
 label_settings = SubResource("LabelSettings_6v8x8")
 horizontal_alignment = 1
+autowrap_mode = 2

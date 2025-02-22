@@ -211,7 +211,6 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_40txn")
-displayName = null
 
 [node name="Knobs" type="Control" parent="rb/Control"]
 z_index = 2

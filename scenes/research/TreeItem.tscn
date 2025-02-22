@@ -27,7 +27,7 @@ corner_radius_bottom_left = 40
 font = ExtResource("2_4maex")
 font_size = 76
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1ses"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3c2y"]
 bg_color = Color(0.317647, 0.396078, 0.290196, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -678,7 +678,7 @@ theme_override_constants/separation = 36
 clip_children = 2
 custom_minimum_size = Vector2(142, 142)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_h1ses")
+theme_override_styles/panel = SubResource("StyleBoxFlat_c3c2y")
 
 [node name="Icon" type="TextureRect" parent="container/VBoxContainer/HBoxContainer/Logo"]
 layout_mode = 1
@@ -769,7 +769,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 409.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vmr2t")
@@ -795,7 +794,7 @@ horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="container/VBoxContainer/ResearchBox/VBoxContainer"]
 layout_mode = 2
-text = "1740180358s"
+text = "1740228155s"
 label_settings = SubResource("LabelSettings_xcy6d")
 horizontal_alignment = 1
 
