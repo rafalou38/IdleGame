@@ -67,8 +67,7 @@ func _process(_delta: float) -> void:
 	if (new_save):
 		new_save = false
 		start_new_save()
-
-	print(active_research)
+		
 	if(active_research == ""):
 		print("searching")
 		for r in research:

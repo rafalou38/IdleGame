@@ -53,8 +53,9 @@ func _process(delta):
 				self.get_parent().remove_child(self)
 
 	if type == UnitType.UNIT:
-		$Sprite2D.self_modulate = Color(1, 1,1, 1)
-		$Label["theme_override_colors/font_color"] = Color.BLACK
+		$Sprite2D.self_modulate = Color.WHITE
+		$Label.modulate = Color.BLACK
+		
 	elif type == UnitType.RESEARCH_POINT:
 		$Sprite2D.self_modulate = Color("a1acff")
-		$Label["theme_override_colors/font_color"] = Color("ffffff")
+		$Label.modulate = Color.WHITE

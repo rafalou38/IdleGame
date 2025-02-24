@@ -214,12 +214,6 @@ func _process(_delta: float) -> void:
 
 		progress = (spent + spent_rp)/(price+price_rp)
 
-		# progress = 0.5
-
-		if(id=="research-lab"):
-			print(id)
-			print(progress, " ", spent, "/", price)
-
 		var text :=  str(progress) + " "
 		if (price > 0):
 			text = text + Util.number_to_human(spent) + "/" + Util.number_to_human(price)
@@ -230,8 +224,8 @@ func _process(_delta: float) -> void:
 		$container/VBoxContainer/ResearchBox/VBoxContainer/Label2.text = text
 		if(progress >= 0 and progress <= 1):
 			$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
-
-			if(id=="research-lab"): print($container/VBoxContainer/ResearchBox.size.x, " ",progress, " ", $container/VBoxContainer/ResearchBox/Panel.size.x)
+			$container/VBoxContainer/ResearchBox/Panel.position.x = 0
+			$container/VBoxContainer/ResearchBox/Panel.position.y = 0
 
 		if  state == State.RESEARCHING and spent >= price and spent_rp >= price_rp:
 			state = State.BOUGHT

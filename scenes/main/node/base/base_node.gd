@@ -13,7 +13,7 @@ class Connection:
 
 @export var type: NodeData.NodeType = NodeData.NodeType.SHOP
 
-var data : NodeData
+var data: NodeData
 var inbound_connections := []
 
 @export var input_knob_count := 0
@@ -25,14 +25,16 @@ var inbound_connections := []
 var spawned := false
 @export var spawn_timeout := 0.0
 
-var out_queue : Array[Unit] = []
-@export var input_queue : Array[Unit] = []
+var out_queue: Array[Unit] = []
+@export var input_queue: Array[Unit] = []
 
+
+var round_robin_id := 0
 func update_units():
-	if(out_queue.size() > 0 and data.outbound_connections.size() > 0):
-		var unit : Unit = out_queue.pop_front()
-		var con : Connection = data.outbound_connections[0]
-		
+	if (out_queue.size() > 0 and data.outbound_connections.size() > 0):
+		var unit: Unit = out_queue.pop_front()
+		round_robin_id = (round_robin_id + 1) % data.outbound_connections.size()
+		var con: Connection = data.outbound_connections[round_robin_id]
 		unit.spawn(con)
 
 func push_unit(unit: Unit):
