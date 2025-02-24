@@ -24,8 +24,6 @@ static func save():
 
 	var json_string = JSON.stringify(serialized_economy)
 
-	print("saved", json_string)
-
 	var save_file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	save_file.store_line(json_string)
 	print("Game sucessfully saved")
@@ -69,7 +67,6 @@ func _process(_delta: float) -> void:
 		start_new_save()
 		
 	if(active_research == ""):
-		print("searching")
 		for r in research:
 			if(research[r].state == ResearchTreeItem.State.RESEARCHING):
 				active_research = r

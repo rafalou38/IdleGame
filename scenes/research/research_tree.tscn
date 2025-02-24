@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmr2r8p0cqo3"]
+[gd_scene load_steps=8 format=3 uid="uid://dmr2r8p0cqo3"]
 
 [ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="1_4p8a7"]
 [ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="2_hfxsp"]
@@ -7,13 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="4_04qv1"]
 [ext_resource type="Texture2D" uid="uid://decy4obiwriym" path="res://sprites/icons/research2.svg" id="5_146wd"]
 [ext_resource type="Texture2D" uid="uid://3tyequec0mtg" path="res://sprites/icons/tether.svg" id="5_ew1qi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujtsg"]
-bg_color = Color(0.169651, 0.533014, 0.764096, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="ResearchTree" type="Node2D"]
 position = Vector2(960, -128)
@@ -156,7 +149,8 @@ research_color = Color(0.215874, 0.232684, 0.727312, 1)
 research_name = "Research center"
 description = "Allows researching new technologies."
 price = 0
-state = 5
+price_rp = 0
+state = 3
 targets_b = [NodePath("../lab")]
 metadata/_edit_use_anchors_ = true
 
@@ -175,28 +169,12 @@ icon = ExtResource("5_146wd")
 research_color = Color(0.169651, 0.533014, 0.764096, 1)
 research_name = "Lab"
 description = "Converts basic units into research points."
-state = 4
+price = 15
+price_rp = 0
+state = 2
 targets_r = [NodePath("../Tether")]
 targets_b = [NodePath("../Processor")]
 metadata/_edit_use_anchors_ = true
-
-[node name="Logo" parent="lab/container/VBoxContainer/HBoxContainer" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ujtsg")
-
-[node name="Icon" parent="lab/container/VBoxContainer/HBoxContainer/Logo" index="0"]
-texture = ExtResource("5_146wd")
-
-[node name="Name" parent="lab/container/VBoxContainer/HBoxContainer/Title" index="0"]
-text = "Lab"
-
-[node name="Description" parent="lab/container/VBoxContainer/HBoxContainer/Title" index="1"]
-text = "Converts basic units into research points."
-
-[node name="Label2" parent="lab/container/VBoxContainer/ResearchBox/VBoxContainer" index="1"]
-text = "0.5 0/10"
-
-[node name="AnimationPlayer" parent="lab" index="1"]
-speed_scale = 2.0
 
 [node name="Tether" parent="." instance=ExtResource("1_4p8a7")]
 offset_left = 1152.0
@@ -208,7 +186,8 @@ icon = ExtResource("5_ew1qi")
 research_color = Color(0.290196, 0.376471, 0.396078, 1)
 research_name = "Tether"
 description = "Distributes units to different routes"
-state = 2
+price = 5
+state = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Mine" parent="." instance=ExtResource("1_4p8a7")]
@@ -220,6 +199,8 @@ id = "Mine"
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
 research_name = "Mine"
 description = "Generates Units at a fixed rate"
+price = 15
+price_rp = 20
 state = 1
 metadata/_edit_use_anchors_ = true
 
@@ -233,6 +214,8 @@ icon = ExtResource("4_04qv1")
 research_color = Color(0.396078, 0.290196, 0.290196, 1)
 research_name = "Shop"
 description = "Sell you units here"
+price = 20
+price_rp = 20
 state = 1
 metadata/_edit_use_anchors_ = true
 
@@ -243,9 +226,9 @@ offset_right = 128.0
 offset_bottom = 768.0
 id = "Processor"
 description = "Increase the value of your units"
-state = 2
+price = 0
+price_rp = 15
+state = 1
 targets_r = [NodePath("../Mine")]
 targets_l = [NodePath("../Shop")]
 metadata/_edit_use_anchors_ = true
-
-[editable path="lab"]

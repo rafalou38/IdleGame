@@ -57,5 +57,5 @@ func _process(delta):
 		$Label.modulate = Color.BLACK
 		
 	elif type == UnitType.RESEARCH_POINT:
-		$Sprite2D.self_modulate = Color("a1acff")
+		$Sprite2D.self_modulate = Color("80c4f6")
 		$Label.modulate = Color.WHITE

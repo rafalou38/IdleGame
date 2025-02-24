@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_jkyrf"]
 [ext_resource type="Texture2D" uid="uid://3tyequec0mtg" path="res://sprites/icons/tether.svg" id="2_hjiol"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ws1yn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tkxk"]
 bg_color = Color(0.290196, 0.376471, 0.396078, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -20,7 +20,7 @@ input_knob_count = 3
 output_knob_count = 3
 
 [node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_ws1yn")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8tkxk")
 color = Color(0.290196, 0.376471, 0.396078, 1)
 icon = ExtResource("2_hjiol")
 displayName = "Tether"

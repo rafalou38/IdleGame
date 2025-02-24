@@ -155,7 +155,7 @@ func check_target(target: ResearchTreeItem, origin_point: Node, target_point: No
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
-		# animator.play("RESET")
+		animator.play("RESET")
 		visible = true
 		$container.modulate.a = 1
 
@@ -208,7 +208,7 @@ func _process(_delta: float) -> void:
 
 
 	var progress := 0.0
-	if Economy.research.has(id):
+	if Economy.research.has(id) and not Engine.is_editor_hint():
 		var spent : float = Economy.research[id]["spent"]
 		var spent_rp : float = Economy.research[id]["spent_rp"]
 

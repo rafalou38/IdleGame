@@ -11,7 +11,9 @@ func _process(delta):
 	if spawn_delay >= spawn_interval / (NodeHandler.speed_up_factor):
 		spawn_delay = 0
 
-		var unit: Unit = unit_scene.instantiate()
-		unit.value = spawn_value
 
-		$BaseNode.push_unit(unit)
+		if($BaseNode.out_queue.size() == 0):
+			var unit: Unit = unit_scene.instantiate()
+			unit.value = spawn_value
+			
+			$BaseNode.push_unit(unit)

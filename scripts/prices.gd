@@ -6,12 +6,17 @@ static func node_buy(type: NodeData.NodeType, own_count: int) -> float:
 		NodeData.NodeType.SHOP:
 			return 9.0 ** (x**1.45 + 1)
 		NodeData.NodeType.MINE:
-			return 9.0 ** (x**1.45 + 1)
+			return 8.0 ** (x**1.35 + 1)
 		NodeData.NodeType.PROCESSOR:
 			return 9.0 ** (log(x+1)**1.8 + 1)
 		NodeData.NodeType.REFINERY:
-			return Util.factorial(x + 7)
-	
+			return Util.factorial(x + 6) ** (9/10.0)
+		NodeData.NodeType.TETHER:
+			return 9.0 ** (x**1.4 + 1)
+		NodeData.NodeType.LAB:
+			return 9.0 ** (x**1.6 + 1)
+		NodeData.NodeType.RESEARCH_CENTER:
+			return 9.0 ** (x**1.6 + 1)
 	return 1
 
 

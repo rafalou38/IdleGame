@@ -28,7 +28,7 @@ corner_radius_bottom_left = 40
 font = ExtResource("2_4maex")
 font_size = 76
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxoft"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkx45"]
 bg_color = Color(0.317647, 0.396078, 0.290196, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -644,6 +644,7 @@ research_color = Color(0.317647, 0.396078, 0.290196, 1)
 research_name = "Processor"
 description = "Increase unit values"
 price = 10
+price_rp = 10
 line_texture = ExtResource("3_am7js")
 
 [node name="container" type="PanelContainer" parent="."]
@@ -678,7 +679,7 @@ theme_override_constants/separation = 36
 clip_children = 2
 custom_minimum_size = Vector2(142, 142)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_yxoft")
+theme_override_styles/panel = SubResource("StyleBoxFlat_tkx45")
 
 [node name="Icon" type="TextureRect" parent="container/VBoxContainer/HBoxContainer/Logo"]
 layout_mode = 1
@@ -755,17 +756,15 @@ text = "10"
 label_settings = SubResource("LabelSettings_rhcsf")
 
 [node name="Spacer" type="Control" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
 [node name="Control2" type="CenterContainer" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2"]
-modulate = Color(0.168627, 0.533333, 0.764706, 1)
+modulate = Color(0.501788, 0.768851, 0.96597, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("6_nj1l7")
@@ -773,9 +772,8 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Label2" type="Label" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
-text = "0"
+text = "10"
 label_settings = SubResource("LabelSettings_rhcsf")
 
 [node name="Ripple" parent="container/VBoxContainer/Button" instance=ExtResource("6_5kwph")]
@@ -793,7 +791,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -283.0
+offset_right = 409.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vmr2t")
