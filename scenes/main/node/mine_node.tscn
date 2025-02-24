@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/main/node/mine_node.gd" id="1_5ex7s"]
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_qkx4n"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mr7f"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itioa"]
 bg_color = Color(0.203677, 0.1798, 0.29, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -18,8 +18,9 @@ type = 1
 output_knob_count = 1
 
 [node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_0mr7f")
+theme_override_styles/panel = SubResource("StyleBoxFlat_itioa")
 hue = 253.0
+color = Color(0.203677, 0.1798, 0.29, 1)
 displayName = "Mine"
 
 [editable path="BaseNode"]

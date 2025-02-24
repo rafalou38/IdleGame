@@ -12,7 +12,7 @@ static var owned: Array[NodeData] = []
 static var new_save := false
 
 
-static var SAVE_FILE := "res://economy.save.json"
+static var SAVE_FILE := "user://economy.save.json"
 
 static func save():
 	var serialized_economy = {
@@ -66,35 +66,47 @@ func _process(_delta: float) -> void:
 		new_save = false
 		start_new_save()
 		
-	if(active_research == ""):
+	if (active_research == ""):
 		for r in research:
-			if(research[r].state == ResearchTreeItem.State.RESEARCHING):
+			if (research[r].state == ResearchTreeItem.State.RESEARCHING):
 				active_research = r
+
+	refresh_dfs()
 
 func _ready() -> void:
 	load_save()
 	owner.find_child("Node Handler").load_nodes()
 
-static var _prev_money := 0.0
-static var _prev_money_time := 0.0
 static var _dvm := 0.0
 static func var_money() -> float:
-	var now = Time.get_unix_time_from_system()
-
-	if _prev_money > money:
-		_prev_money = money
-		_prev_money_time = now
-	elif _prev_money < money:
-		var nv := lerpf(_dvm, (money - _prev_money) / (now - _prev_money_time), 0.8)
-		# if _dvm > 1 and nv > _dvm * 1.8: _dvm = _dvm * 1.8
-		# else: _dvm = nv
-
-		_dvm = nv
-
-		_prev_money_time = now
-		_prev_money = money
-
 	return _dvm
+
+func refresh_dfs():
+	_dvm = 0
+	var nodes = $"../Home/Node Handler".nodes
+	for node in nodes:
+		if (node.type == NodeData.NodeType.MINE):
+			_dvm += dfs(node, 0, 0)
+
+func dfs(root: GameNode, rate: float, value: float):
+	match root.type:
+		NodeData.NodeType.MINE:
+			value = root.get_parent().spawn_value
+			rate = root.get_parent().spawn_interval
+		NodeData.NodeType.PROCESSOR:
+			value += root.get_parent().increment
+			rate = max(rate, root.get_parent().process_duration)
+		NodeData.NodeType.LAB:
+			value = 0
+		NodeData.NodeType.SHOP:
+			return value / rate
+
+
+	var cnn = root.data.outbound_connections
+	var out := 0.0
+	for cn in cnn:
+		out += dfs(cn.toNode, rate, value)
+	return out
 
 func _notification(what):
 	if what in [NOTIFICATION_WM_CLOSE_REQUEST, NOTIFICATION_WM_GO_BACK_REQUEST, NOTIFICATION_WM_WINDOW_FOCUS_OUT]:
