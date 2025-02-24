@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bflcbl64t81ex"]
+[gd_scene load_steps=25 format=3 uid="uid://bflcbl64t81ex"]
 
 [ext_resource type="Script" path="res://scenes/research/tree_item.gd" id="1_yrr6c"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_4maex"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ctk7ngshskwtj" path="res://sprites/dash-line.svg" id="3_am7js"]
 [ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="3_lr6ln"]
 [ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="6_5kwph"]
+[ext_resource type="Texture2D" uid="uid://rsrkgey8fgdd" path="res://sprites/icons/science1.svg" id="6_nj1l7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pd4dh"]
 content_margin_left = 38.0
@@ -27,7 +28,7 @@ corner_radius_bottom_left = 40
 font = ExtResource("2_4maex")
 font_size = 76
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3c2y"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxoft"]
 bg_color = Color(0.317647, 0.396078, 0.290196, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -213,13 +214,13 @@ tracks/11/keys = {
 }
 tracks/12/type = "bezier"
 tracks/12/imported = false
-tracks/12/enabled = true
+tracks/12/enabled = false
 tracks/12/path = NodePath("container/VBoxContainer/Button/CenterContainer/HBoxContainer:position:x")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(241.5, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(100, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/13/type = "bezier"
@@ -642,8 +643,7 @@ icon = ExtResource("2_ljgsa")
 research_color = Color(0.317647, 0.396078, 0.290196, 1)
 research_name = "Processor"
 description = "Increase unit values"
-price = 32353465
-state = 1
+price = 10
 line_texture = ExtResource("3_am7js")
 
 [node name="container" type="PanelContainer" parent="."]
@@ -678,7 +678,7 @@ theme_override_constants/separation = 36
 clip_children = 2
 custom_minimum_size = Vector2(142, 142)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c3c2y")
+theme_override_styles/panel = SubResource("StyleBoxFlat_yxoft")
 
 [node name="Icon" type="TextureRect" parent="container/VBoxContainer/HBoxContainer/Logo"]
 layout_mode = 1
@@ -751,7 +751,31 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer"]
 layout_mode = 2
-text = "32.35M"
+text = "10"
+label_settings = SubResource("LabelSettings_rhcsf")
+
+[node name="Spacer" type="Control" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Control2" type="CenterContainer" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2"]
+modulate = Color(0.168627, 0.533333, 0.764706, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("6_nj1l7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="container/VBoxContainer/Button/CenterContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "0"
 label_settings = SubResource("LabelSettings_rhcsf")
 
 [node name="Ripple" parent="container/VBoxContainer/Button" instance=ExtResource("6_5kwph")]
@@ -769,6 +793,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -283.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vmr2t")
@@ -794,7 +819,7 @@ horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="container/VBoxContainer/ResearchBox/VBoxContainer"]
 layout_mode = 2
-text = "1740228155s"
+text = "1740248826s"
 label_settings = SubResource("LabelSettings_xcy6d")
 horizontal_alignment = 1
 

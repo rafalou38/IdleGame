@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3hsfergovjsi"]
+[gd_scene load_steps=5 format=3 uid="uid://c3hsfergovjsi"]
 
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_xuk0s"]
+[ext_resource type="Script" path="res://scenes/main/node/lab_node.gd" id="1_yba52"]
 [ext_resource type="Texture2D" uid="uid://decy4obiwriym" path="res://sprites/icons/research2.svg" id="2_tmjmh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3rsb"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8umk6"]
 bg_color = Color(0.168627, 0.533333, 0.764706, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -11,6 +12,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="LabNode" type="Node2D"]
+script = ExtResource("1_yba52")
 
 [node name="BaseNode" parent="." instance=ExtResource("1_xuk0s")]
 type = 7
@@ -18,7 +20,7 @@ input_knob_count = 1
 output_knob_count = 1
 
 [node name="node_ui" parent="BaseNode/rb/Control" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_i3rsb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8umk6")
 color = Color(0.168627, 0.533333, 0.764706, 1)
 icon = ExtResource("2_tmjmh")
 displayName = "Lab"

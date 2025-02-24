@@ -6,6 +6,7 @@ static var money := 20.0
 static var research := {
 
 }
+static var active_research := ""
 
 static var owned: Array[NodeData] = []
 static var new_save := false
@@ -49,7 +50,6 @@ static func load_save():
 	for r_id in serialized_economy["research"]:
 		research[r_id] = serialized_economy["research"][r_id]
 	
-	print(research)
 
 	for serialized_node in serialized_economy.owned:
 		var data := NodeData.deserialize(serialized_node)
@@ -67,6 +67,13 @@ func _process(_delta: float) -> void:
 	if (new_save):
 		new_save = false
 		start_new_save()
+
+	print(active_research)
+	if(active_research == ""):
+		print("searching")
+		for r in research:
+			if(research[r].state == ResearchTreeItem.State.RESEARCHING):
+				active_research = r
 
 func _ready() -> void:
 	load_save()

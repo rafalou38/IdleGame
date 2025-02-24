@@ -1,6 +1,12 @@
 class_name Unit
 extends PathFollow2D
 
+enum UnitType {
+	UNIT,
+	RESEARCH_POINT
+}
+
+@export var type := UnitType.UNIT
 @export var value := 1.0
 @export var speed := 40.0
 
@@ -45,5 +51,10 @@ func _process(delta):
 			active = false
 			if self.get_parent():
 				self.get_parent().remove_child(self)
-			
-			
+
+	if type == UnitType.UNIT:
+		$Sprite2D.self_modulate = Color(1, 1,1, 1)
+		$Label["theme_override_colors/font_color"] = Color.BLACK
+	elif type == UnitType.RESEARCH_POINT:
+		$Sprite2D.self_modulate = Color("a1acff")
+		$Label["theme_override_colors/font_color"] = Color("ffffff")

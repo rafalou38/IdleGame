@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmr2r8p0cqo3"]
+[gd_scene load_steps=9 format=3 uid="uid://dmr2r8p0cqo3"]
 
 [ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="1_4p8a7"]
 [ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="2_hfxsp"]
@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="4_04qv1"]
 [ext_resource type="Texture2D" uid="uid://decy4obiwriym" path="res://sprites/icons/research2.svg" id="5_146wd"]
 [ext_resource type="Texture2D" uid="uid://3tyequec0mtg" path="res://sprites/icons/tether.svg" id="5_ew1qi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujtsg"]
+bg_color = Color(0.169651, 0.533014, 0.764096, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="ResearchTree" type="Node2D"]
 position = Vector2(960, -128)
@@ -139,18 +146,17 @@ anchor_left = 26.7
 anchor_top = -16.2
 anchor_right = 26.7
 anchor_bottom = -16.2
-offset_left = 108.0
-offset_top = -520.0
-offset_right = 108.0
-offset_bottom = -520.0
+offset_left = 128.0
+offset_top = -512.0
+offset_right = 128.0
+offset_bottom = -512.0
 id = "research-center"
 icon = ExtResource("4_2t4jk")
 research_color = Color(0.215874, 0.232684, 0.727312, 1)
 research_name = "Research center"
 description = "Allows researching new technologies."
 price = 0
-state = 3
-duration = 1.0
+state = 5
 targets_b = [NodePath("../lab")]
 metadata/_edit_use_anchors_ = true
 
@@ -160,21 +166,37 @@ anchor_left = -1.6
 anchor_top = -3.2
 anchor_right = -1.6
 anchor_bottom = -3.2
-offset_left = 64.0
+offset_left = 128.0
 offset_top = 128.0
-offset_right = 64.0
+offset_right = 128.0
 offset_bottom = 128.0
 id = "research-lab"
 icon = ExtResource("5_146wd")
 research_color = Color(0.169651, 0.533014, 0.764096, 1)
 research_name = "Lab"
 description = "Converts basic units into research points."
-price = 10
-state = 2
-duration = 1.0
+state = 4
 targets_r = [NodePath("../Tether")]
 targets_b = [NodePath("../Processor")]
 metadata/_edit_use_anchors_ = true
+
+[node name="Logo" parent="lab/container/VBoxContainer/HBoxContainer" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_ujtsg")
+
+[node name="Icon" parent="lab/container/VBoxContainer/HBoxContainer/Logo" index="0"]
+texture = ExtResource("5_146wd")
+
+[node name="Name" parent="lab/container/VBoxContainer/HBoxContainer/Title" index="0"]
+text = "Lab"
+
+[node name="Description" parent="lab/container/VBoxContainer/HBoxContainer/Title" index="1"]
+text = "Converts basic units into research points."
+
+[node name="Label2" parent="lab/container/VBoxContainer/ResearchBox/VBoxContainer" index="1"]
+text = "0.5 0/10"
+
+[node name="AnimationPlayer" parent="lab" index="1"]
+speed_scale = 2.0
 
 [node name="Tether" parent="." instance=ExtResource("1_4p8a7")]
 offset_left = 1152.0
@@ -186,46 +208,44 @@ icon = ExtResource("5_ew1qi")
 research_color = Color(0.290196, 0.376471, 0.396078, 1)
 research_name = "Tether"
 description = "Distributes units to different routes"
-price = 10
-duration = 1.0
+state = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Mine" parent="." instance=ExtResource("1_4p8a7")]
-offset_left = 1171.0
-offset_top = 951.0
-offset_right = 1171.0
-offset_bottom = 951.0
+offset_left = 1152.0
+offset_top = 768.0
+offset_right = 1152.0
+offset_bottom = 768.0
 id = "Mine"
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
 research_name = "Mine"
 description = "Generates Units at a fixed rate"
-price = 10
-duration = 1.0
+state = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Shop" parent="." instance=ExtResource("1_4p8a7")]
-offset_left = -931.0
-offset_top = 958.0
-offset_right = -931.0
-offset_bottom = 958.0
+offset_left = -896.0
+offset_top = 768.0
+offset_right = -896.0
+offset_bottom = 768.0
 id = "Shop"
 icon = ExtResource("4_04qv1")
 research_color = Color(0.396078, 0.290196, 0.290196, 1)
 research_name = "Shop"
 description = "Sell you units here"
-price = 10
-duration = 1.0
+state = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Processor" parent="." node_paths=PackedStringArray("targets_r", "targets_l") instance=ExtResource("1_4p8a7")]
-offset_left = 106.0
-offset_top = 865.0
-offset_right = 106.0
-offset_bottom = 865.0
+offset_left = 128.0
+offset_top = 768.0
+offset_right = 128.0
+offset_bottom = 768.0
 id = "Processor"
 description = "Increase the value of your units"
-price = 10
-duration = 1.0
+state = 2
 targets_r = [NodePath("../Mine")]
 targets_l = [NodePath("../Shop")]
 metadata/_edit_use_anchors_ = true
+
+[editable path="lab"]

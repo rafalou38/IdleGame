@@ -7,7 +7,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_pj3cy"]
 font = ExtResource("3_66rdl")
 font_size = 48
-font_color = Color(0, 0, 0, 0.788235)
 
 [node name="Unit" type="PathFollow2D"]
 rotates = false
@@ -15,15 +14,16 @@ loop = false
 script = ExtResource("1_1chh7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+self_modulate = Color(0.63, 0.673167, 1, 1)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_vecwu")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -8.0
 offset_top = -8.0
-offset_right = 99.0
-offset_bottom = 99.0
-scale = Vector2(0.15, 0.15)
+offset_right = 56.0
+offset_bottom = 56.0
+scale = Vector2(0.25, 0.25)
 text = "1"
 label_settings = SubResource("LabelSettings_pj3cy")
 horizontal_alignment = 1

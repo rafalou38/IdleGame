@@ -24,11 +24,10 @@ enum Direction {
 @export var research_name := ""
 @export_multiline var description := ""
 @export var price := 0
+@export var price_rp := 0
 @export var state := State.NULL
 @export var dirty := false
 @export var line_texture: Texture2D
-
-@export var duration := 10.0
 
 @export var targets_t: Array[ResearchTreeItem] = []
 @export var targets_r: Array[ResearchTreeItem] = []
@@ -43,7 +42,6 @@ enum Direction {
 @onready var animator := $AnimationPlayer
 
 var prev_state: State = State.NULL
-var research_start_time := 0.0
 
 func _ready():
 	prev_state = State.NULL
@@ -55,7 +53,6 @@ func _ready():
 
 	if (Economy.research.has(id)):
 		state = Economy.research[id]["state"]
-		research_start_time = Economy.research[id]["research_start_time"]
 	dirty = true
 
 func sync_size():
@@ -69,9 +66,11 @@ func refresh_state() -> void:
 	if (Economy.research.has(id)):
 		Economy.research[id]["state"] = state;
 	else:
+		print("initialised")
 		Economy.research[id] = {
 			"state": state,
-			"research_start_time": research_start_time
+			"spent": 0,
+			"spent_rp": 0
 		}
 
 	match state:
@@ -156,7 +155,7 @@ func check_target(target: ResearchTreeItem, origin_point: Node, target_point: No
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
-		animator.play("RESET")
+		# animator.play("RESET")
 		visible = true
 		$container.modulate.a = 1
 
@@ -169,19 +168,75 @@ func _process(_delta: float) -> void:
 
 	$container/VBoxContainer/HBoxContainer/Title/Name.text = research_name
 	$container/VBoxContainer/HBoxContainer/Title/Description.text = description
-	if (price == 0):
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = "FREE"
-	else:
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
 
-	var remaining = duration - (Time.get_unix_time_from_system() - research_start_time)
-	var progress = 1 - remaining / duration
-	if research_start_time > 0 and remaining < 0:
-		state = State.BOUGHT
-		dirty = true
+	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
+	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.text = Util.number_to_human(price_rp)
+
+	if (price == 0 and price_rp == 0):
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = "FREE"
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = false
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = false
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = false
+	elif (price == 0):
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = false
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = false
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = true
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = true
+	elif (price_rp == 0):
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = true
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = false
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = false
 	else:
-		$container/VBoxContainer/ResearchBox/VBoxContainer/Label2.text = str(abs(round(remaining))) + "s"
-		$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = true
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = true
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = true
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = true
+
+
+	var progress := 0.0
+	if Economy.research.has(id):
+		var spent : float = Economy.research[id]["spent"]
+		var spent_rp : float = Economy.research[id]["spent_rp"]
+
+		progress = (spent + spent_rp)/(price+price_rp)
+
+		# progress = 0.5
+
+		if(id=="research-lab"):
+			print(id)
+			print(progress, " ", spent, "/", price)
+
+		var text :=  str(progress) + " "
+		if (price > 0):
+			text = text + Util.number_to_human(spent) + "/" + Util.number_to_human(price)
+			if (price_rp > 0): text += " "
+		if(price_rp > 0):
+			text += Util.number_to_human(spent_rp) + "/" + Util.number_to_human(price_rp)
+		
+		$container/VBoxContainer/ResearchBox/VBoxContainer/Label2.text = text
+		if(progress >= 0 and progress <= 1):
+			$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
+
+			if(id=="research-lab"): print($container/VBoxContainer/ResearchBox.size.x, " ",progress, " ", $container/VBoxContainer/ResearchBox/Panel.size.x)
+
+		if  state == State.RESEARCHING and spent >= price and spent_rp >= price_rp:
+			state = State.BOUGHT
+			dirty = true
+			Economy.active_research = ""
 
 	if dirty or targets_b.size() + targets_r.size() + targets_t.size() + targets_l.size() != point_b.get_child_count():
 		if Engine.is_editor_hint():
@@ -203,7 +258,7 @@ func _input(event: InputEvent) -> void:
 func _on_buy_button_pressed() -> void:
 	if state != State.AVAILABLE: return
 
-	state = State.RESEARCHING
-	research_start_time = Time.get_unix_time_from_system()
+	Economy.active_research = id
 
+	state = State.RESEARCHING
 	dirty = true
