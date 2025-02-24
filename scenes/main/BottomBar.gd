@@ -1,9 +1,25 @@
+class_name BottomBar
 extends PanelContainer
 
 var focused := "home"
 
+static var ping_research := 0
+static var ping_shop := 0
+static var ping_home := 0
+
 func _process(_delta):
 	BottomBarButton.focused = focused
+
+	if(focused == "shop"):
+		ping_shop = 0
+	elif(focused == "research"):
+		ping_research = 0
+	elif(focused == "home"):
+		ping_home = 0
+
+	$HBoxContainer/BottomBarButton.ping = ping_research
+	$HBoxContainer/BottomBarButton2.ping = ping_home
+	$HBoxContainer/BottomBarButton3.ping = ping_shop
 
 func _on_home_button_pressed():
 	if focused.to_lower() == "shop":

@@ -47,7 +47,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1284, 0)]
+"values": [Vector2(2270, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -74,7 +74,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.420448, 1.00001),
 "update": 0,
-"values": [Vector2(1284, 0), Vector2(0, 0)]
+"values": [Vector2(2270, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -101,7 +101,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.42, 0.420448),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(1284, 0)]
+"values": [Vector2(0, 0), Vector2(2270, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -128,8 +128,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 204.0
-offset_bottom = -1099.0
+offset_right = 1190.0
+offset_bottom = -692.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -137,9 +137,9 @@ script = ExtResource("1_8xcdu")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
-offset_left = 1399.0
-offset_right = 2683.0
-offset_bottom = 821.0
+offset_left = 2270.0
+offset_right = 4540.0
+offset_bottom = 1228.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ebddv")
 
@@ -161,39 +161,38 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 50
 
-[node name="research-center" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+[node name="unlock-research-center" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
 type = 6
 item_name = "Research Center"
 item_description = "Allows researching new technologies."
 icon = ExtResource("3_41aua")
 icon_bg_color = Color(0.215686, 0.231373, 0.72549, 1)
-price = 1.0
 
-[node name="research-lab" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+[node name="unlock-research-lab" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
 type = 7
 item_name = "Lab"
 item_description = "Converts basic units into research points."
 icon = ExtResource("4_l7p0n")
 icon_bg_color = Color(0.168627, 0.533333, 0.764706, 1)
-price = 1.0
 
-[node name="Shop" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+[node name="unlock-shop" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
 item_name = "Shop"
 item_description = "Units can be sold here."
 icon = ExtResource("2_vv042")
 icon_bg_color = Color(0.396078, 0.290196, 0.290196, 1)
 
-[node name="Mine" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+[node name="unlock-mine" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
 type = 1
 item_name = "Mine"
 item_description = "Generates units at a fixed rate"
 icon_bg_color = Color(0.313726, 0.290196, 0.396078, 1)
+price = 8.0
 
-[node name="Processor" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+[node name="unlock-processor" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
 type = 2
 item_name = "Processor"
@@ -201,34 +200,21 @@ item_description = "Increases unit value."
 icon = ExtResource("3_yit7n")
 icon_bg_color = Color(0.317647, 0.396078, 0.290196, 1)
 
-[node name="IconBackground" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer/Processor/CenterContainer" index="0"]
-self_modulate = Color(0.317647, 0.396078, 0.290196, 1)
-
-[node name="Icon" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer/Processor/CenterContainer" index="1"]
-texture = ExtResource("3_yit7n")
-
-[node name="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer/Processor/VBoxContainer" index="0"]
-text = "Processor"
-
-[node name="Label2" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer/Processor/VBoxContainer" index="1"]
-text = "Increases unit value."
-
-[node name="Refinery" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+[node name="unlock-refinery" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
 type = 3
 item_name = "Refinery"
 item_description = "Multiplies unit by fixed value."
 icon = ExtResource("4_518ue")
 icon_bg_color = Color(0.556863, 0.501961, 0.309804, 1)
-price = 5040.0
+price = 372.906
 
-[node name="tether" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
+[node name="unlock-tether" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
 type = 4
 item_name = "Tether"
 item_description = "Distributes inputs to multiple nodes."
 icon_bg_color = Color(0.290196, 0.376471, 0.396078, 1)
-price = 1.0
 
 [node name="Quantum Processor" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_3kr2x")]
 layout_mode = 2
@@ -262,5 +248,3 @@ libraries = {
 speed_scale = 2.0
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_handle_button_close"]
-
-[editable path="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer/Processor"]

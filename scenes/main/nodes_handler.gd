@@ -46,6 +46,8 @@ func load_nodes():
 func _process(delta):
 	speed_up_factor = min((speed_up_factor - 1) * 0.95 + 1, 2.5)
 
+	if(OS.is_debug_build()): speed_up_factor = speed_up_factor ** 1.5
+
 func drag_node(nodeInfo: NodeData, touch_id: int, point: Vector2):
 	var node = add_node(nodeInfo, point)
 

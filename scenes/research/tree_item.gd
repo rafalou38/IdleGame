@@ -53,6 +53,12 @@ func _ready():
 
 	if (Economy.research.has(id)):
 		state = Economy.research[id]["state"]
+
+		Economy.research[id]["price"] = price
+		Economy.research[id]["price_rp"] = price_rp
+		Economy.research[id]["name"] = research_name
+		Economy.research[id]["icon"] = icon
+		Economy.research[id]["color"] = research_color
 	dirty = true
 
 func sync_size():
@@ -72,6 +78,11 @@ func refresh_state() -> void:
 			"spent": 0,
 			"spent_rp": 0
 		}
+		Economy.research[id]["price"] = price
+		Economy.research[id]["price_rp"] = price_rp
+		Economy.research[id]["name"] = research_name
+		Economy.research[id]["icon"] = icon
+		Economy.research[id]["color"] = research_color
 
 	match state:
 		State.NULL:
@@ -231,6 +242,11 @@ func _process(_delta: float) -> void:
 			state = State.BOUGHT
 			dirty = true
 			Economy.active_research = ""
+			BottomBar.ping_research += 1
+			if id.begins_with("unlock-"):
+				BottomBar.ping_shop += 1
+
+
 
 	if dirty or targets_b.size() + targets_r.size() + targets_t.size() + targets_l.size() != point_b.get_child_count():
 		if Engine.is_editor_hint():

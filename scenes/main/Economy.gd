@@ -15,8 +15,16 @@ static var new_save := false
 static var SAVE_FILE := "user://economy.save.json"
 
 static func save():
+	var serialized_research = {}
+	for id in research:
+		serialized_research[id] = {
+			"spent": research[id]["spent"],
+			"spent_rp": research[id]["spent_rp"],
+			"state": research[id]["state"]
+		}
+
 	var serialized_economy = {
-		"research": research,
+		"research": serialized_research,
 		"owned": owned.map(func(e): return e.serialize()),
 		"money": money
 	}
@@ -72,9 +80,10 @@ func _process(_delta: float) -> void:
 				active_research = r
 
 	refresh_dfs()
+func _init() -> void:
+	load_save()
 
 func _ready() -> void:
-	load_save()
 	owner.find_child("Node Handler").load_nodes()
 
 static var _dvm := 0.0
