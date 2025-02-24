@@ -28,6 +28,8 @@ var spawned := false
 var out_queue: Array[Unit] = []
 @export var input_queue: Array[Unit] = []
 
+@export var progress := 0.0
+
 
 var round_robin_id := 0
 func update_units():
@@ -48,6 +50,7 @@ func _ready():
 	# $AnimationPlayer.play("spawn")
 
 func _process(_delta):
+	$rb/Control/node_ui.progress = progress
 	refreshLines()
 	update_units()
 

@@ -43,7 +43,8 @@ func _process(delta):
 		elif value < 100000:
 			$Label.label_settings.font_size = 16
 
-		progress = progress + delta * speed * min(4, 1 + (NodeHandler.speed_up_factor-1) * 4)
+		progress = progress + delta * speed * (NodeHandler.speed_up_factor)**2
+		# progress = progress + delta * speed * min(4, 1 + (NodeHandler.speed_up_factor-1) * 4)
 
 		if progress_ratio >= 1.0:
 			current_connection.toNode.receive_unit(self)

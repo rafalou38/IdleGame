@@ -209,12 +209,12 @@ func _process(_delta: float) -> void:
 
 	var progress := 0.0
 	if Economy.research.has(id) and not Engine.is_editor_hint():
-		var spent : float = Economy.research[id]["spent"]
-		var spent_rp : float = Economy.research[id]["spent_rp"]
+		var spent : float = min(price, Economy.research[id]["spent"])
+		var spent_rp : float = min(price_rp, Economy.research[id]["spent_rp"])
 
 		progress = (spent + spent_rp)/(price+price_rp)
 
-		var text :=  str(progress) + " "
+		var text :=  " "
 		if (price > 0):
 			text = text + Util.number_to_human(spent) + "/" + Util.number_to_human(price)
 			if (price_rp > 0): text += " "

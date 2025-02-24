@@ -7,8 +7,10 @@ var spawn_delay := 0.0
 var unit_scene = preload("res://scenes/main/unit.tscn")
 
 func _process(delta):
-	spawn_delay += delta
-	if spawn_delay >= spawn_interval / (NodeHandler.speed_up_factor):
+	spawn_delay += delta * NodeHandler.speed_up_factor
+
+	$BaseNode.progress = spawn_delay / spawn_interval
+	if spawn_delay >= spawn_interval:
 		spawn_delay = 0
 
 
