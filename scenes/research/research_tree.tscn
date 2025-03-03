@@ -1,153 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmr2r8p0cqo3"]
+[gd_scene load_steps=11 format=3 uid="uid://dmr2r8p0cqo3"]
 
 [ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="1_4p8a7"]
 [ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="2_hfxsp"]
-[ext_resource type="Texture2D" uid="uid://byfr26h6l15ni" path="res://sprites/icons/CarbonCicsExplorer.svg" id="3_qrp15"]
 [ext_resource type="Texture2D" uid="uid://rsrkgey8fgdd" path="res://sprites/icons/science1.svg" id="4_2t4jk"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="4_04qv1"]
 [ext_resource type="Texture2D" uid="uid://decy4obiwriym" path="res://sprites/icons/research2.svg" id="5_146wd"]
+[ext_resource type="Texture2D" uid="uid://clq0vln8m7d7o" path="res://sprites/icons/sp1.svg" id="5_4250p"]
 [ext_resource type="Texture2D" uid="uid://3tyequec0mtg" path="res://sprites/icons/tether.svg" id="5_ew1qi"]
+[ext_resource type="Texture2D" uid="uid://cjlkcdtby1mto" path="res://sprites/icons/flare.svg" id="7_uokul"]
+[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="9_x4kug"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t2me3"]
+font = ExtResource("9_x4kug")
+font_size = 200
+font_color = Color(0.27, 0.27, 0.27, 1)
 
 [node name="ResearchTree" type="Node2D"]
 position = Vector2(960, -128)
-
-[node name="old" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Mine Container" type="Control" parent="old"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 2955.0
-offset_top = 3199.0
-offset_right = 2955.0
-offset_bottom = 3199.0
-
-[node name="Speed Upgrade" parent="old/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 1024.0
-offset_top = -256.0
-offset_right = 1024.0
-offset_bottom = -256.0
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-dirty = false
-targets_r = [NodePath("../Speed Upgrade2")]
-
-[node name="Speed Upgrade2" parent="old/Mine Container" instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 1984.0
-offset_top = -256.0
-offset_right = 1984.0
-offset_bottom = -256.0
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade 2"
-description = "Units are generated faster"
-price = 100
-dirty = false
-
-[node name="Value Upgrade" parent="old/Mine Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 1024.0
-offset_top = 320.0
-offset_right = 1024.0
-offset_bottom = 320.0
-icon = ExtResource("3_qrp15")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Value Upgrade"
-description = "Units are generated with a higher value"
-price = 100
-dirty = false
-targets_r = [NodePath("../Value Upgrade2")]
-
-[node name="Value Upgrade2" parent="old/Mine Container" instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 1984.0
-offset_top = 320.0
-offset_right = 1984.0
-offset_bottom = 320.0
-icon = ExtResource("3_qrp15")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Value Upgrade 2"
-description = "Units are generated with a higher value"
-price = 100
-dirty = false
-
-[node name="Shop Container" type="Control" parent="old"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 2069.0
-offset_top = 5414.0
-offset_right = 2069.0
-offset_bottom = 5414.0
-
-[node name="Speed Upgrade" parent="old/Shop Container" node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 1856.0
-offset_top = -1024.0
-offset_right = 1856.0
-offset_bottom = -1024.0
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-dirty = false
-targets_r = [NodePath("../Speed Upgrade2")]
-
-[node name="Speed Upgrade2" parent="old/Shop Container" instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 2816.0
-offset_top = -1024.0
-offset_right = 2816.0
-offset_bottom = -1024.0
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-dirty = false
-
-[node name="Processor Container" type="Control" parent="old"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 661.0
-offset_top = 5478.0
-offset_right = 661.0
-offset_bottom = 5478.0
-
-[node name="Speed Upgrade" parent="old/Processor Container" instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 64.0
-offset_top = -1408.0
-offset_right = 64.0
-offset_bottom = -1408.0
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-dirty = false
-
-[node name="Speed Upgrade2" parent="old/Processor Container" instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 64.0
-offset_top = -832.0
-offset_right = 64.0
-offset_bottom = -832.0
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.082063, 0.082063, 0.082063, 1)
-research_name = "Speed Upgrade"
-description = "Units are generated faster"
-price = 100
-dirty = false
 
 [node name="Research center" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
 visible = true
@@ -196,11 +65,11 @@ targets_r = [NodePath("../Tether")]
 targets_b = [NodePath("../Processor")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Tether" parent="." instance=ExtResource("1_4p8a7")]
+[node name="Tether" parent="." node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
 visible = true
-offset_left = 1152.0
+offset_left = 1320.0
 offset_top = 128.0
-offset_right = 1152.0
+offset_right = 1320.0
 offset_bottom = 128.0
 id = "unlock-tether"
 icon = ExtResource("5_ew1qi")
@@ -210,13 +79,30 @@ description = "Distributes units to different routes"
 price = 5
 state = 1
 dirty = false
+targets_r = [NodePath("../accelerator")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Mine" parent="." instance=ExtResource("1_4p8a7")]
+[node name="accelerator" parent="." instance=ExtResource("1_4p8a7")]
 visible = true
-offset_left = 1152.0
+offset_left = 2444.0
+offset_top = 128.0
+offset_right = 2444.0
+offset_bottom = 128.0
+id = "unlock-propulsor"
+icon = ExtResource("5_4250p")
+research_color = Color(0.574033, 0.223852, 0.292702, 1)
+research_name = "Accelerator"
+description = "Speeds up units"
+price = 5
+state = 1
+dirty = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Mine" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
+offset_left = 2444.0
 offset_top = 768.0
-offset_right = 1152.0
+offset_right = 2444.0
 offset_bottom = 768.0
 id = "unlock-mine"
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
@@ -226,13 +112,43 @@ price = 15
 price_rp = 20
 state = 1
 dirty = false
+targets_b = [NodePath("Speed Upgrade3")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Shop" parent="." instance=ExtResource("1_4p8a7")]
+[node name="Speed Upgrade3" parent="Mine" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
 visible = true
-offset_left = -896.0
+offset_top = 832.0
+offset_bottom = 832.0
+id = "processor-speed-1"
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are generated faster"
+price = 25
+price_rp = 0
+state = 1
+dirty = false
+targets_b = [NodePath("../Speed Upgrade4")]
+
+[node name="Speed Upgrade4" parent="Mine" instance=ExtResource("1_4p8a7")]
+visible = true
+offset_top = 1435.0
+offset_bottom = 1435.0
+id = "processor-speed-2"
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade R2"
+description = "Units are generated faster"
+price = 60
+price_rp = 0
+state = 1
+dirty = false
+
+[node name="Shop" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
+offset_left = -2067.0
 offset_top = 768.0
-offset_right = -896.0
+offset_right = -2067.0
 offset_bottom = 768.0
 id = "unlock-shop"
 icon = ExtResource("4_04qv1")
@@ -243,20 +159,117 @@ price = 20
 price_rp = 20
 state = 1
 dirty = false
+targets_b = [NodePath("RP Market")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Processor" parent="." node_paths=PackedStringArray("targets_r", "targets_l") instance=ExtResource("1_4p8a7")]
+[node name="RP Market" parent="Shop" instance=ExtResource("1_4p8a7")]
+visible = true
+offset_top = 572.0
+offset_bottom = 572.0
+id = "upgrade-rp-market"
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "RP Market"
+description = "Research points are automatically 
+converted into units when sold"
+price = 60
+price_rp = 0
+state = 1
+dirty = false
+
+[node name="Processor" parent="." node_paths=PackedStringArray("targets_r", "targets_b", "targets_l") instance=ExtResource("1_4p8a7")]
 visible = true
 offset_left = 128.0
 offset_top = 768.0
 offset_right = 128.0
 offset_bottom = 768.0
 id = "unlock-processor"
-description = "Increase the value of your units"
+description = "Increase the value of your units: +0.1"
 price = 0
 price_rp = 15
 state = 1
 dirty = false
 targets_r = [NodePath("../Mine")]
+targets_b = [NodePath("Speed Upgrade"), NodePath("Value Upgrade")]
 targets_l = [NodePath("../Shop")]
 metadata/_edit_use_anchors_ = true
+
+[node name="Speed Upgrade" parent="Processor" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
+offset_left = -526.0
+offset_top = 832.0
+offset_right = -526.0
+offset_bottom = 832.0
+id = "upgrade-processor-speed-1"
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade"
+description = "Units are processed faster: +15%"
+price = 25
+price_rp = 0
+state = 1
+dirty = false
+targets_b = [NodePath("../Speed Upgrade2")]
+
+[node name="Value Upgrade" parent="Processor" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
+offset_left = 448.0
+offset_top = 832.0
+offset_right = 448.0
+offset_bottom = 832.0
+id = "upgrade-processor-value-1"
+icon = ExtResource("7_uokul")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade"
+description = "Increment: +0.2"
+price = 0
+price_rp = 25
+state = 1
+dirty = false
+targets_b = [NodePath("../Value Upgrade2")]
+
+[node name="Speed Upgrade2" parent="Processor" instance=ExtResource("1_4p8a7")]
+visible = true
+offset_left = -526.0
+offset_top = 1435.0
+offset_right = -526.0
+offset_bottom = 1435.0
+id = "upgrade-processor-speed-2"
+icon = ExtResource("2_hfxsp")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Speed Upgrade R2"
+description = "Units are processed faster: +10%"
+price = 60
+price_rp = 0
+state = 1
+dirty = false
+
+[node name="Value Upgrade2" parent="Processor" instance=ExtResource("1_4p8a7")]
+visible = true
+offset_left = 448.0
+offset_top = 1435.0
+offset_right = 448.0
+offset_bottom = 1435.0
+id = "upgrade-processor-value-2"
+icon = ExtResource("7_uokul")
+research_color = Color(0.082063, 0.082063, 0.082063, 1)
+research_name = "Value Upgrade R2"
+description = "Increment: +0.35"
+price = 0
+price_rp = 60
+state = 1
+dirty = false
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-2168, 1297, 1430, 1327, 3543, 1341, 3775, 689, 3221, 622, 2649, 672, 2233, 504, 2206, 155, 2317, -114, 3631, -175, 4417, -108, 4588, 746, 4753, 1774, 4531, 2510, 3950, 3125, 2156, 3306, 556, 3333, -704, 3108, -1564, 2933, -2350, 1814, -2165, 1300)
+closed = true
+width = 30.0
+default_color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1474.0
+offset_top = 1283.0
+offset_right = 1867.0
+offset_bottom = 1526.0
+text = "WIP"
+label_settings = SubResource("LabelSettings_t2me3")

@@ -22,17 +22,14 @@ layout_mode = 2
 layout_mode = 2
 ref_icon = ExtResource("3_7tdq5")
 ref_name = "RESEARCH"
-ping = 0
 
 [node name="BottomBarButton2" parent="HBoxContainer" instance=ExtResource("2_tx04d")]
 layout_mode = 2
 ref_icon = ExtResource("4_mfrxi")
-ping = 0
 
 [node name="BottomBarButton3" parent="HBoxContainer" instance=ExtResource("2_tx04d")]
 layout_mode = 2
 ref_name = "SHOP"
-ping = 0
 
 [connection signal="pressed" from="HBoxContainer/BottomBarButton" to="." method="_on_research_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/BottomBarButton2" to="." method="_on_home_button_pressed"]

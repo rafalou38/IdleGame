@@ -1,3 +1,4 @@
+class_name Inventory
 extends Control
 
 
@@ -13,7 +14,7 @@ var bottom_pos := -1
 var left_pos := -1
 var right_pos := -1
 
-@export var open = false
+static var open = false
 
 @onready var hbox = $Panel/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer
 

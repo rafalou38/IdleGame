@@ -317,12 +317,12 @@ corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 corner_detail = 20
 
-[sub_resource type="LabelSettings" id="LabelSettings_b2vtq"]
+[sub_resource type="LabelSettings" id="LabelSettings_c3kwr"]
 font = ExtResource("2_c0axc")
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_f563y"]
+[sub_resource type="LabelSettings" id="LabelSettings_07jif"]
 font = ExtResource("2_c0axc")
 font_size = 22
 
@@ -348,7 +348,6 @@ text = "
 script = ExtResource("1_vrhwn")
 ref_icon = ExtResource("1_3qhxu")
 ref_name = "HOME"
-ping = null
 metadata/_edit_vertical_guides_ = [101.0]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -407,8 +406,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mkov3")
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer/PanelContainer"]
 layout_mode = 2
-text = "<null>"
-label_settings = SubResource("LabelSettings_b2vtq")
+text = "0"
+label_settings = SubResource("LabelSettings_c3kwr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -416,4 +415,4 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 text = "HOME"
-label_settings = SubResource("LabelSettings_f563y")
+label_settings = SubResource("LabelSettings_07jif")

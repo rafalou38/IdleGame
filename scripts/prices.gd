@@ -44,3 +44,9 @@ static func test_prices():
 	for i in range(25):
 		t += Util.number_to_human(Prices.node_buy(NodeData.NodeType.REFINERY, i)) + " "
 	print(t)
+
+	print("Tether")
+	t = ""
+	for i in range(15):
+		t += Util.number_to_human(Prices.node_buy(NodeData.NodeType.TETHER, i)) + " "
+	print(t)

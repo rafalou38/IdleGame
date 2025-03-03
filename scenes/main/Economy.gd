@@ -10,7 +10,7 @@ static var active_research := ""
 
 static var owned: Array[NodeData] = []
 static var new_save := false
-
+static var tutorial_finished := false
 
 static var SAVE_FILE := "user://economy.save.json"
 
@@ -20,13 +20,16 @@ static func save():
 		serialized_research[id] = {
 			"spent": research[id]["spent"],
 			"spent_rp": research[id]["spent_rp"],
+			"price": research[id]["price"],
+			"price_rp": research[id]["price_rp"],
 			"state": research[id]["state"]
 		}
 
 	var serialized_economy = {
 		"research": serialized_research,
 		"owned": owned.map(func(e): return e.serialize()),
-		"money": money
+		"money": money,
+		"tutorial_finished": tutorial_finished
 	}
 
 
@@ -53,6 +56,7 @@ static func load_save():
 	# Get the data from the JSON object.
 	var serialized_economy = json.data
 	money = serialized_economy["money"]
+	tutorial_finished = serialized_economy["tutorial_finished"]
 	for r_id in serialized_economy["research"]:
 		research[r_id] = serialized_economy["research"][r_id]
 	
@@ -90,7 +94,18 @@ static var _dvm := 0.0
 static func var_money() -> float:
 	return _dvm
 
+
+var dfs_history = []
+
+func cheat():
+	money += 10
+	money *= 2
+	if active_research != "":
+		research[active_research]["spent"] += 100
+		research[active_research]["spent_rp"] += 100
+
 func refresh_dfs():
+	dfs_history = []
 	_dvm = 0
 	var nodes = $"../Home/Node Handler".nodes
 	for node in nodes:
@@ -98,6 +113,10 @@ func refresh_dfs():
 			_dvm += dfs(node, 0, 0)
 
 func dfs(root: GameNode, rate: float, value: float):
+	if dfs_history.has(root.data.id):
+		return 0
+	dfs_history.append(root.data.id)
+
 	match root.type:
 		NodeData.NodeType.MINE:
 			value = root.get_parent().spawn_value

@@ -18,9 +18,10 @@ func _process(_delta: float) -> void:
 			current = "slide_in"
 			$AnimationPlayer.play("slide_in")
 
+	if Economy.active_research not in Economy.research: return
 
 	var research = Economy.research[Economy.active_research]
-
+	# if not Economy.research.has("price"): return
 
 	var spent: float = min(research["price"], research["spent"])
 	var spent_rp: float = min(research["price_rp"], research["spent_rp"])

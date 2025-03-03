@@ -1,0 +1,382 @@
+[gd_scene load_steps=20 format=3 uid="uid://lldatafbjf3j"]
+
+[ext_resource type="Shader" path="res://test_shader.gdshader" id="1_64qgr"]
+[ext_resource type="Script" path="res://views/tutorial.gd" id="1_tsyeu"]
+[ext_resource type="Texture2D" uid="uid://dqj3xsv85rsfc" path="res://scenes/main/node/base/sprites/square.png" id="2_iwkhd"]
+[ext_resource type="Texture2D" uid="uid://dtg31dm71y63k" path="res://sprites/icons/donut.svg" id="3_lfm3n"]
+[ext_resource type="Script" path="res://views/Dialogue.gd" id="4_042kx"]
+[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="5_uw20x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d6rb5"]
+shader = ExtResource("1_64qgr")
+shader_parameter/direction = Vector2(0, 1)
+shader_parameter/height = -640.0
+shader_parameter/blur_amount = 2.995
+shader_parameter/offset = -1249.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n4026"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83eqg"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 64.0
+content_margin_bottom = 25.0
+bg_color = Color(0.05, 0.05, 0.05, 1)
+corner_radius_top_left = 57
+corner_radius_top_right = 57
+corner_radius_bottom_right = 57
+corner_radius_bottom_left = 57
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emjbh"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.3139, 0.48034, 0.73, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="Animation" id="Animation_hf0a5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Control/PanelContainer2/PanelContainer/HBoxContainer/Panel/Control/TextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.90059, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Control/PanelContainer2/PanelContainer/HBoxContainer/Panel/Control/TextureRect:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Control/PanelContainer2/PanelContainer/HBoxContainer/Panel/Control/TextureRect:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_kc2f2"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Control/PanelContainer2/PanelContainer/HBoxContainer/Panel/Control/TextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.233333, 1.86634, 6.23, -0.233333, -1.27177, 0.25, 0, 0, -0.25, 0, 0.166567, 1.57427, 3, -0.333333, -1.40945, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.5001, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Control/PanelContainer2/PanelContainer/HBoxContainer/Panel/Control/TextureRect:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.3, -0.545013, 1, -0.3, 0.437168, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Control/PanelContainer2/PanelContainer/HBoxContainer/Panel/Control/TextureRect:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.233333, -0.481132, 1, -0.233333, 0.407889, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bryk1"]
+_data = {
+"RESET": SubResource("Animation_hf0a5"),
+"spin": SubResource("Animation_kc2f2")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_gnx7y"]
+font = ExtResource("5_uw20x")
+font_size = 36
+font_color = Color(0.61, 0.61, 0.61, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgdqb"]
+shader = ExtResource("1_64qgr")
+shader_parameter/direction = Vector2(0, -1)
+shader_parameter/height = -588.665
+shader_parameter/blur_amount = 3.458
+shader_parameter/offset = 116.0
+
+[sub_resource type="Animation" id="Animation_ls266"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-400, -0.25, 0, 0.4, -0.674377),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control2/TextureRect2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(300, -0.25, 0, 0.366667, -1.57355),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/PanelContainer2:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1500, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/PanelContainer2/PanelContainer:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0dqst"]
+resource_name = "close_tutorial"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -400, -0.25, 0, 0.4, -0.674377),
+"times": PackedFloat32Array(0.266667, 0.933333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control2/TextureRect2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 300, -0.25, 0, 0.366667, -1.57355),
+"times": PackedFloat32Array(0.266667, 0.933333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/PanelContainer2:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1500, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.666667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/PanelContainer2/PanelContainer:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_jvplp"]
+resource_name = "start_tutorial"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-400, -0.25, 0, 0.4, -0.674377, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control2/TextureRect2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(300, -0.25, 0, 0.366667, -1.57355, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/PanelContainer2:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1500, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.366667, 0.866667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/PanelContainer2/PanelContainer:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxk0j"]
+_data = {
+"RESET": SubResource("Animation_ls266"),
+"close_tutorial": SubResource("Animation_0dqst"),
+"start_tutorial": SubResource("Animation_jvplp")
+}
+
+[node name="Tutorial" type="VBoxContainer"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tsyeu")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_d6rb5")
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+texture = ExtResource("2_iwkhd")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -1500.0
+offset_right = -1500.0
+offset_bottom = 306.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_n4026")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_83eqg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Panel" type="PanelContainer" parent="Control/PanelContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_emjbh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PanelContainer2/PanelContainer/HBoxContainer/Panel"]
+root_node = NodePath("../../../../../../Control2")
+libraries = {
+"": SubResource("AnimationLibrary_bryk1")
+}
+speed_scale = 0.949
+
+[node name="Control" type="Control" parent="Control/PanelContainer2/PanelContainer/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer2/PanelContainer/HBoxContainer/Panel/Control"]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 119.0
+offset_bottom = 119.0
+rotation = 2.90059
+pivot_offset = Vector2(55, 55)
+texture = ExtResource("3_lfm3n")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/PanelContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Loading..."
+label_settings = SubResource("LabelSettings_gnx7y")
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("4_042kx")
+texts = Array[String](["Welcome to my game! 
+Press anywhere to continue.", "This game is about connecting nodes to make profit.
+How much you earn will depend on the connections you make.", "Start by holding the mine and shop out of your inventory.", "Now drag the out knob from the mine and connect it to the shop.", "You can press on the nodes to speed things up.", "To advance, head to the research tab and unlock new nodes !", ""])
+
+[node name="Control2" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control2"]
+material = SubResource("ShaderMaterial_pgdqb")
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 300.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_iwkhd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cxk0j")
+}

@@ -66,7 +66,7 @@ func sync_size():
 	$container/VBoxContainer/ResearchBox/VBoxContainer.size = $container/VBoxContainer/ResearchBox.size
 
 func refresh_state() -> void:
-	if state == prev_state: return
+	if state == prev_state and not dirty: return
 	if prev_state != State.NULL: animator.speed_scale = 2
 
 	if (Economy.research.has(id)):
@@ -135,6 +135,8 @@ func check_target(target: ResearchTreeItem, origin_point: Node, target_point: No
 			target.state = State.LOCKED
 		State.RESEARCHING:
 			target.state = State.LOCKED
+		State.HIDDEN:
+			target.state = State.HIDDEN
 		State.BOUGHT:
 			if (target.state not in [State.BOUGHT, State.RESEARCHING]):
 				target.state = State.AVAILABLE
