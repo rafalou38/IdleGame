@@ -1,26 +1,55 @@
 extends Control
 
-@export var type: NodeData.NodeType
+@export var current_node: GameNode
 
-# Called when the node enters the scene tree for the first time.
+var is_open = false
+
 func _ready() -> void:
-	pass # Replace with function body.
+	$AnimationPlayer.play("RESET")
+	$AnimationPlayer.connect("animation_finished", anim_end)
 
+func _process(_delta: float) -> void:
+	_sync()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+func anim_end(anim_name):
+	if (is_open == false && anim_name == "open"):
+		CameraMovement.control_locks.erase("UpgradeMenu")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if (event.pressed):
 			# var touch_position: Vector2 = Util.screen_to_world(get_viewport(), event.position)
+			# var bg_rect: Rect2 = $TextureRect.get_global_rect()
 
-
-			var bg_rect: Rect2 = $TextureRect.get_global_rect()
 			var fg_rect: Rect2 = $Control/PanelContainer.get_global_rect()
 
-			if(!Util.collide_rect(fg_rect, event.position)):# && _collide(bg_rect, event.position)):
-				print("farewell")
-				$AnimationPlayer.play_backwards("open")
+			if (!Util.collide_rect(fg_rect, event.position)): # && _collide(bg_rect, event.position)):
+				close()
+
+func _sync():
+	if (current_node == null): return
+	var base_ui = current_node.find_child("node_ui")
+	var ui = $Control/PanelContainer/VBoxContainer/Header/node_ui
+
+	ui.icon = base_ui.icon
+	ui.hue = base_ui.hue
+	ui.color = base_ui.color
+	$Control/PanelContainer/VBoxContainer/Header/Heading/Name.text = base_ui.displayName
+	$Control/PanelContainer/VBoxContainer/Header/Heading/Description.text = L.node_desc[current_node.type]
+
+	$Control/PanelContainer/VBoxContainer/InputQueue/QueueCOntainer/HB/Counter/Label.text = str(current_node.input_queue.size())
+	
+func open(node: GameNode):
+	current_node = node
+	if (is_open): return
+	else:
+		is_open = true
+		CameraMovement.control_locks.append("UpgradeMenu")
+		$AnimationPlayer.play("open")
+
+func close():
+	if (!is_open): return
+	else:
+		is_open = false
+		
+		$AnimationPlayer.play_backwards("open")

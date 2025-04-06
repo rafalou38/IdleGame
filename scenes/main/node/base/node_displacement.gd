@@ -27,13 +27,14 @@ func _input(event):
 		if (event.pressed and !drag_initiated):
 			initiate_drag(event)
 		if (!event.pressed and event.index == drag_index):
-			cancel_drag()
+			cancel_drag(true)
+
 	if event is InputEventScreenDrag and event.index == drag_index:
 		if (dragging):
 			var touch_position = Util.screen_to_world(get_viewport(), event.position)
 			target_position = touch_position - $Control.size / 2 + offset
 		elif (event.position.distance_to(initial_drag_position) > 10):
-			cancel_drag()
+			cancel_drag(false)
 
 func initiate_drag(event: InputEventScreenTouch):
 	var touch_position = Util.screen_to_world(get_viewport(), event.position)
@@ -58,9 +59,12 @@ func initiate_drag(event: InputEventScreenTouch):
 	drag_index = event.index
 	timer_start = Time.get_ticks_msec()
 
-func cancel_drag():
-	if drag_initiated and Time.get_ticks_msec() - timer_start < long_press_delay_ms  and !CameraMovement.control_locks.has("knob-manager/" + str(drag_index)):
-		NodeHandler.speed_up_factor += 1
+func cancel_drag(a):
+	if a and drag_initiated and Time.get_ticks_msec() - timer_start < long_press_delay_ms  and !CameraMovement.control_locks.has("knob-manager/" + str(drag_index)):
+		# NodeHandler.speed_up_factor += 1
+		if(CameraMovement.control_locks.is_empty()):
+			get_node("/root/root/CanvasLayer/VBoxContainer/Main/UpgradeMenu").open(owner)
+
 	drag_initiated = false
 			
 	dragging = false

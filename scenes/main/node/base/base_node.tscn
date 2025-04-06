@@ -14,7 +14,7 @@ friction = 0.0
 _data = [Vector2(0.00917432, 1), 0.0, -3.39921, 0, 0, Vector2(1, 0), -0.0753149, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81fd5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nqqf"]
 bg_color = Color(0, 0, 0, 0)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -175,9 +175,9 @@ visible = false
 position = Vector2(71, 71)
 emitting = false
 amount = 20
+texture = ExtResource("2_1ufmw")
 lifetime = 4.0
 explosiveness = 0.99
-texture = ExtResource("2_1ufmw")
 emission_shape = 1
 emission_sphere_radius = 0.01
 spread = 180.0
@@ -210,7 +210,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_81fd5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4nqqf")
 color = Color(0, 0, 0, 0)
 
 [node name="Knobs" type="Control" parent="rb/Control"]
@@ -338,6 +338,6 @@ shape = SubResource("CapsuleShape2D_mhfto")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_up0ab")
+&"": SubResource("AnimationLibrary_up0ab")
 }
 speed_scale = 0.5

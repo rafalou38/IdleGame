@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1ud4qawmtjdw"]
+[gd_scene load_steps=13 format=3 uid="uid://b1ud4qawmtjdw"]
 
 [ext_resource type="Script" uid="uid://dewebjn6oxyr" path="res://views/upgrade/upgrade_item.gd" id="1_kfcme"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_fp7ac"]
 [ext_resource type="Texture2D" uid="uid://cjlkcdtby1mto" path="res://sprites/icons/flare.svg" id="2_kfcme"]
 [ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="3_is7l0"]
+[ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="5_h3mtn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhhro"]
 bg_color = Color(0.0646965, 0.0646965, 0.0646966, 1)
@@ -148,3 +149,5 @@ stretch_mode = 5
 layout_mode = 2
 text = "10.0"
 label_settings = SubResource("LabelSettings_tpw88")
+
+[node name="Ripple" parent="Button" instance=ExtResource("5_h3mtn")]
