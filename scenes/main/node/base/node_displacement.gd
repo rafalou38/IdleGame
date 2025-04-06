@@ -1,7 +1,7 @@
 class_name NodeDisplacement
 extends RigidBody2D
 
-@export var long_press_delay_ms = 50
+@export var long_press_delay_ms = 100
 @export var attraction_factor = 0.1
 
 var handler: NodeHandler

@@ -1,0 +1,150 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1ud4qawmtjdw"]
+
+[ext_resource type="Script" uid="uid://dewebjn6oxyr" path="res://views/upgrade/upgrade_item.gd" id="1_kfcme"]
+[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_fp7ac"]
+[ext_resource type="Texture2D" uid="uid://cjlkcdtby1mto" path="res://sprites/icons/flare.svg" id="2_kfcme"]
+[ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="3_is7l0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhhro"]
+bg_color = Color(0.0646965, 0.0646965, 0.0646966, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_625w5"]
+font = ExtResource("2_fp7ac")
+font_size = 20
+font_color = Color(1, 1, 1, 0.490196)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4vxjn"]
+font = ExtResource("2_fp7ac")
+font_size = 20
+font_color = Color(1, 1, 1, 0.490196)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xfhwb"]
+font = ExtResource("2_fp7ac")
+font_size = 28
+font_color = Color(0.76, 0.76, 0.76, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7d4gg"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfcme"]
+bg_color = Color(0.16, 0.16, 0.16, 0.588235)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_tpw88"]
+font = ExtResource("2_fp7ac")
+font_size = 22
+
+[node name="UpgradeItem" type="HBoxContainer"]
+theme_override_constants/separation = 36
+script = ExtResource("1_kfcme")
+upgrade_type = 1
+
+[node name="Logo" type="Panel" parent="."]
+clip_children = 2
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rhhro")
+
+[node name="Icon" type="TextureRect" parent="Logo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kfcme")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HB" type="HBoxContainer" parent="Title"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="Title/HB"]
+layout_mode = 2
+text = "Level 1"
+label_settings = SubResource("LabelSettings_625w5")
+
+[node name="spacer" type="Control" parent="Title/HB"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="Title/HB"]
+layout_mode = 2
+text = "1.1x"
+label_settings = SubResource("LabelSettings_4vxjn")
+
+[node name="Name" type="Label" parent="Title"]
+layout_mode = 2
+text = "Value Upgrade"
+label_settings = SubResource("LabelSettings_xfhwb")
+
+[node name="spacer" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kfcme")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7d4gg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7d4gg")
+
+[node name="VB" type="VBoxContainer" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HB" type="HBoxContainer" parent="Button/VB"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Control" type="CenterContainer" parent="Button/VB/HB"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Button/VB/HB/Control"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("3_is7l0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Price" type="Label" parent="Button/VB/HB"]
+layout_mode = 2
+text = "10.0"
+label_settings = SubResource("LabelSettings_tpw88")

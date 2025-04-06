@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7trlmery3qe3"
-path="res://.godot/imported/bank.svg-e8dd2b7627599121cedb806df0a52a95.ctex"
+uid="uid://c2nbnmy0fcxrh"
+path="res://.godot/imported/1024x1024-blank.png-850edd83988ffceceffe0ba969bb1f5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/icons/bank.svg"
-dest_files=["res://.godot/imported/bank.svg-e8dd2b7627599121cedb806df0a52a95.ctex"]
+source_file="res://sprites/1024x1024-blank.png"
+dest_files=["res://.godot/imported/1024x1024-blank.png-850edd83988ffceceffe0ba969bb1f5b.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=4.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -1,5 +1,9 @@
 class_name Util
 
+static func collide_rect(r: Rect2, p: Vector2):
+	return p.x >= r.position.x && p.y >= r.position.y && p.x <= r.position.x + r.size.x && p.y <= r.position.y + r.size.y
+
+
 static func screen_to_world(viewport: Viewport, screen_point: Vector2):
 	var transformer = viewport.get_canvas_transform().affine_inverse()
 	return (screen_point * transformer.get_scale()[0] + transformer.origin)

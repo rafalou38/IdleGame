@@ -19,6 +19,7 @@ font_color = Color(0.27, 0.27, 0.27, 1)
 position = Vector2(960, -128)
 
 [node name="Research center" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
 anchors_preset = -1
 anchor_left = 26.7
 anchor_top = -16.2
@@ -36,10 +37,12 @@ description = "Allows researching new technologies."
 price = 0
 price_rp = 0
 state = 3
+dirty = false
 targets_b = [NodePath("../lab")]
 metadata/_edit_use_anchors_ = true
 
 [node name="lab" parent="." node_paths=PackedStringArray("targets_r", "targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
 anchors_preset = -1
 anchor_left = -1.6
 anchor_top = -3.2
@@ -57,11 +60,13 @@ description = "Converts basic units into research points."
 price = 15
 price_rp = 0
 state = 2
+dirty = false
 targets_r = [NodePath("../Tether")]
 targets_b = [NodePath("../Processor")]
 metadata/_edit_use_anchors_ = true
 
 [node name="Tether" parent="." node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = 1320.0
 offset_top = 128.0
 offset_right = 1320.0
@@ -73,10 +78,12 @@ research_name = "Tether"
 description = "Distributes units to different routes"
 price = 5
 state = 1
+dirty = false
 targets_r = [NodePath("../accelerator")]
 metadata/_edit_use_anchors_ = true
 
 [node name="accelerator" parent="." instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = 2444.0
 offset_top = 128.0
 offset_right = 2444.0
@@ -88,9 +95,11 @@ research_name = "Accelerator"
 description = "Speeds up units"
 price = 5
 state = 1
+dirty = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Mine" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = 2444.0
 offset_top = 768.0
 offset_right = 2444.0
@@ -102,10 +111,12 @@ description = "Generates Units at a fixed rate"
 price = 15
 price_rp = 20
 state = 1
+dirty = false
 targets_b = [NodePath("Speed Upgrade3")]
 metadata/_edit_use_anchors_ = true
 
 [node name="Speed Upgrade3" parent="Mine" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
 offset_top = 832.0
 offset_bottom = 832.0
 id = "processor-speed-1"
@@ -116,9 +127,11 @@ description = "Units are generated faster"
 price = 25
 price_rp = 0
 state = 1
+dirty = false
 targets_b = [NodePath("../Speed Upgrade4")]
 
 [node name="Speed Upgrade4" parent="Mine" instance=ExtResource("1_4p8a7")]
+visible = true
 offset_top = 1435.0
 offset_bottom = 1435.0
 id = "processor-speed-2"
@@ -129,8 +142,10 @@ description = "Units are generated faster"
 price = 60
 price_rp = 0
 state = 1
+dirty = false
 
 [node name="Shop" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = -2067.0
 offset_top = 768.0
 offset_right = -2067.0
@@ -143,10 +158,12 @@ description = "Sell you units here"
 price = 20
 price_rp = 20
 state = 1
+dirty = false
 targets_b = [NodePath("RP Market")]
 metadata/_edit_use_anchors_ = true
 
 [node name="RP Market" parent="Shop" instance=ExtResource("1_4p8a7")]
+visible = true
 offset_top = 572.0
 offset_bottom = 572.0
 id = "upgrade-rp-market"
@@ -158,8 +175,10 @@ converted into units when sold"
 price = 60
 price_rp = 0
 state = 1
+dirty = false
 
 [node name="Processor" parent="." node_paths=PackedStringArray("targets_r", "targets_b", "targets_l") instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = 128.0
 offset_top = 768.0
 offset_right = 128.0
@@ -169,12 +188,14 @@ description = "Increase the value of your units: +0.1"
 price = 0
 price_rp = 15
 state = 1
+dirty = false
 targets_r = [NodePath("../Mine")]
 targets_b = [NodePath("Speed Upgrade"), NodePath("Value Upgrade")]
 targets_l = [NodePath("../Shop")]
 metadata/_edit_use_anchors_ = true
 
 [node name="Speed Upgrade" parent="Processor" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = -526.0
 offset_top = 832.0
 offset_right = -526.0
@@ -187,9 +208,11 @@ description = "Units are processed faster: +15%"
 price = 25
 price_rp = 0
 state = 1
+dirty = false
 targets_b = [NodePath("../Speed Upgrade2")]
 
 [node name="Value Upgrade" parent="Processor" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = 448.0
 offset_top = 832.0
 offset_right = 448.0
@@ -202,9 +225,11 @@ description = "Increment: +0.2"
 price = 0
 price_rp = 25
 state = 1
+dirty = false
 targets_b = [NodePath("../Value Upgrade2")]
 
 [node name="Speed Upgrade2" parent="Processor" instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = -526.0
 offset_top = 1435.0
 offset_right = -526.0
@@ -217,8 +242,10 @@ description = "Units are processed faster: +10%"
 price = 60
 price_rp = 0
 state = 1
+dirty = false
 
 [node name="Value Upgrade2" parent="Processor" instance=ExtResource("1_4p8a7")]
+visible = true
 offset_left = 448.0
 offset_top = 1435.0
 offset_right = 448.0
@@ -231,6 +258,7 @@ description = "Increment: +0.35"
 price = 0
 price_rp = 60
 state = 1
+dirty = false
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(-2168, 1297, 1430, 1327, 3543, 1341, 3775, 689, 3221, 622, 2649, 672, 2233, 504, 2206, 155, 2317, -114, 3631, -175, 4417, -108, 4588, 746, 4753, 1774, 4531, 2510, 3950, 3125, 2156, 3306, 556, 3333, -704, 3108, -1564, 2933, -2350, 1814, -2165, 1300)
