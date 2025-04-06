@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c0xcs6gfq1aeh"]
 
-[ext_resource type="Script" path="res://views/shop/button/Ripple.gd" id="1_8ky7q"]
+[ext_resource type="Script" uid="uid://c2yyr6sfk6o2g" path="res://views/shop/button/Ripple.gd" id="1_8ky7q"]
 [ext_resource type="Texture2D" uid="uid://b2srwnog01i0j" path="res://views/shop/button/ripple.svg" id="2_kc3gq"]
 
 [sub_resource type="Animation" id="Animation_oloeo"]
@@ -59,8 +59,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5nfqu"]
 _data = {
-"RESET": SubResource("Animation_oloeo"),
-"Ripple": SubResource("Animation_p4ytk")
+&"RESET": SubResource("Animation_oloeo"),
+&"Ripple": SubResource("Animation_p4ytk")
 }
 
 [node name="Ripple" type="Control"]

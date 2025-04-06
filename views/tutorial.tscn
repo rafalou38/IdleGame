@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://lldatafbjf3j"]
 
-[ext_resource type="Shader" path="res://test_shader.gdshader" id="1_64qgr"]
-[ext_resource type="Script" path="res://views/tutorial.gd" id="1_tsyeu"]
+[ext_resource type="Shader" uid="uid://1a7c3tm1lt2y" path="res://test_shader.gdshader" id="1_64qgr"]
+[ext_resource type="Script" uid="uid://l0jkrsdivd85" path="res://views/tutorial.gd" id="1_tsyeu"]
 [ext_resource type="Texture2D" uid="uid://dqj3xsv85rsfc" path="res://scenes/main/node/base/sprites/square.png" id="2_iwkhd"]
 [ext_resource type="Texture2D" uid="uid://dtg31dm71y63k" path="res://sprites/icons/donut.svg" id="3_lfm3n"]
-[ext_resource type="Script" path="res://views/Dialogue.gd" id="4_042kx"]
+[ext_resource type="Script" uid="uid://bl88edk58kqrd" path="res://views/Dialogue.gd" id="4_042kx"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="5_uw20x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d6rb5"]
@@ -117,8 +117,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bryk1"]
 _data = {
-"RESET": SubResource("Animation_hf0a5"),
-"spin": SubResource("Animation_kc2f2")
+&"RESET": SubResource("Animation_hf0a5"),
+&"spin": SubResource("Animation_kc2f2")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_gnx7y"]
@@ -276,9 +276,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cxk0j"]
 _data = {
-"RESET": SubResource("Animation_ls266"),
-"close_tutorial": SubResource("Animation_0dqst"),
-"start_tutorial": SubResource("Animation_jvplp")
+&"RESET": SubResource("Animation_ls266"),
+&"close_tutorial": SubResource("Animation_0dqst"),
+&"start_tutorial": SubResource("Animation_jvplp")
 }
 
 [node name="Tutorial" type="VBoxContainer"]

@@ -1,17 +1,17 @@
 [gd_scene load_steps=20 format=3 uid="uid://bjhho2pte32v1"]
 
-[ext_resource type="Script" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
+[ext_resource type="Script" uid="uid://b723qevbbiddq" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
-[ext_resource type="Script" path="res://scenes/main/nodes_handler.gd" id="3_de16d"]
+[ext_resource type="Script" uid="uid://ds8fxwq5k3xwy" path="res://scenes/main/nodes_handler.gd" id="3_de16d"]
 [ext_resource type="PackedScene" uid="uid://bbos71oi0rhwg" path="res://views/TopBar/top_bar.tscn" id="3_lnnve"]
-[ext_resource type="Script" path="res://views/research/research.gd" id="4_uagff"]
+[ext_resource type="Script" uid="uid://0lputi56ygch" path="res://views/research/research.gd" id="4_uagff"]
 [ext_resource type="PackedScene" uid="uid://degu5ftaio8gf" path="res://views/shop/shop.tscn" id="5_wbxbt"]
 [ext_resource type="PackedScene" uid="uid://cptukrisif4kk" path="res://views/research/research_box.tscn" id="6_1n38w"]
 [ext_resource type="PackedScene" uid="uid://ctrbq4nx72wlm" path="res://views/BottomBar/bottom_bar.tscn" id="7_bwwt3"]
 [ext_resource type="PackedScene" uid="uid://bs1apde631l0q" path="res://views/upgrade/upgrade-menu.tscn" id="7_sakc4"]
 [ext_resource type="PackedScene" uid="uid://cdwl6oyxucyto" path="res://views/Inventory/inventory.tscn" id="8_r8hkb"]
-[ext_resource type="PackedScene" path="res://views/tutorial.tscn" id="8_vstl3"]
-[ext_resource type="Script" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
+[ext_resource type="PackedScene" uid="uid://lldatafbjf3j" path="res://views/tutorial.tscn" id="8_vstl3"]
+[ext_resource type="Script" uid="uid://b5e58tcm5vd52" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
 [ext_resource type="PackedScene" uid="uid://dmr2r8p0cqo3" path="res://scenes/research/research_tree.tscn" id="10_uexyn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuy1y"]
@@ -238,9 +238,9 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_svasp"]
 _data = {
-"RESET": SubResource("Animation_ws2o4"),
-"slide_in": SubResource("Animation_3ibk4"),
-"slide_out": SubResource("Animation_gxg8h")
+&"RESET": SubResource("Animation_ws2o4"),
+&"slide_in": SubResource("Animation_3ibk4"),
+&"slide_out": SubResource("Animation_gxg8h")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjqxi"]

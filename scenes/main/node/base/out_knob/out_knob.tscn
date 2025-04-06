@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://0rfk8ulnlean"]
 
-[ext_resource type="Script" path="res://scenes/main/node/base/out_knob/out_knob.gd" id="1_vo188"]
+[ext_resource type="Script" uid="uid://c0hhltlfrtyv3" path="res://scenes/main/node/base/out_knob/out_knob.gd" id="1_vo188"]
 [ext_resource type="Texture2D" uid="uid://bfsblr6xm27in" path="res://scenes/main/node/base/out_knob/out_knob.svg" id="2_hveit"]
 
 [sub_resource type="Curve2D" id="Curve2D_612an"]

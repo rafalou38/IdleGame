@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbos71oi0rhwg"]
 
-[ext_resource type="Script" path="res://scenes/main/TopBar.gd" id="1_armjv"]
+[ext_resource type="Script" uid="uid://bs14vsgxt5d5h" path="res://scenes/main/TopBar.gd" id="1_armjv"]
 [ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="2_2mlba"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="3_2phfa"]
 

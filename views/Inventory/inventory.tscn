@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdwl6oyxucyto"]
 
-[ext_resource type="Script" path="res://views/Inventory/inventory.gd" id="1_0p5ct"]
+[ext_resource type="Script" uid="uid://cwtredfeajuds" path="res://views/Inventory/inventory.gd" id="1_0p5ct"]
 [ext_resource type="PackedScene" uid="uid://bd2u4i2rlqb6b" path="res://views/Inventory/inventory_item.tscn" id="1_qh4sb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5gr8"]

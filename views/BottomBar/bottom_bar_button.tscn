@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cbqiu8uvna5hn"]
 
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="1_3qhxu"]
-[ext_resource type="Script" path="res://views/BottomBar/bottom_bar_button.gd" id="1_vrhwn"]
+[ext_resource type="Script" uid="uid://dd2taeg3ifotm" path="res://views/BottomBar/bottom_bar_button.gd" id="1_vrhwn"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_c0axc"]
 [ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="3_rt5p6"]
 
@@ -239,11 +239,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tx70i"]
 _data = {
-"Focus": SubResource("Animation_ft0lq"),
-"FocusOut": SubResource("Animation_wo1vo"),
-"RESET": SubResource("Animation_f3q4q"),
-"pop-in": SubResource("Animation_spym7"),
-"pop-out": SubResource("Animation_h1ofr")
+&"Focus": SubResource("Animation_ft0lq"),
+&"FocusOut": SubResource("Animation_wo1vo"),
+&"RESET": SubResource("Animation_f3q4q"),
+&"pop-in": SubResource("Animation_spym7"),
+&"pop-out": SubResource("Animation_h1ofr")
 }
 
 [sub_resource type="Animation" id="Animation_dm241"]
@@ -300,8 +300,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_738xh"]
 _data = {
-"pop-in": SubResource("Animation_dm241"),
-"pop-out": SubResource("Animation_tfrsm")
+&"pop-in": SubResource("Animation_dm241"),
+&"pop-out": SubResource("Animation_tfrsm")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkov3"]

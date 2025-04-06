@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://degu5ftaio8gf"]
 
 [ext_resource type="PackedScene" uid="uid://cpe2p1qu8ir8n" path="res://views/shop/shop_item.tscn" id="1_3kr2x"]
-[ext_resource type="Script" path="res://views/shop/shop.gd" id="1_8xcdu"]
+[ext_resource type="Script" uid="uid://bsum3fkh1uqgl" path="res://views/shop/shop.gd" id="1_8xcdu"]
 [ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="2_vv042"]
 [ext_resource type="Texture2D" uid="uid://rsrkgey8fgdd" path="res://sprites/icons/science1.svg" id="3_41aua"]
 [ext_resource type="Texture2D" uid="uid://tcovup47adfu" path="res://sprites/icons/processor.svg" id="3_yit7n"]
@@ -118,9 +118,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_liasq"]
 _data = {
-"RESET": SubResource("Animation_ekkej"),
-"slide_in": SubResource("Animation_jkebr"),
-"slide_out": SubResource("Animation_7d603")
+&"RESET": SubResource("Animation_ekkej"),
+&"slide_in": SubResource("Animation_jkebr"),
+&"slide_out": SubResource("Animation_7d603")
 }
 
 [node name="Shop" type="Control"]

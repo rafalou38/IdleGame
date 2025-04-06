@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bflcbl64t81ex"]
 
-[ext_resource type="Script" path="res://scenes/research/tree_item.gd" id="1_yrr6c"]
+[ext_resource type="Script" uid="uid://cxnaw2c3ujy4s" path="res://scenes/research/tree_item.gd" id="1_yrr6c"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_4maex"]
 [ext_resource type="Texture2D" uid="uid://tcovup47adfu" path="res://sprites/icons/processor.svg" id="2_ljgsa"]
 [ext_resource type="Texture2D" uid="uid://ctk7ngshskwtj" path="res://sprites/dash-line.svg" id="3_am7js"]
@@ -628,11 +628,11 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gd0j6"]
 _data = {
-"RESET": SubResource("Animation_jputf"),
-"appear": SubResource("Animation_1ltmx"),
-"bought": SubResource("Animation_e3oqr"),
-"start_research": SubResource("Animation_p2kd6"),
-"unlock": SubResource("Animation_8sxv0")
+&"RESET": SubResource("Animation_jputf"),
+&"appear": SubResource("Animation_1ltmx"),
+&"bought": SubResource("Animation_e3oqr"),
+&"start_research": SubResource("Animation_p2kd6"),
+&"unlock": SubResource("Animation_8sxv0")
 }
 
 [node name="TreeItem" type="Control"]

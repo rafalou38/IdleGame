@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://bs1apde631l0q"]
 
 [ext_resource type="PackedScene" uid="uid://dfsb3qlietv5l" path="res://scenes/main/node/base/ui/node_ui.tscn" id="1_8g55f"]
-[ext_resource type="Shader" path="res://test_shader.gdshader" id="1_rgr0t"]
+[ext_resource type="Shader" uid="uid://1a7c3tm1lt2y" path="res://test_shader.gdshader" id="1_rgr0t"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_bmes4"]
 [ext_resource type="Texture2D" uid="uid://kthms7s620nv" path="res://scenes/main/node/base/in_knob/in_knob.svg" id="2_e47i7"]
 [ext_resource type="Texture2D" uid="uid://bw6saegs2mx80" path="res://sprites/icons/close.svg" id="3_o5dub"]
@@ -12,7 +12,7 @@
 shader = ExtResource("1_rgr0t")
 shader_parameter/direction = Vector2(0, -1)
 shader_parameter/height = 100.0
-shader_parameter/blur_amount = null
+shader_parameter/blur_amount = 0.0
 shader_parameter/offset = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_igjyy"]

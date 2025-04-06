@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cptukrisif4kk"]
 
-[ext_resource type="Script" path="res://views/research/research_box.gd" id="1_6xm3k"]
+[ext_resource type="Script" uid="uid://dt0qgvahrppuv" path="res://views/research/research_box.gd" id="1_6xm3k"]
 [ext_resource type="Texture2D" uid="uid://3tyequec0mtg" path="res://sprites/icons/tether.svg" id="2_nx28n"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="3_rrgxf"]
 [ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="4_nimfh"]
@@ -174,9 +174,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w4dfc"]
 _data = {
-"RESET": SubResource("Animation_x0k4a"),
-"slide_in": SubResource("Animation_ju6au"),
-"slide_out": SubResource("Animation_an4h0")
+&"RESET": SubResource("Animation_x0k4a"),
+&"slide_in": SubResource("Animation_ju6au"),
+&"slide_out": SubResource("Animation_an4h0")
 }
 
 [node name="Research Box" type="PanelContainer"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6cq27q5o5ek"]
 
-[ext_resource type="Script" path="res://scenes/main/node/research_center_node.gd" id="1_0hywk"]
+[ext_resource type="Script" uid="uid://bfs4qgdbah81v" path="res://scenes/main/node/research_center_node.gd" id="1_0hywk"]
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_oetxp"]
 [ext_resource type="Texture2D" uid="uid://rsrkgey8fgdd" path="res://sprites/icons/science1.svg" id="2_e16k6"]
 

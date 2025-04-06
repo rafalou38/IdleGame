@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dy7lg6glergvy"]
 
-[ext_resource type="Script" path="res://scenes/main/node/base/node_displacement.gd" id="1_g1t8c"]
-[ext_resource type="Script" path="res://scenes/main/node/base/base_node.gd" id="1_yiria"]
+[ext_resource type="Script" uid="uid://dgi3o6u1u21lb" path="res://scenes/main/node/base/node_displacement.gd" id="1_g1t8c"]
+[ext_resource type="Script" uid="uid://c7lhxsvw5gmpd" path="res://scenes/main/node/base/base_node.gd" id="1_yiria"]
 [ext_resource type="Texture2D" uid="uid://bwws2qjpuuxps" path="res://sprites/particles/x64-circle.svg" id="2_1ufmw"]
 [ext_resource type="PackedScene" uid="uid://dfsb3qlietv5l" path="res://scenes/main/node/base/ui/node_ui.tscn" id="3_vwrt4"]
 [ext_resource type="PackedScene" uid="uid://0rfk8ulnlean" path="res://scenes/main/node/base/out_knob/out_knob.tscn" id="8_jf7ek"]
@@ -154,8 +154,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_up0ab"]
 _data = {
-"RESET": SubResource("Animation_tdnv6"),
-"spawn": SubResource("Animation_yxoqs")
+&"RESET": SubResource("Animation_tdnv6"),
+&"spawn": SubResource("Animation_yxoqs")
 }
 
 [node name="BaseNode" type="Node2D"]

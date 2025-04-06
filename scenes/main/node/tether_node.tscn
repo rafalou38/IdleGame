@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d34aap420pn6d"]
 
-[ext_resource type="Script" path="res://scenes/main/node/tether_node.gd" id="1_dvn7t"]
+[ext_resource type="Script" uid="uid://bhm8qrwoou6on" path="res://scenes/main/node/tether_node.gd" id="1_dvn7t"]
 [ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="1_jkyrf"]
 [ext_resource type="Texture2D" uid="uid://3tyequec0mtg" path="res://sprites/icons/tether.svg" id="2_hjiol"]
 
