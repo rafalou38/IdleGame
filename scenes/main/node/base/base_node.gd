@@ -33,8 +33,9 @@ var out_queue: Array[Unit] = []
 
 var round_robin_id := 0
 func update_units():
-	if (out_queue.size() > 0 and data.outbound_connections.size() > 0):
-		var unit: Unit = out_queue.pop_front()
+	# print(out_queue.size())
+	while (out_queue.size() > 0 and data.outbound_connections.size() > 0):
+		var unit: Unit = out_queue.pop_back()
 		round_robin_id = (round_robin_id + 1) % data.outbound_connections.size()
 		var con: Connection = data.outbound_connections[round_robin_id]
 		unit.spawn(con)
@@ -43,7 +44,10 @@ func push_unit(unit: Unit):
 	out_queue.append(unit)
 
 func receive_unit(unit: Unit):
-	input_queue.append(unit)
+	if(input_queue.size() <= 10):
+		input_queue.append(unit)
+	else:
+		unit.queue_free()
 
 func _ready():
 	$rb/CollisionShape2D.shape = $rb/CollisionShape2D.shape.duplicate()
@@ -51,7 +55,7 @@ func _ready():
 
 func _process(_delta):
 	$rb/Control/node_ui.progress = progress
-	refreshLines()
+	# refreshLines()
 	update_units()
 
 func _refresh_line(con: Connection):

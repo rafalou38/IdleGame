@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqe3nuqvoyiml"]
+
+[ext_resource type="Script" uid="uid://crwnl0xw3g10l" path="res://scenes/main/unit.gd" id="1_3h7x0"]
+[ext_resource type="Texture2D" uid="uid://bwws2qjpuuxps" path="res://sprites/particles/x64-circle.svg" id="2_5pqip"]
+[ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="3_i1cw6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pj3cy"]
+font = ExtResource("3_i1cw6")
+font_size = 34
+font_color = Color(0, 0, 0, 1)
+
+[node name="UnitListItem" type="Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Unit" type="PathFollow2D" parent="."]
+position = Vector2(20, 20)
+scale = Vector2(2, 2)
+rotates = false
+loop = false
+script = ExtResource("1_3h7x0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Unit"]
+modulate = Color(0, 0, 0, 0.141176)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_5pqip")
+
+[node name="Sprite2D" type="Sprite2D" parent="Unit"]
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("2_5pqip")
+
+[node name="Label" type="Label" parent="Unit"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 56.0
+offset_bottom = 56.0
+scale = Vector2(0.25, 0.25)
+text = "1.0"
+label_settings = SubResource("LabelSettings_pj3cy")
+horizontal_alignment = 1
+vertical_alignment = 1
