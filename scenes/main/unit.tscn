@@ -7,6 +7,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_pj3cy"]
 font = ExtResource("3_66rdl")
 font_size = 48
+font_color = Color(0, 0, 0, 1)
 
 [node name="Unit" type="PathFollow2D"]
 rotates = false
@@ -14,7 +15,6 @@ loop = false
 script = ExtResource("1_1chh7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.63, 0.673167, 1, 1)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_vecwu")
 

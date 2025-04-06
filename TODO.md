@@ -1,21 +1,8 @@
 - [ ] Research tree
-    - [x]  Save camera
-    - [ ]  Hours timer
-    - [ ]  Add functionality
-        - [ ]  Time
-        - [ ]  Price
-        - [ ]  Effect
-    - [ ]  Populate
-        - [ ]  Design the tree
-        - [ ]  Build the tree
     - [ ]  Collapse subsequent items
-    - [ ]  Skip ability (ads / gems)
 - [ ]  Home
     - [ ]  Drag out
-    - [ ]  Implement other nodes
     - [ ]  Upgrade menu
-- [ ]  Persistence
-    - [ ]  Economy / Research
-    - [ ]  Bough nodes
-    - [ ]  Connections
+- [ ]  Economie
+    - [ ] Ajuster les prix (trop cher)  
 - [ ]  PUBLISH
