@@ -2,14 +2,14 @@ class_name NodeHandler
 extends Node2D
 
 static var node_ref_by_type: Dictionary = {
-	NodeData.NodeType.SHOP: preload("res://scenes/main/node/shop_node.tscn"),
-	NodeData.NodeType.MINE: preload("res://scenes/main/node/mine_node.tscn"),
-	NodeData.NodeType.PROCESSOR: preload("res://scenes/main/node/processor_node.tscn"),
-	NodeData.NodeType.REFINERY: null,
-	NodeData.NodeType.TETHER: preload("res://scenes/main/node/tether_node.tscn"),
-	NodeData.NodeType.DUPLICATOR: null,
-	NodeData.NodeType.RESEARCH_CENTER: preload("res://scenes/main/node/research_center_node.tscn"),
-	NodeData.NodeType.LAB: preload("res://scenes/main/node/lab_node.tscn")
+	Nodes.NodeType.SHOP: preload("res://scenes/main/node/shop_node.tscn"),
+	Nodes.NodeType.MINE: preload("res://scenes/main/node/mine_node.tscn"),
+	Nodes.NodeType.PROCESSOR: preload("res://scenes/main/node/processor_node.tscn"),
+	Nodes.NodeType.REFINERY: null,
+	Nodes.NodeType.TETHER: preload("res://scenes/main/node/tether_node.tscn"),
+	Nodes.NodeType.DUPLICATOR: null,
+	Nodes.NodeType.RESEARCH_CENTER: preload("res://scenes/main/node/research_center_node.tscn"),
+	Nodes.NodeType.LAB: preload("res://scenes/main/node/lab_node.tscn")
 }
 
 @export var nodes: Array[GameNode] = []
@@ -58,7 +58,7 @@ func drag_node(nodeInfo: NodeData, touch_id: int, point: Vector2):
 
 
 func add_node(nodeInfo: NodeData, pos: Vector2):
-	var node_ref = NodeHandler.node_ref_by_type[nodeInfo.type]
+	var node_ref = node_ref_by_type[nodeInfo.type]
 	var node = node_ref.instantiate()
 	var baseNode: GameNode = node.find_child("BaseNode")
 	if (baseNode == null):

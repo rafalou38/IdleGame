@@ -58,7 +58,7 @@ func hide_shop():
 func _handle_button_close():
 	hide_shop()
 
-func buy(type: NodeData.NodeType):
+func buy(type: Nodes.NodeType):
 	# node_handler.add_node(type)
 	var data := NodeData.new()
 	data.id = randi()

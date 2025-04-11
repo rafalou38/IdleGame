@@ -70,8 +70,8 @@ func start_new_save():
 	money = 0
 	owned.clear()
 	research.clear()
-	owner.find_child("Shop").buy(NodeData.NodeType.SHOP)
-	owner.find_child("Shop").buy(NodeData.NodeType.MINE)
+	owner.find_child("Shop").buy(Nodes.NodeType.SHOP)
+	owner.find_child("Shop").buy(Nodes.NodeType.MINE)
 
 func _process(_delta: float) -> void:
 	if (new_save):
@@ -109,7 +109,7 @@ func refresh_dfs():
 	_dvm = 0
 	var nodes = $"../Home/Node Handler".nodes
 	for node in nodes:
-		if (node.type == NodeData.NodeType.MINE):
+		if (node.type == Nodes.NodeType.MINE):
 			_dvm += dfs(node, 0, 0)
 
 func dfs(root: GameNode, rate: float, value: float):
@@ -118,15 +118,15 @@ func dfs(root: GameNode, rate: float, value: float):
 	dfs_history.append(root.data.id)
 
 	match root.type:
-		NodeData.NodeType.MINE:
+		Nodes.NodeType.MINE:
 			value = root.get_parent().spawn_value
 			rate = root.get_parent().spawn_interval
-		NodeData.NodeType.PROCESSOR:
+		Nodes.NodeType.PROCESSOR:
 			value += root.get_parent().increment
 			rate = max(rate, root.get_parent().process_duration)
-		NodeData.NodeType.LAB:
+		Nodes.NodeType.LAB:
 			value = 0
-		NodeData.NodeType.SHOP:
+		Nodes.NodeType.SHOP:
 			return value / rate
 
 

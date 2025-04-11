@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=22 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" uid="uid://b723qevbbiddq" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://lldatafbjf3j" path="res://views/tutorial.tscn" id="8_vstl3"]
 [ext_resource type="Script" uid="uid://b5e58tcm5vd52" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
 [ext_resource type="PackedScene" uid="uid://dmr2r8p0cqo3" path="res://scenes/research/research_tree.tscn" id="10_uexyn"]
+[ext_resource type="Script" uid="uid://d30im4ucqtd1h" path="res://scripts/data/Nodes.gd" id="10_wlnme"]
+[ext_resource type="Script" uid="uid://dssktgwpxmx7j" path="res://scripts/data/Upgrades.gd" id="11_fnvwe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuy1y"]
 bg_color = Color(0.082063, 0.082063, 0.082063, 1)
@@ -324,10 +326,8 @@ node_handler = NodePath("../../../../Home/Node Handler")
 layout_mode = 1
 
 [node name="Panel" parent="CanvasLayer/VBoxContainer/Main/Inventory" index="0"]
-offset_left = 0.0
-offset_top = -48.052
-offset_right = 0.0
-offset_bottom = 290.948
+offset_top = -48.0333
+offset_bottom = 290.966
 
 [node name="Research Box" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("6_1n38w")]
 layout_mode = 1
@@ -377,6 +377,16 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_qjqxi")
 text = "SKIP TUTORIAL"
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Nodes" type="Node" parent="Node"]
+script = ExtResource("10_wlnme")
+metadata/_custom_type_script = "uid://d30im4ucqtd1h"
+
+[node name="Upgrades" type="Node" parent="Node"]
+script = ExtResource("11_fnvwe")
+metadata/_custom_type_script = "uid://dssktgwpxmx7j"
 
 [node name="Economy" type="Node2D" parent="."]
 script = ExtResource("10_3tfdc")

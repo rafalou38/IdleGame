@@ -11,7 +11,7 @@ class Connection:
 	
 	var path: Path2D = null
 
-@export var type: NodeData.NodeType = NodeData.NodeType.SHOP
+@export var type: Nodes.NodeType = Nodes.NodeType.SHOP
 
 var data: NodeData
 var inbound_connections := []

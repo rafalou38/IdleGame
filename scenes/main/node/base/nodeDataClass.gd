@@ -3,7 +3,7 @@ class_name NodeData
 
 
 var id: int
-var type: NodeType
+var type: Nodes.NodeType
 
 var placed: bool = false
 var position: Vector2 = Vector2(0, 0)
@@ -44,13 +44,3 @@ static func deserialize(d: Dictionary) -> NodeData:
 
 	return node
 
-enum NodeType {
-	SHOP,
-	MINE,
-	PROCESSOR,
-	REFINERY,
-	TETHER,
-	DUPLICATOR,
-	RESEARCH_CENTER,
-	LAB
-}

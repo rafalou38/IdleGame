@@ -1,6 +1,6 @@
 extends Control
 
-@export var node_type: NodeData.NodeType = NodeData.NodeType.SHOP
+@export var node_type: Nodes.NodeType = Nodes.NodeType.SHOP
 @export var count := 1
 
 var long_press_id := -1
