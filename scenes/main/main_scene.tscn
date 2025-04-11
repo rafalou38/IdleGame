@@ -29,7 +29,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-1080, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -93,7 +93,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.866667),
 "transitions": PackedFloat32Array(0.42, 1.00001),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
+"values": [Vector2(-1080, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -171,7 +171,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.666666, 1.16667),
 "transitions": PackedFloat32Array(0.42, 0.42),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-1080, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -323,6 +323,12 @@ node_handler = NodePath("../../../../Home/Node Handler")
 [node name="Inventory" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("8_r8hkb")]
 layout_mode = 1
 
+[node name="Panel" parent="CanvasLayer/VBoxContainer/Main/Inventory" index="0"]
+offset_left = 0.0
+offset_top = -48.052
+offset_right = 0.0
+offset_bottom = 290.948
+
 [node name="Research Box" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("6_1n38w")]
 layout_mode = 1
 offset_left = 0.0
@@ -408,3 +414,5 @@ visible = false
 [connection signal="pressed" from="CanvasLayer/VBoxContainer2/reset" to="Economy" method="start_new_save"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer2/reset2" to="Economy" method="cheat"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer2/reset3" to="CanvasLayer/Tutorial" method="skip"]
+
+[editable path="CanvasLayer/VBoxContainer/Main/Inventory"]

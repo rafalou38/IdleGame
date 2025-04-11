@@ -41,11 +41,12 @@ script = ExtResource("1_0p5ct")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -339.0
+offset_top = -48.0649
+offset_bottom = 290.935
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_y5gr8")
@@ -79,7 +80,6 @@ offset_left = 40.0
 offset_top = 40.0
 offset_right = 1070.0
 offset_bottom = 228.0
-grow_horizontal = 2
 theme_override_constants/separation = 80
 alignment = 1
 

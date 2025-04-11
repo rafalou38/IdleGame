@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dfsb3qlietv5l" path="res://scenes/main/node/base/ui/node_ui.tscn" id="1_8g55f"]
 [ext_resource type="Shader" uid="uid://t31w46q3b84a" path="res://shaders/backdrop.gdshader" id="1_o3lfh"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_bmes4"]
-[ext_resource type="Texture2D" uid="uid://c2nbnmy0fcxrh" path="res://sprites/1024x1024-blank.png" id="2_o3lfh"]
+[ext_resource type="Texture2D" uid="uid://blduxlwgwj0ba" path="res://sprites/dash-line.png" id="2_o3lfh"]
 [ext_resource type="Texture2D" uid="uid://bw6saegs2mx80" path="res://sprites/icons/close.svg" id="3_o5dub"]
 [ext_resource type="PackedScene" uid="uid://cqe3nuqvoyiml" path="res://views/upgrade/unit_list_item.tscn" id="7_4xggu"]
 [ext_resource type="PackedScene" uid="uid://b1ud4qawmtjdw" path="res://views/upgrade/upgrade_item.tscn" id="7_o3lfh"]

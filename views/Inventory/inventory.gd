@@ -1,3 +1,5 @@
+@tool
+
 class_name Inventory
 extends Control
 
@@ -8,11 +10,11 @@ var panel_pos_start := Vector2.ZERO
 
 var target_pos := Vector2.ZERO
 
-var top_pos := -1
-var bottom_pos := -1
+var top_pos := -1.0
+var bottom_pos := -1.0
 
-var left_pos := -1
-var right_pos := -1
+var left_pos := -1.0
+var right_pos := -1.0
 
 static var open = false
 
@@ -33,14 +35,15 @@ func _process(_a: float) -> void:
 		last_node_count = Economy.owned.size()
 		open = true
 
-	if top_pos == -1:
-		top_pos = $Panel.position.y
-		bottom_pos = $Panel.position.y + $Panel.size.y - 16 * 3
+	if top_pos == -1 or true:
+		top_pos = size.y - $Panel.size.y
+		bottom_pos = size.y - 16 * 3
 
 		var hbox_rect = hbox.get_global_rect()
 		left_pos = (hbox.get_parent().get_global_rect().size.x - hbox_rect.size.x) - 32
 		right_pos = 0
 	
+	$Panel.position.x = 0
 	if open:
 		$Panel.position.y = lerpf($Panel.position.y, top_pos, 0.2) 
 	else :

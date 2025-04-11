@@ -47,10 +47,12 @@ func show_shop():
 	overlayed = true
 	open = true
 	$AnimationPlayer.play("slide_in")
+	CameraMovement.control_locks.append("shop")
 
 func hide_shop():
 	open = false
 	$AnimationPlayer.play("slide_out")
+	CameraMovement.control_locks.erase("shop")
 
 
 func _handle_button_close():

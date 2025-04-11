@@ -326,7 +326,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_emjbh")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PanelContainer2/PanelContainer/HBoxContainer/Panel"]
 root_node = NodePath("../../../../../../Control2")
 libraries = {
-"": SubResource("AnimationLibrary_bryk1")
+&"": SubResource("AnimationLibrary_bryk1")
 }
 speed_scale = 0.949
 
@@ -378,5 +378,5 @@ texture = ExtResource("2_iwkhd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_cxk0j")
+&"": SubResource("AnimationLibrary_cxk0j")
 }
