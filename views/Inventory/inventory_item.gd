@@ -27,6 +27,8 @@ func refresh() -> void:
 
 	node.queue_free()
 
+	
+
 func _ready() -> void:
 	refresh()
 

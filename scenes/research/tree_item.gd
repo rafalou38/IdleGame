@@ -17,16 +17,25 @@ enum Direction {
 	LEFT
 }
 
+@export var type: Upgrades.UpgradeType = Upgrades.UpgradeType.UNLOCK
+@export var node_type: Nodes.NodeType = Nodes.NodeType.SHOP
+@export var level := 1
 
-@export var id := ""
+
 @export var icon: Texture2D = null
 @export var research_color := Color(0, 0, 0, 1)
+
+@export var id := ""
 @export var research_name := ""
 @export_multiline var description := ""
-@export var price := 0
-@export var price_rp := 0
-@export var state := State.NULL
-@export var dirty := false
+
+# ---
+
+
+var price := 0
+var price_rp := 0
+var state := State.NULL
+var dirty := false
 @export var line_texture: Texture2D
 
 @export var targets_t: Array[ResearchTreeItem] = []
@@ -44,6 +53,7 @@ enum Direction {
 var prev_state: State = State.NULL
 
 func _ready():
+	print(Upgrades.upgrade_id(node_type, type, level))
 	prev_state = State.NULL
 	animator.speed_scale = 1000
 	visible = false
@@ -51,14 +61,14 @@ func _ready():
 	call_deferred("sync_size")
 
 
-	if (Economy.research.has(id)):
-		state = Economy.research[id]["state"]
+	# if (Economy.research.has(id)):
+	# 	state = Economy.research[id]["state"]
 
-		Economy.research[id]["price"] = price
-		Economy.research[id]["price_rp"] = price_rp
-		Economy.research[id]["name"] = research_name
-		Economy.research[id]["icon"] = icon
-		Economy.research[id]["color"] = research_color
+	# 	Economy.research[id]["price"] = price
+	# 	Economy.research[id]["price_rp"] = price_rp
+	# 	Economy.research[id]["name"] = research_name
+	# 	Economy.research[id]["icon"] = icon
+	# 	Economy.research[id]["color"] = research_color
 	dirty = true
 
 func sync_size():

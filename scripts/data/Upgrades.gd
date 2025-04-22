@@ -8,8 +8,6 @@ enum UpgradeType {
     UNLOCK,
 }
 
-static var icons: Dictionary[UpgradeType, Resource] = {
-    UpgradeType.SPEED : preload("res://sprites/icons/speed.svg"),
-    UpgradeType.VALUE : preload("res://sprites/icons/flare.svg"),
-    UpgradeType.RP_MARKET : preload("res://sprites/icons/bank.svg"),
-}
+
+static func upgrade_id(node_type: Nodes.NodeType, upgrade_type: UpgradeType, level: int) -> String:
+    return str(upgrade_type) + "_" + str(node_type) + "_" + str(level)
