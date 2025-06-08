@@ -15,6 +15,6 @@ void fragment() {
 
     // Apply alpha
     color.a = 1.0;
-	
+
     COLOR = color;
 }

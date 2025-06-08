@@ -17,5 +17,6 @@ func _process(delta):
 		if($BaseNode.out_queue.size() == 0):
 			var unit: Unit = unit_scene.instantiate()
 			unit.value = spawn_value
+			unit.dirty = true
 			
 			$BaseNode.push_unit(unit)

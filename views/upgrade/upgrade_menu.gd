@@ -13,7 +13,8 @@ func _ready() -> void:
 	$AnimationPlayer.connect("animation_finished", anim_end)
 
 func _process(_delta: float) -> void:
-	_sync()
+	if is_open:
+		_sync()
 
 func anim_end(anim_name):
 	if (is_open == false && anim_name == "open"):
@@ -50,6 +51,8 @@ func _sync():
 			var fake_unit : Unit = c.get_child(0)
 			fake_unit.type = unit.type
 			fake_unit.value = unit.value
+			fake_unit.dirty = true
+			fake_unit.active = false
 
 			fake_unit.sync()
 

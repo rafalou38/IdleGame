@@ -6,12 +6,16 @@ enum UnitType {
 	RESEARCH_POINT
 }
 
-@export var type := UnitType.UNIT
-@export var value := 1.0
-@export var speed := 40.0
+var type := UnitType.UNIT
+var value := 1.0
+var speed := 40.0
+var dirty := false
 
 var current_connection: GameNode.Connection = null
-@export var active := false
+var active := false
+
+static var label_settings : Dictionary[int, LabelSettings]
+static var label_settings_initialized := false
 
 func spawn(con: GameNode.Connection):
 	current_connection = con
@@ -19,7 +23,10 @@ func spawn(con: GameNode.Connection):
 	global_position = con.fromKnob.global_position
 	progress = 0.0
 	loop = false
-	var parent = self.get_parent()
+	call_deferred("_do_spawn", con)
+
+func _do_spawn(con):
+	var parent = get_parent()
 	if parent:
 		parent.remove_child(self)
 	con.path.add_child(self)
@@ -30,18 +37,37 @@ func destroy():
 		parent.remove_child(self)
 
 func _ready():
-	$Label.label_settings = $Label.label_settings.duplicate(true)
+	if !label_settings_initialized:
+		label_settings_initialized = true
+		label_settings = {
+			100: $Label.label_settings.duplicate(true),
+			1000: $Label.label_settings.duplicate(true),
+			10000: $Label.label_settings.duplicate(true),
+			100000: $Label.label_settings.duplicate(true)
+		}
+
+		label_settings[100].font_size = 32
+		label_settings[1000].font_size = 30
+		label_settings[10000].font_size = 24
+		label_settings[100000].font_size = 16
+
+	$Label.label_settings = label_settings[100]
+
 
 func sync():
 	$Label.text = str(value)
+	var new_settings: LabelSettings
 	if value < 100:
-		$Label.label_settings.font_size = 32
+		new_settings = label_settings[100]
 	elif value < 1000:
-		$Label.label_settings.font_size = 30
+		new_settings = label_settings[1000]
 	elif value < 10000:
-		$Label.label_settings.font_size = 24
-	elif value < 100000:
-		$Label.label_settings.font_size = 16
+		new_settings = label_settings[10000]
+	else:
+		new_settings = label_settings[100000]
+
+	if $Label.label_settings != new_settings:
+		$Label.label_settings = new_settings
 
 	if type == UnitType.UNIT:
 		$Sprite2D.self_modulate = Color.WHITE
@@ -53,8 +79,11 @@ func sync():
 
 func _process(delta):
 	if active:
-		sync()
-		progress = progress + delta * speed * (NodeHandler.speed_up_factor)**2
+		if dirty:
+			sync()
+			dirty = false
+
+		progress = progress + delta * speed # * (NodeHandler.speed_up_factor)**2
 		# progress = progress + delta * speed * min(4, 1 + (NodeHandler.speed_up_factor-1) * 4)
 
 		if progress_ratio >= 1.0:
@@ -63,4 +92,3 @@ func _process(delta):
 			active = false
 			if self.get_parent():
 				self.get_parent().remove_child(self)
-

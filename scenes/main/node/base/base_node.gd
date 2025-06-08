@@ -26,19 +26,25 @@ var spawned := false
 @export var spawn_timeout := 0.0
 
 var out_queue: Array[Unit] = []
-@export var input_queue: Array[Unit] = []
+var input_queue: Array[Unit] = []
 
-@export var progress := 0.0
+var progress := 0.0
+
+var last_knob_positions: Dictionary = {}
+var pending_forces := {}
+
 
 
 var round_robin_id := 0
 func update_units():
-	# print(out_queue.size())
-	while (out_queue.size() > 0 and data.outbound_connections.size() > 0):
+	var max_per_frame := 5
+	var count := 0
+	while out_queue.size() > 0 and data.outbound_connections.size() > 0 and count < max_per_frame:
 		var unit: Unit = out_queue.pop_back()
 		round_robin_id = (round_robin_id + 1) % data.outbound_connections.size()
 		var con: Connection = data.outbound_connections[round_robin_id]
 		unit.spawn(con)
+		count += 1
 
 func push_unit(unit: Unit):
 	out_queue.append(unit)
@@ -53,14 +59,39 @@ func _ready():
 	$rb/CollisionShape2D.shape = $rb/CollisionShape2D.shape.duplicate()
 	# $AnimationPlayer.play("spawn")
 
-func _process(_delta):
-	$rb/Control/node_ui.progress = progress
-	# refreshLines()
-	update_units()
+var update_timer := 0.0
 
+func _process(delta):
+	update_timer += delta
+	if update_timer >= 0.1:
+		$rb/Control/node_ui.progress = progress
+		update_units()
+		update_timer = 0.0
+		
+func _physics_process(_delta):
+	for con in pending_forces.keys():
+		var f = pending_forces[con]
+		con.fromNode.body.apply_force(f.from_force, f.from_pos)
+		con.toNode.body.apply_force(f.to_force, f.to_pos)
+
+
+
+const EPSILON = 0.1 
 func _refresh_line(con: Connection):
-	var pos_0 := con.path.to_local(con.fromKnob.global_position + con.fromKnob.pivot_offset)
-	var pos_1 := con.path.to_local(con.toKnob.global_position + con.toKnob.pivot_offset)
+	var from_pos = con.fromKnob.global_position
+	var to_pos = con.toKnob.global_position
+
+	var last = last_knob_positions.get(con, null)
+	if last != null:
+		var from_delta = last.from.distance_squared_to(from_pos)
+		var to_delta = last.to.distance_squared_to(to_pos)
+		if from_delta < EPSILON * EPSILON and to_delta < EPSILON * EPSILON:
+			return
+
+	last_knob_positions[con] = { from = from_pos, to = to_pos }
+
+	var pos_0 := con.path.to_local(from_pos + con.fromKnob.pivot_offset)
+	var pos_1 := con.path.to_local(to_pos + con.toKnob.pivot_offset)
 
 	con.path.curve.set_point_position(0, pos_0)
 	con.path.curve.set_point_position(1, pos_1)
@@ -74,10 +105,17 @@ func _refresh_line(con: Connection):
 	elif con.toKnob.name.ends_with("r"):
 		con.path.curve.set_point_in(1, Vector2(100, 0))
 
+	if pos_0.distance_to(pos_1) > 250:
+		var force = (pos_1 - pos_0) * Engine.physics_ticks_per_second / 60
+		pending_forces[con] = {
+			from_force = force,
+			to_force = -force,
+			from_pos = con.fromKnob.position,
+			to_pos = con.toKnob.position
+		}
 
-	if pos_0.distance_to(pos_1) > 200:
-		con.fromNode.body.apply_force((pos_1 - pos_0) * 1 * Engine.physics_ticks_per_second / 60, con.fromKnob.position)
-		con.toNode.body.apply_force((pos_0 - pos_1) * 1 * Engine.physics_ticks_per_second / 60, con.toKnob.position)
+	else:
+		pending_forces.erase(con)
 
 func refreshLines():
 	_sync_knobs()
@@ -123,9 +161,6 @@ func connect_to(origin: OutKnob, target: InKnob):
 
 	data.outbound_connections.append(con)
 	con.toNode.inbound_connections.append(con)
-
-	# origin.update_in_path(con.path, target)
-
 
 func _sync_knobs():
 	var ins := KnobContainer.find_children("in-knob-*")
