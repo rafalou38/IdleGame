@@ -48,3 +48,15 @@ static func number_to_human(n: float) -> String:
 static func factorial(n: int) -> float:
 	if n == 0: return 1.0
 	return n * factorial(n - 1)
+
+static func number_to_roman(n: int) -> String:
+	var val := [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+	var syms := ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
+	var roman := ""
+	var i := 0
+	while n > 0:
+		while n >= val[i]:
+			n -= val[i]
+			roman += syms[i]
+		i += 1
+	return roman

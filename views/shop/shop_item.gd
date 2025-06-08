@@ -3,23 +3,20 @@ extends HBoxContainer
 
 @export var type: Nodes.NodeType = Nodes.NodeType.SHOP
 
-@export var item_name: String = ""
-@export var item_description: String = ""
-@export var icon: Texture2D = null
-@export var icon_bg_color := Color(0, 0, 0, 1)
-
-@export var can_buy: bool = false
-@export var unlocked: bool = false
-@export var bought: int = 0
-@export var price: float = 0
+var can_buy: bool = false
+var unlocked: bool = false
+var bought: int = 0
+var price: float = 0
 
 signal buy
 
 func apply_props():
+	var id := Upgrades.upgrade_id(type, Upgrades.UpgradeType.UNLOCK, 1)
+	# print(id, Economy.research.has(id))
 	if Engine.is_editor_hint():
 		unlocked = true
-	elif (Economy.research.has(name)):
-		unlocked = Economy.research[name]["state"] == ResearchTreeItem.State.BOUGHT
+	elif (Economy.research.has(id)):
+		unlocked = Economy.research[id]["state"] == ResearchTreeItem.State.BOUGHT
 	else:
 		unlocked = false
 		
@@ -30,15 +27,15 @@ func apply_props():
 	visible = unlocked
 	if not unlocked: return
 
-	$VBoxContainer/Label.text = item_name
-	$VBoxContainer/Label2.text = item_description
+	$VBoxContainer/Label.text = L.node_name(type)
+	$VBoxContainer/Label2.text = L.node_desc(type)
 	$CenterContainer2/Button.disabled = not can_buy
 
 	$VBoxContainer/HBoxContainer/Label.text = str(bought)
 	$CenterContainer2/Button.text = Util.number_to_human(price)
 
-	if icon: $CenterContainer/Icon.texture = icon
-	if icon_bg_color: $CenterContainer/IconBackground.self_modulate = icon_bg_color
+	$CenterContainer/Icon.texture = Nodes.node_icons(type)
+	$CenterContainer/IconBackground.self_modulate = Nodes.node_color(type)
 
 func _ready():
 	apply_props()

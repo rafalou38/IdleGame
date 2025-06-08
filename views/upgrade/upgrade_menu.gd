@@ -59,8 +59,8 @@ func _sync():
 	ui.icon = base_ui.icon
 	ui.hue = base_ui.hue
 	ui.color = base_ui.color
-	$Control/PanelContainer/VBoxContainer/Header/Heading/Name.text = base_ui.displayName
-	$Control/PanelContainer/VBoxContainer/Header/Heading/Description.text = L.node_desc[current_node.type]
+	$Control/PanelContainer/VBoxContainer/Header/Heading/Name.text = L.node_name(current_node.type)
+	$Control/PanelContainer/VBoxContainer/Header/Heading/Description.text = L.node_desc(current_node.type)
 	$Control/PanelContainer/VBoxContainer/Processing/ProgressBar.value = current_node.progress * 100
 
 	

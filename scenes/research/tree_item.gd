@@ -31,10 +31,9 @@ enum Direction {
 
 # ---
 
-
-var price := 0
-var price_rp := 0
-var state := State.NULL
+@export var price := 0
+@export var price_rp := 0
+@export var state := State.NULL
 var dirty := false
 @export var line_texture: Texture2D
 
@@ -53,36 +52,137 @@ var dirty := false
 var prev_state: State = State.NULL
 
 func _ready():
-	print(Upgrades.upgrade_id(node_type, type, level))
-	prev_state = State.NULL
 	animator.speed_scale = 1000
 	visible = false
 	$container.modulate.a = 0
-	call_deferred("sync_size")
+	id = Upgrades.upgrade_id(node_type, type, level)
 
+	prev_state = State.NULL
+	if (Economy.research.has(id)):
+		state = Economy.research[id]["state"]
 
-	# if (Economy.research.has(id)):
-	# 	state = Economy.research[id]["state"]
-
-	# 	Economy.research[id]["price"] = price
-	# 	Economy.research[id]["price_rp"] = price_rp
-	# 	Economy.research[id]["name"] = research_name
-	# 	Economy.research[id]["icon"] = icon
-	# 	Economy.research[id]["color"] = research_color
 	dirty = true
+	call_deferred("_config_ui")
 
-func sync_size():
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		id = Upgrades.upgrade_id(node_type, type, level)
+		_config_ui()
+		animator.play("RESET")
+		visible = true
+		$container.modulate.a = 1
+	 
+	_sync_progress()
+
+	if dirty or targets_b.size() + targets_r.size() + targets_t.size() + targets_l.size() != point_b.get_child_count():
+		if Engine.is_editor_hint():
+			prev_state = State.NULL
+		dirty = false
+		refresh_state()
+
+func _config_ui():
+	if type == Upgrades.UpgradeType.UNLOCK:
+		description = L.node_desc(node_type)
+		research_name = L.node_name(node_type)
+		icon = Nodes.node_icons(node_type)
+		research_color = Nodes.node_color(node_type)
+	else:
+		description = L.upgrade_desc(type)
+		research_name = L.upgrade_name(type) + " " + Util.number_to_roman(level) + ""
+		icon = Upgrades.upgrade_icons(type)
+		research_color = Color("#151515")
+
 	$container/VBoxContainer/ResearchBox/Panel.size = $container/VBoxContainer/ResearchBox.size
 	$container/VBoxContainer/ResearchBox/VBoxContainer.size = $container/VBoxContainer/ResearchBox.size
 
+
+	var logo = $container/VBoxContainer/HBoxContainer/Logo
+	logo.get_child(0).texture = icon
+
+	var box = logo.get_theme_stylebox("panel", "Panel").duplicate();
+	box.bg_color = research_color
+	logo.add_theme_stylebox_override("panel", box)
+
+	$container/VBoxContainer/HBoxContainer/Title/Name.text = research_name
+	$container/VBoxContainer/HBoxContainer/Title/Description.text = description
+
+	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
+	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.text = Util.number_to_human(price_rp)
+
+	# Price display
+	if (price == 0 and price_rp == 0):
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = "FREE"
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = false
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = false
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = false
+	elif (price == 0):
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = false
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = false
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = true
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = true
+	elif (price_rp == 0):
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = true
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = false
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = false
+	else:
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = true
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = true
+
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = true
+		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = true
+
+func _sync_progress():
+	if Engine.is_editor_hint() or not Economy.research.has(id):
+		return
+	# RESEARCH progress
+	if state == State.RESEARCHING:
+		var spent : float = min(price, Economy.research[id]["spent"])
+		var spent_rp : float = min(price_rp, Economy.research[id]["spent_rp"])
+
+		var progress := (spent + spent_rp)/(price+price_rp)
+
+		var text :=  " "
+		if (price > 0):
+			text = text + Util.number_to_human(spent) + "/" + Util.number_to_human(price)
+			if (price_rp > 0): text += " "
+		if(price_rp > 0):
+			text += Util.number_to_human(spent_rp) + "/" + Util.number_to_human(price_rp)
+		
+		$container/VBoxContainer/ResearchBox/VBoxContainer/Label2.text = text
+		if(progress >= 0 and progress <= 1):
+			$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
+			$container/VBoxContainer/ResearchBox/Panel.position.x = 0
+			$container/VBoxContainer/ResearchBox/Panel.position.y = 0
+
+		if spent >= price and spent_rp >= price_rp:
+			state = State.BOUGHT
+			dirty = true
+			Economy.active_research = ""
+			BottomBar.ping_research += 1
+			if id.begins_with("unlock-"):
+				BottomBar.ping_shop += 1
+
 func refresh_state() -> void:
-	if state == prev_state and not dirty: return
 	if prev_state != State.NULL: animator.speed_scale = 2
 
 	if (Economy.research.has(id)):
 		Economy.research[id]["state"] = state;
 	else:
-		print("initialised")
 		Economy.research[id] = {
 			"state": state,
 			"spent": 0,
@@ -90,9 +190,9 @@ func refresh_state() -> void:
 		}
 		Economy.research[id]["price"] = price
 		Economy.research[id]["price_rp"] = price_rp
-		Economy.research[id]["name"] = research_name
-		Economy.research[id]["icon"] = icon
-		Economy.research[id]["color"] = research_color
+		# Economy.research[id]["name"] = research_name
+		# Economy.research[id]["icon"] = icon
+		# Economy.research[id]["color"] = research_color
 
 	match state:
 		State.NULL:
@@ -174,98 +274,6 @@ func check_target(target: ResearchTreeItem, origin_point: Node, target_point: No
 	point_b.add_child(line)
 
 	target.refresh_state()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		animator.play("RESET")
-		visible = true
-		$container.modulate.a = 1
-
-	var logo = $container/VBoxContainer/HBoxContainer/Logo
-	logo.get_child(0).texture = icon
-
-	var box = logo.get_theme_stylebox("panel", "Panel").duplicate();
-	box.bg_color = research_color
-	logo.add_theme_stylebox_override("panel", box)
-
-	$container/VBoxContainer/HBoxContainer/Title/Name.text = research_name
-	$container/VBoxContainer/HBoxContainer/Title/Description.text = description
-
-	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = Util.number_to_human(price)
-	$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.text = Util.number_to_human(price_rp)
-
-	if (price == 0 and price_rp == 0):
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.text = "FREE"
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
-
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = false
-
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = false
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = false
-	elif (price == 0):
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = false
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = false
-
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
-
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = true
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = true
-	elif (price_rp == 0):
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = true
-
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = false
-
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = false
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = false
-	else:
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label.visible = true
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control.visible = true
-
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Spacer.visible = true
-
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Control2.visible = true
-		$container/VBoxContainer/Button/CenterContainer/HBoxContainer/Label2.visible = true
-
-
-	var progress := 0.0
-	if Economy.research.has(id) and not Engine.is_editor_hint():
-		var spent : float = min(price, Economy.research[id]["spent"])
-		var spent_rp : float = min(price_rp, Economy.research[id]["spent_rp"])
-
-		progress = (spent + spent_rp)/(price+price_rp)
-
-		var text :=  " "
-		if (price > 0):
-			text = text + Util.number_to_human(spent) + "/" + Util.number_to_human(price)
-			if (price_rp > 0): text += " "
-		if(price_rp > 0):
-			text += Util.number_to_human(spent_rp) + "/" + Util.number_to_human(price_rp)
-		
-		$container/VBoxContainer/ResearchBox/VBoxContainer/Label2.text = text
-		if(progress >= 0 and progress <= 1):
-			$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
-			$container/VBoxContainer/ResearchBox/Panel.position.x = 0
-			$container/VBoxContainer/ResearchBox/Panel.position.y = 0
-
-		if  state == State.RESEARCHING and spent >= price and spent_rp >= price_rp:
-			state = State.BOUGHT
-			dirty = true
-			Economy.active_research = ""
-			BottomBar.ping_research += 1
-			if id.begins_with("unlock-"):
-				BottomBar.ping_shop += 1
-
-
-
-	if dirty or targets_b.size() + targets_r.size() + targets_t.size() + targets_l.size() != point_b.get_child_count():
-		if Engine.is_editor_hint():
-			prev_state = State.NULL
-
-		dirty = false
-		refresh_state()
 
 
 func _input(event: InputEvent) -> void:

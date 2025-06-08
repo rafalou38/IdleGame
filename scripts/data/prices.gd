@@ -20,6 +20,12 @@ static func node_buy(type: Nodes.NodeType, own_count: int) -> float:
 	return 1
 
 
+func upgrade_price(type : Upgrades.UpgradeType, node: Nodes.NodeType, level: int):
+	return [0,0]
+				
+			
+
+
 static func test_prices():
 	print("Shop")
 	var t = ""

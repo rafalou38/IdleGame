@@ -326,8 +326,8 @@ node_handler = NodePath("../../../../Home/Node Handler")
 layout_mode = 1
 
 [node name="Panel" parent="CanvasLayer/VBoxContainer/Main/Inventory" index="0"]
-offset_top = -48.0333
-offset_bottom = 290.966
+offset_top = -48.0109
+offset_bottom = 290.988
 
 [node name="Research Box" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("6_1n38w")]
 layout_mode = 1
