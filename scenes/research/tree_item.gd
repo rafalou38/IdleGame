@@ -34,7 +34,6 @@ enum Direction {
 @export var price := 0
 @export var price_rp := 0
 @export var state := State.NULL
-var dirty := false
 @export var line_texture: Texture2D
 
 @export var targets_t: Array[ResearchTreeItem] = []
@@ -55,31 +54,44 @@ func _ready():
 	animator.speed_scale = 1000
 	visible = false
 	$container.modulate.a = 0
-	id = Upgrades.upgrade_id(node_type, type, level)
+	id = Upgrades.upgrade_id(node_type, type)
 
 	prev_state = State.NULL
-	if (Economy.research.has(id)):
-		state = Economy.research[id]["state"]
+	# Restore state
+	if Economy.research.has(id):
+		if type == Upgrades.UpgradeType.UNLOCK or type == Upgrades.UpgradeType.RP_MARKET:
+			state = Economy.research[id]["state"]
+			level = 0
+		else:
+			if Economy.research[id]["state"] == State.BOUGHT:
+				level = Economy.research[id]["level"] + 1
+				state = State.AVAILABLE
+			else:
+				print(Economy.research[id])
+				level = Economy.research[id]["level"]
+				state = Economy.research[id]["state"]
 
-	dirty = true
 	call_deferred("_config_ui")
+	call_deferred("refresh_state")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
-		id = Upgrades.upgrade_id(node_type, type, level)
+		id = Upgrades.upgrade_id(node_type, type)
 		_config_ui()
-		animator.play("RESET")
+		# animator.play("RESET")
 		visible = true
 		$container.modulate.a = 1
 	 
 	_sync_progress()
 
-	if dirty or targets_b.size() + targets_r.size() + targets_t.size() + targets_l.size() != point_b.get_child_count():
+	$container/VBoxContainer/ResearchBox/Panel.size = $container/VBoxContainer/ResearchBox.size
+	$container/VBoxContainer/ResearchBox/VBoxContainer.size = $container/VBoxContainer/ResearchBox.size
+
+	if targets_b.size() + targets_r.size() + targets_t.size() + targets_l.size() != point_b.get_child_count():
 		if Engine.is_editor_hint():
 			prev_state = State.NULL
-		dirty = false
 		refresh_state()
 
 func _config_ui():
@@ -149,8 +161,9 @@ func _config_ui():
 func _sync_progress():
 	if Engine.is_editor_hint() or not Economy.research.has(id):
 		return
-	# RESEARCH progress
+	
 	if state == State.RESEARCHING:
+		# Update progress bar
 		var spent : float = min(price, Economy.research[id]["spent"])
 		var spent_rp : float = min(price_rp, Economy.research[id]["spent_rp"])
 
@@ -170,29 +183,42 @@ func _sync_progress():
 			$container/VBoxContainer/ResearchBox/Panel.position.y = 0
 
 		if spent >= price and spent_rp >= price_rp:
-			state = State.BOUGHT
-			dirty = true
-			Economy.active_research = ""
-			BottomBar.ping_research += 1
-			if id.begins_with("unlock-"):
-				BottomBar.ping_shop += 1
+			_end_research()
+
+func _end_research():
+	if type == Upgrades.UpgradeType.UNLOCK or type == Upgrades.UpgradeType.RP_MARKET:
+		state = State.BOUGHT
+		Economy.research[id]["state"] = State.BOUGHT
+		Economy.active_research = ""
+		BottomBar.ping_research += 1
+		BottomBar.ping_shop += 1
+	else:
+		state = State.AVAILABLE
+		Economy.research[id]["state"] = State.AVAILABLE
+		level =  Economy.research[id]["level"] + 1
+		Economy.active_research = ""
+		BottomBar.ping_research += 1
+		animator.play("reset")
+	_config_ui()
+	refresh_state()
+
+
+func _start_research():
+	Economy.active_research = id
+	state = State.RESEARCHING
+	Economy.research[id] = {
+		"spent_rp": 0,
+		"price": price,
+		"spent": 0,
+		"price_rp": price_rp,
+		"state": State.RESEARCHING,
+		"level": level
+	}
+	refresh_state()
+
 
 func refresh_state() -> void:
 	if prev_state != State.NULL: animator.speed_scale = 2
-
-	if (Economy.research.has(id)):
-		Economy.research[id]["state"] = state;
-	else:
-		Economy.research[id] = {
-			"state": state,
-			"spent": 0,
-			"spent_rp": 0
-		}
-		Economy.research[id]["price"] = price
-		Economy.research[id]["price_rp"] = price_rp
-		# Economy.research[id]["name"] = research_name
-		# Economy.research[id]["icon"] = icon
-		# Economy.research[id]["color"] = research_color
 
 	match state:
 		State.NULL:
@@ -234,7 +260,6 @@ func refresh_state() -> void:
 		if target != null:
 			check_target(target, point_l, target.point_r)
 	
-
 	prev_state = state
 
 func check_target(target: ResearchTreeItem, origin_point: Node, target_point: Node) -> void:
@@ -281,14 +306,8 @@ func _input(event: InputEvent) -> void:
 		if event.pressed and event.keycode == KEY_TAB:
 			if state == State.RESEARCHING:
 				state = State.BOUGHT
-		
-		dirty = true
 
 
 func _on_buy_button_pressed() -> void:
 	if state != State.AVAILABLE: return
-
-	Economy.active_research = id
-
-	state = State.RESEARCHING
-	dirty = true
+	_start_research()

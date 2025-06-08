@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://bflcbl64t81ex" path="res://scenes/research/TreeItem.tscn" id="1_4p8a7"]
 [ext_resource type="Texture2D" uid="uid://c4ja88tgeewgf" path="res://sprites/icons/speed.svg" id="2_hfxsp"]
 [ext_resource type="Texture2D" uid="uid://rsrkgey8fgdd" path="res://sprites/icons/science1.svg" id="4_2t4jk"]
-[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="4_04qv1"]
 [ext_resource type="Texture2D" uid="uid://decy4obiwriym" path="res://sprites/icons/research2.svg" id="5_146wd"]
 [ext_resource type="Texture2D" uid="uid://clq0vln8m7d7o" path="res://sprites/icons/sp1.svg" id="5_4250p"]
 [ext_resource type="Texture2D" uid="uid://3tyequec0mtg" path="res://sprites/icons/tether.svg" id="5_ew1qi"]
 [ext_resource type="Texture2D" uid="uid://b14tppiydctbk" path="res://sprites/icons/mine.svg" id="7_a8odr"]
 [ext_resource type="Texture2D" uid="uid://cjlkcdtby1mto" path="res://sprites/icons/flare.svg" id="7_uokul"]
+[ext_resource type="Texture2D" uid="uid://tcovup47adfu" path="res://sprites/icons/processor.svg" id="9_kpxjv"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="9_x4kug"]
 [ext_resource type="Texture2D" uid="uid://c7trlmery3qe3" path="res://sprites/icons/bank.svg" id="10_6jfix"]
 
@@ -21,7 +21,6 @@ font_color = Color(0.27, 0.27, 0.27, 1)
 position = Vector2(960, -128)
 
 [node name="Research center" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = true
 anchors_preset = -1
 anchor_left = 26.7
 anchor_top = -16.2
@@ -34,7 +33,7 @@ offset_bottom = -512.0
 node_type = 6
 icon = ExtResource("4_2t4jk")
 research_color = Color(0.215686, 0.231373, 0.72549, 1)
-id = "3_6_1"
+id = "3_6"
 research_name = "Research Center"
 description = "Allows researching new technologies."
 price = 0
@@ -44,7 +43,6 @@ targets_b = [NodePath("../lab")]
 metadata/_edit_use_anchors_ = true
 
 [node name="lab" parent="." node_paths=PackedStringArray("targets_r", "targets_b") instance=ExtResource("1_4p8a7")]
-visible = true
 anchors_preset = -1
 anchor_left = -1.6
 anchor_top = -3.2
@@ -57,17 +55,16 @@ offset_bottom = 128.0
 node_type = 7
 icon = ExtResource("5_146wd")
 research_color = Color(0.168627, 0.533333, 0.764706, 1)
-id = "3_7_1"
+id = "3_7"
 research_name = "Lab"
 description = "Convert basic units into research points."
 price_rp = 0
-state = 2
+state = 1
 targets_r = [NodePath("../Tether")]
 targets_b = [NodePath("../Processor")]
 metadata/_edit_use_anchors_ = true
 
 [node name="Tether" parent="." node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
-visible = true
 offset_left = 1320.0
 offset_top = 128.0
 offset_right = 1320.0
@@ -75,7 +72,7 @@ offset_bottom = 128.0
 node_type = 4
 icon = ExtResource("5_ew1qi")
 research_color = Color(0.290196, 0.376471, 0.396078, 1)
-id = "3_4_1"
+id = "3_4"
 research_name = "Tether"
 description = "Distributes inputs to multiple nodes."
 price = 0
@@ -85,7 +82,6 @@ targets_r = [NodePath("../accelerator")]
 metadata/_edit_use_anchors_ = true
 
 [node name="accelerator" parent="." instance=ExtResource("1_4p8a7")]
-visible = true
 offset_left = 2444.0
 offset_top = 128.0
 offset_right = 2444.0
@@ -93,7 +89,7 @@ offset_bottom = 128.0
 node_type = 8
 icon = ExtResource("5_4250p")
 research_color = Color(0.572549, 0.223529, 0.294118, 1)
-id = "3_8_1"
+id = "3_8"
 research_name = "Accelerator"
 description = "Speeds up units."
 price = 0
@@ -102,7 +98,6 @@ state = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Mine" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = true
 offset_left = 2444.0
 offset_top = 768.0
 offset_right = 2444.0
@@ -110,51 +105,30 @@ offset_bottom = 768.0
 node_type = 1
 icon = ExtResource("7_a8odr")
 research_color = Color(0.313726, 0.290196, 0.396078, 1)
-id = "3_1_1"
+id = "3_1"
 research_name = "Mine"
 description = "Generate units at a fixed rate."
 state = 1
 targets_b = [NodePath("Speed Upgrade3")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Speed Upgrade3" parent="Mine" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = true
+[node name="Speed Upgrade3" parent="Mine" instance=ExtResource("1_4p8a7")]
 offset_top = 832.0
 offset_bottom = 832.0
 type = 0
 icon = ExtResource("2_hfxsp")
 research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "0_0_1"
+id = "0_0"
 research_name = "Speed upgrade I"
 description = "Make it faster !"
 price_rp = 40
 state = 1
-targets_b = [NodePath("../Speed Upgrade4")]
-
-[node name="Speed Upgrade4" parent="Mine" instance=ExtResource("1_4p8a7")]
-visible = true
-offset_top = 1435.0
-offset_bottom = 1435.0
-type = 0
-level = 2
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "0_0_2"
-research_name = "Speed upgrade II"
-description = "Make it faster !"
-state = 1
 
 [node name="Shop" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = true
 offset_left = -2067.0
 offset_top = 768.0
 offset_right = -2067.0
 offset_bottom = 768.0
-icon = ExtResource("4_04qv1")
-research_color = Color(0.396078, 0.290196, 0.290196, 1)
-id = "3_0_1"
-research_name = "Shop"
-description = "Units can be sold here."
 price = 30
 price_rp = 0
 state = 1
@@ -162,14 +136,13 @@ targets_b = [NodePath("RP Market")]
 metadata/_edit_use_anchors_ = true
 
 [node name="RP Market" parent="Shop" instance=ExtResource("1_4p8a7")]
-visible = true
 offset_top = 572.0
 offset_bottom = 572.0
 type = 2
 level = 0
 icon = ExtResource("10_6jfix")
 research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "2_0_0"
+id = "2_0"
 research_name = "Research market "
 description = "Sell your research points."
 price = 100
@@ -177,14 +150,15 @@ price_rp = 0
 state = 1
 
 [node name="Processor" parent="." node_paths=PackedStringArray("targets_r", "targets_b", "targets_l") instance=ExtResource("1_4p8a7")]
-visible = true
 offset_left = 128.0
 offset_top = 768.0
 offset_right = 128.0
 offset_bottom = 768.0
 node_type = 2
+icon = ExtResource("9_kpxjv")
 research_color = Color(0.317647, 0.396078, 0.290196, 1)
-id = "3_2_1"
+id = "3_2"
+research_name = "Processor"
 description = "Increase units value."
 price_rp = 5
 state = 1
@@ -193,8 +167,7 @@ targets_b = [NodePath("Speed Upgrade"), NodePath("Value Upgrade")]
 targets_l = [NodePath("../Shop")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Speed Upgrade" parent="Processor" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = true
+[node name="Speed Upgrade" parent="Processor" instance=ExtResource("1_4p8a7")]
 offset_left = -512.0
 offset_top = 832.0
 offset_right = -512.0
@@ -202,15 +175,14 @@ offset_bottom = 832.0
 type = 0
 icon = ExtResource("2_hfxsp")
 research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "0_0_1"
+id = "0_0"
 research_name = "Speed upgrade I"
 description = "Make it faster !"
 price = 0
+price_rp = 0
 state = 1
-targets_b = [NodePath("../Speed Upgrade2")]
 
-[node name="Value Upgrade" parent="Processor" node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
-visible = true
+[node name="Value Upgrade" parent="Processor" instance=ExtResource("1_4p8a7")]
 offset_left = 448.0
 offset_top = 832.0
 offset_right = 448.0
@@ -218,47 +190,14 @@ offset_bottom = 832.0
 type = 1
 icon = ExtResource("7_uokul")
 research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "1_0_1"
+id = "1_0"
 research_name = "Value upgrade I"
-description = "More value !"
-price_rp = 0
-state = 1
-targets_b = [NodePath("../Value Upgrade2")]
-
-[node name="Speed Upgrade2" parent="Processor" instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = -512.0
-offset_top = 1408.0
-offset_right = -512.0
-offset_bottom = 1408.0
-type = 0
-level = 2
-icon = ExtResource("2_hfxsp")
-research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "0_0_2"
-research_name = "Speed upgrade II"
-description = "Make it faster !"
-price = 0
-state = 1
-
-[node name="Value Upgrade2" parent="Processor" instance=ExtResource("1_4p8a7")]
-visible = true
-offset_left = 448.0
-offset_top = 1408.0
-offset_right = 448.0
-offset_bottom = 1408.0
-type = 1
-level = 2
-icon = ExtResource("7_uokul")
-research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "1_0_2"
-research_name = "Value upgrade II"
 description = "More value !"
 price_rp = 0
 state = 1
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(-2168, 1297, 1430, 1327, 3543, 1341, 3775, 689, 3221, 622, 2649, 672, 2233, 504, 2206, 155, 2317, -114, 3631, -175, 4417, -108, 4588, 746, 4753, 1774, 4531, 2510, 3950, 3125, 2156, 3306, 556, 3333, -704, 3108, -1564, 2933, -2350, 1814, -2165, 1300)
+points = PackedVector2Array(-2168, 1297, -814, 1246, 1430, 1327, 3543, 1341, 3775, 689, 3221, 622, 2649, 672, 2233, 504, 2206, 155, 2317, -114, 3631, -175, 4417, -108, 4588, 746, 4753, 1774, 4531, 2510, 3950, 3125, 2156, 3306, 556, 3333, -704, 3108, -1564, 2933, -2350, 1814, -2165, 1300)
 closed = true
 width = 30.0
 default_color = Color(0.270588, 0.270588, 0.270588, 1)

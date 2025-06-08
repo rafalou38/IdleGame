@@ -26,7 +26,7 @@ func _process(_delta: float) -> void:
 	var research = Economy.research[Economy.active_research]
 	var research_type = Upgrades.upgrade_type_from_id(Economy.active_research)
 	var research_node = Upgrades.node_type_from_id(Economy.active_research)
-	var research_level = Upgrades.level_from_id(Economy.active_research)
+	var research_level = Economy.research[Economy.active_research].get("level", 0)
 
 	# if not Economy.research.has("price"): return
 

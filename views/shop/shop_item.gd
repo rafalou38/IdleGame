@@ -11,7 +11,7 @@ var price: float = 0
 signal buy
 
 func apply_props():
-	var id := Upgrades.upgrade_id(type, Upgrades.UpgradeType.UNLOCK, 1)
+	var id := Upgrades.upgrade_id(type, Upgrades.UpgradeType.UNLOCK)
 	# print(id, Economy.research.has(id))
 	if Engine.is_editor_hint():
 		unlocked = true

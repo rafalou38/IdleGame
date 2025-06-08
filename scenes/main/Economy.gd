@@ -22,7 +22,8 @@ static func save():
 			"spent_rp": research[id]["spent_rp"],
 			"price": research[id]["price"],
 			"price_rp": research[id]["price_rp"],
-			"state": research[id]["state"]
+			"state": research[id]["state"],
+			"level": research[id]["level"]
 		}
 
 	var serialized_economy = {
@@ -80,7 +81,7 @@ func _process(_delta: float) -> void:
 		
 	if (active_research == ""):
 		for r in research:
-			if (research[r].state == ResearchTreeItem.State.RESEARCHING):
+			if research[r]["state"] == ResearchTreeItem.State.RESEARCHING:
 				active_research = r
 
 	refresh_dfs()

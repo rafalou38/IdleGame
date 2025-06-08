@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxnaw2c3ujy4s" path="res://scenes/research/tree_item.gd" id="1_yrr6c"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_4maex"]
-[ext_resource type="Texture2D" uid="uid://tcovup47adfu" path="res://sprites/icons/processor.svg" id="2_ljgsa"]
+[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="2_pug5j"]
 [ext_resource type="Texture2D" uid="uid://ctk7ngshskwtj" path="res://sprites/dash-line.svg" id="3_am7js"]
 [ext_resource type="Texture2D" uid="uid://do42tv7xqrnmb" path="res://sprites/bit_64.svg" id="3_lr6ln"]
 [ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="6_5kwph"]
@@ -29,7 +29,7 @@ font = ExtResource("2_4maex")
 font_size = 76
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pug5j"]
-bg_color = Color(0.317647, 0.396078, 0.290196, 1)
+bg_color = Color(0.396078, 0.290196, 0.290196, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -219,9 +219,9 @@ tracks/12/path = NodePath("container/VBoxContainer/Button/CenterContainer/HBoxCo
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(100, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 241.5, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0, 0.001)
 }
 tracks/13/type = "bezier"
 tracks/13/imported = false
@@ -532,7 +532,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("container/VBoxContainer/ResearchBox/Panel:size:x")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -540,6 +540,30 @@ tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(720.249, -0.25, 0, 0.566667, -17.346, 0, -0.166667, 406.956, 0.25, 0),
 "times": PackedFloat32Array(1.1, 2)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("container/VBoxContainer/ResearchBox/VBoxContainer:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(692, 198), Vector2(692, 198)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("container/VBoxContainer/ResearchBox/VBoxContainer:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8sxv0"]
@@ -625,6 +649,30 @@ tracks/6/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.452677, 0.00547995, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(1.2, 2)
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("container/VBoxContainer/ResearchBox:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("container/VBoxContainer/Button/CenterContainer/HBoxContainer:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gd0j6"]
 _data = {
@@ -636,17 +684,16 @@ _data = {
 }
 
 [node name="TreeItem" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_yrr6c")
-icon = ExtResource("2_ljgsa")
-research_color = Color(0.317647, 0.396078, 0.290196, 1)
-research_name = "Processor"
-description = "Increase unit values"
+icon = ExtResource("2_pug5j")
+research_color = Color(0.396078, 0.290196, 0.290196, 1)
+id = "3_0"
+research_name = "Shop"
+description = "Units can be sold here."
 price = 10
 price_rp = 10
-dirty = true
 line_texture = ExtResource("3_am7js")
 
 [node name="container" type="PanelContainer" parent="."]
@@ -696,7 +743,7 @@ offset_right = 45.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ljgsa")
+texture = ExtResource("2_pug5j")
 expand_mode = 1
 stretch_mode = 5
 
@@ -706,12 +753,12 @@ size_flags_vertical = 4
 
 [node name="Name" type="Label" parent="container/VBoxContainer/HBoxContainer/Title"]
 layout_mode = 2
-text = "Processor"
+text = "Shop"
 label_settings = SubResource("LabelSettings_0gi8e")
 
 [node name="Description" type="Label" parent="container/VBoxContainer/HBoxContainer/Title"]
 layout_mode = 2
-text = "Increase unit values"
+text = "Units can be sold here."
 label_settings = SubResource("LabelSettings_x2al1")
 
 [node name="Button" type="Button" parent="container/VBoxContainer"]
@@ -793,6 +840,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -283.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vmr2t")
@@ -802,10 +850,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -128.5
-offset_top = -40.5
-offset_right = 121.5
-offset_bottom = 40.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
