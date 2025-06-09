@@ -6,3 +6,8 @@
 - [ ]  Economie
     - [ ] Ajuster les prix (trop cher)  
 - [ ]  PUBLISH
+
+
+Bugs:
+- Camera movement over drawer in research
+- Drag in shop

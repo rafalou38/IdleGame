@@ -80,7 +80,8 @@ func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		id = Upgrades.upgrade_id(node_type, type)
 		_config_ui()
-		# animator.play("RESET")
+		if owner != null:
+			animator.play("RESET")
 		visible = true
 		$container.modulate.a = 1
 	 
@@ -198,7 +199,6 @@ func _end_research():
 		level =  Economy.research[id]["level"] + 1
 		Economy.active_research = ""
 		BottomBar.ping_research += 1
-		animator.play("reset")
 	_config_ui()
 	refresh_state()
 

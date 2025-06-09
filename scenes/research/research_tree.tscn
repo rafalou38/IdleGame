@@ -59,7 +59,7 @@ id = "3_7"
 research_name = "Lab"
 description = "Convert basic units into research points."
 price_rp = 0
-state = 1
+state = 2
 targets_r = [NodePath("../Tether")]
 targets_b = [NodePath("../Processor")]
 metadata/_edit_use_anchors_ = true
@@ -110,7 +110,6 @@ research_name = "Mine"
 description = "Generate units at a fixed rate."
 state = 1
 targets_b = [NodePath("Speed Upgrade3")]
-metadata/_edit_use_anchors_ = true
 
 [node name="Speed Upgrade3" parent="Mine" instance=ExtResource("1_4p8a7")]
 offset_top = 832.0
@@ -133,7 +132,6 @@ price = 30
 price_rp = 0
 state = 1
 targets_b = [NodePath("RP Market")]
-metadata/_edit_use_anchors_ = true
 
 [node name="RP Market" parent="Shop" instance=ExtResource("1_4p8a7")]
 offset_top = 572.0
@@ -165,7 +163,6 @@ state = 1
 targets_r = [NodePath("../Mine")]
 targets_b = [NodePath("Speed Upgrade"), NodePath("Value Upgrade")]
 targets_l = [NodePath("../Shop")]
-metadata/_edit_use_anchors_ = true
 
 [node name="Speed Upgrade" parent="Processor" instance=ExtResource("1_4p8a7")]
 offset_left = -512.0
