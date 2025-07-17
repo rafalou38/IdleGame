@@ -1,32 +1,53 @@
 extends HBoxContainer
 class_name UpgradeItem
 
-@export var node_type: Nodes.NodeType = Nodes.NodeType.SHOP
-@export var upgrade_type: Upgrades.UpgradeType = Upgrades.UpgradeType.SPEED
+var node : GameNode
+var upgrade_type: Upgrades.UpgradeType = Upgrades.UpgradeType.SPEED
 
-@export var current_level: int = 1
-var id: String = ""
 var price: int = 0
+var level := 0
+var unlocked_level := 0
+var id := ""
+@onready var button: Button = $Button
+
+
+func _ready():
+	_sync()
 
 func _sync():
-	# match upgrade_type:
-	# 	Upgrades.UpgradeType.SPEED:
-	# 		$Title/Name.text = "Speed Upgrade"
-	# 		$Title/HB/Value.text = "1.5s"
-	# 	Upgrades.UpgradeType.VALUE:
-	# 		$Title/Name.text = "Value Upgrade"
-	# 		$Title/HB/Value.text = "1.1x"
-	# 	Upgrades.UpgradeType.RP_MARKET:
-	# 		$Title/Name.text = "RP market"
-	# 		$Title/HB/Value.text = ""
-
-	# 	_:
-	# 		$Title/Name.text = "UB"
-	$Title/Name.text = L.upgrade_name(upgrade_type)
-	$Title/HB/Value.text = L.upgrade_desc(upgrade_type)
-	$Title/HB/Level.text = "Level " + str(current_level)
-	$Logo/Icon.texture = Upgrades.upgrade_icons(upgrade_type)
+	id = Upgrades.upgrade_id(node.type, upgrade_type)
+	if !node.data.upgrades.has(upgrade_type):
+		node.data.upgrades[upgrade_type] = 0
+		level = 0
+	else:
+		level = node.data.upgrades[upgrade_type]
 	
+	if Economy.research.has(id):
+		if Economy.research[id].state == ResearchTreeItem.State.BOUGHT:
+			unlocked_level = Economy.research[id].level
+		else:
+			unlocked_level = Economy.research[id].level - 1
+	
+	$Title/Name.text = L.upgrade_name(upgrade_type) 
+	$Logo/Icon.texture = Upgrades.upgrade_icons(upgrade_type)
+
+
+	$Title/HB/Level.text = "Level " + str(level)
+	$Title/HB/Value.text = "1.0x"
 
 func _process(_delta: float) -> void:
-	_sync()
+	if level < unlocked_level:
+		button.visible = true
+	else:
+		button.visible = false
+		
+	if Economy.money < price:
+		button.disabled = true
+	else:
+		button.disabled = false
+
+func _on_button_pressed() -> void:
+	if Economy.money >= price:
+		Economy.money -= price
+		node.data.upgrades[upgrade_type] += 1
+		_sync()

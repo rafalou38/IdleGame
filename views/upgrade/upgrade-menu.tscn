@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bs1apde631l0q"]
+[gd_scene load_steps=25 format=3 uid="uid://bs1apde631l0q"]
 
 [ext_resource type="Script" uid="uid://dr85477vn8pli" path="res://views/upgrade/upgrade_menu.gd" id="1_4xggu"]
 [ext_resource type="PackedScene" uid="uid://dfsb3qlietv5l" path="res://scenes/main/node/base/ui/node_ui.tscn" id="1_8g55f"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://blduxlwgwj0ba" path="res://sprites/dash-line.png" id="2_o3lfh"]
 [ext_resource type="Texture2D" uid="uid://bw6saegs2mx80" path="res://sprites/icons/close.svg" id="3_o5dub"]
 [ext_resource type="PackedScene" uid="uid://cqe3nuqvoyiml" path="res://views/upgrade/unit_list_item.tscn" id="7_4xggu"]
-[ext_resource type="PackedScene" uid="uid://b1ud4qawmtjdw" path="res://views/upgrade/upgrade_item.tscn" id="7_o3lfh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u0q5p"]
 shader = ExtResource("1_o3lfh")
@@ -25,7 +24,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xggu"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3lfh"]
 bg_color = Color(0, 0.645167, 0.79, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -290,7 +289,7 @@ theme_override_constants/separation = 36
 [node name="node_ui" parent="Control/PanelContainer/VBoxContainer/Header" instance=ExtResource("1_8g55f")]
 custom_minimum_size = Vector2(142, 142)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4xggu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_o3lfh")
 
 [node name="Heading" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer/Header"]
 layout_mode = 2
@@ -445,13 +444,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8o8cq")
 [node name="UpgradesList" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer/Upgrade/UpgradeContainer"]
 layout_mode = 2
 theme_override_constants/separation = 32
-
-[node name="UpgradeItem" parent="Control/PanelContainer/VBoxContainer/Upgrade/UpgradeContainer/UpgradesList" instance=ExtResource("7_o3lfh")]
-layout_mode = 2
-upgrade_type = 0
-
-[node name="UpgradeItem2" parent="Control/PanelContainer/VBoxContainer/Upgrade/UpgradeContainer/UpgradesList" instance=ExtResource("7_o3lfh")]
-layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

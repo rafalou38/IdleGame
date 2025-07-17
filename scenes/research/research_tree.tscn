@@ -65,6 +65,7 @@ targets_b = [NodePath("../Processor")]
 metadata/_edit_use_anchors_ = true
 
 [node name="Tether" parent="." node_paths=PackedStringArray("targets_r") instance=ExtResource("1_4p8a7")]
+visible = false
 offset_left = 1320.0
 offset_top = 128.0
 offset_right = 1320.0
@@ -82,6 +83,7 @@ targets_r = [NodePath("../accelerator")]
 metadata/_edit_use_anchors_ = true
 
 [node name="accelerator" parent="." instance=ExtResource("1_4p8a7")]
+visible = false
 offset_left = 2444.0
 offset_top = 128.0
 offset_right = 2444.0
@@ -98,6 +100,7 @@ state = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Mine" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = false
 offset_left = 2444.0
 offset_top = 768.0
 offset_right = 2444.0
@@ -112,28 +115,33 @@ state = 1
 targets_b = [NodePath("Speed Upgrade3")]
 
 [node name="Speed Upgrade3" parent="Mine" instance=ExtResource("1_4p8a7")]
+visible = false
 offset_top = 832.0
 offset_bottom = 832.0
 type = 0
+node_type = 1
 icon = ExtResource("2_hfxsp")
 research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "0_0"
+id = "0_1"
 research_name = "Speed upgrade I"
 description = "Make it faster !"
 price_rp = 40
 state = 1
 
 [node name="Shop" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
+visible = false
 offset_left = -2067.0
 offset_top = 768.0
 offset_right = -2067.0
 offset_bottom = 768.0
+research_color = Color(0.396078, 0.290196, 0.290196, 1)
 price = 30
 price_rp = 0
 state = 1
 targets_b = [NodePath("RP Market")]
 
 [node name="RP Market" parent="Shop" instance=ExtResource("1_4p8a7")]
+visible = false
 offset_top = 572.0
 offset_bottom = 572.0
 type = 2
@@ -148,6 +156,7 @@ price_rp = 0
 state = 1
 
 [node name="Processor" parent="." node_paths=PackedStringArray("targets_r", "targets_b", "targets_l") instance=ExtResource("1_4p8a7")]
+visible = false
 offset_left = 128.0
 offset_top = 768.0
 offset_right = 128.0
@@ -165,14 +174,16 @@ targets_b = [NodePath("Speed Upgrade"), NodePath("Value Upgrade")]
 targets_l = [NodePath("../Shop")]
 
 [node name="Speed Upgrade" parent="Processor" instance=ExtResource("1_4p8a7")]
+visible = false
 offset_left = -512.0
 offset_top = 832.0
 offset_right = -512.0
 offset_bottom = 832.0
 type = 0
+node_type = 2
 icon = ExtResource("2_hfxsp")
 research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "0_0"
+id = "0_2"
 research_name = "Speed upgrade I"
 description = "Make it faster !"
 price = 0
@@ -180,14 +191,16 @@ price_rp = 0
 state = 1
 
 [node name="Value Upgrade" parent="Processor" instance=ExtResource("1_4p8a7")]
+visible = false
 offset_left = 448.0
 offset_top = 832.0
 offset_right = 448.0
 offset_bottom = 832.0
 type = 1
+node_type = 2
 icon = ExtResource("7_uokul")
 research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
-id = "1_0"
+id = "1_2"
 research_name = "Value upgrade I"
 description = "More value !"
 price_rp = 0

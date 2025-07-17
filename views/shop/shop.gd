@@ -66,6 +66,7 @@ func buy(type: Nodes.NodeType):
 	data.placed = false
 	data.position = Vector2(0,0)
 	data.outbound_connections = []
+	data.upgrades = {}
 	Economy.owned.append(data)
 
 	BottomBar.ping_home += 1

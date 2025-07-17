@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=23 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" uid="uid://b723qevbbiddq" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cptukrisif4kk" path="res://views/research/research_box.tscn" id="6_1n38w"]
 [ext_resource type="PackedScene" uid="uid://ctrbq4nx72wlm" path="res://views/BottomBar/bottom_bar.tscn" id="7_bwwt3"]
 [ext_resource type="PackedScene" uid="uid://bs1apde631l0q" path="res://views/upgrade/upgrade-menu.tscn" id="7_sakc4"]
+[ext_resource type="PackedScene" uid="uid://b1ud4qawmtjdw" path="res://views/upgrade/upgrade_item.tscn" id="8_fnvwe"]
 [ext_resource type="PackedScene" uid="uid://cdwl6oyxucyto" path="res://views/Inventory/inventory.tscn" id="8_r8hkb"]
 [ext_resource type="PackedScene" uid="uid://lldatafbjf3j" path="res://views/tutorial.tscn" id="8_vstl3"]
 [ext_resource type="Script" uid="uid://b5e58tcm5vd52" path="res://scenes/main/Economy.gd" id="10_3tfdc"]
@@ -326,8 +327,8 @@ node_handler = NodePath("../../../../Home/Node Handler")
 layout_mode = 1
 
 [node name="Panel" parent="CanvasLayer/VBoxContainer/Main/Inventory" index="0"]
-offset_top = -48.0087
-offset_bottom = 290.99
+offset_top = -48.0037
+offset_bottom = 290.995
 
 [node name="Research Box" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("6_1n38w")]
 layout_mode = 1
@@ -336,6 +337,7 @@ offset_right = 0.0
 
 [node name="UpgradeMenu" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("7_sakc4")]
 layout_mode = 1
+upgrade_item_ref = ExtResource("8_fnvwe")
 
 [node name="BottomBar" parent="CanvasLayer/VBoxContainer" instance=ExtResource("7_bwwt3")]
 layout_mode = 2

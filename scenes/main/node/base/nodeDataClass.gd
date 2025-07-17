@@ -10,6 +10,7 @@ var position: Vector2 = Vector2(0, 0)
 var outbound_connections: Array[GameNode.Connection] = []
 var stale_outbound_connections_list: Array[Dictionary] = []
 var stale_outbound_connections: bool = false
+var upgrades : Dictionary[Upgrades.UpgradeType, int]
 
 func serialize() -> Dictionary:
 	var outbound_connections_serialized = outbound_connections.map(func(o): return {
@@ -27,7 +28,8 @@ func serialize() -> Dictionary:
 			"x": position.x,
 			"y": position.y
 		},
-		"outbound_connections": outbound_connections_serialized
+		"outbound_connections": outbound_connections_serialized,
+		"upgrades": upgrades
 	}
 
 static func deserialize(d: Dictionary) -> NodeData:
@@ -37,10 +39,13 @@ static func deserialize(d: Dictionary) -> NodeData:
 	node.placed = d["placed"]
 	node.position = Vector2(d["position"]["x"], d["position"]["y"])
 	node.outbound_connections.clear()
+	for up_id in d["upgrades"]:
+		node.upgrades[up_id] = int(d["upgrades"][up_id])
 
 	if (d["outbound_connections"].size() > 0):
 		node.stale_outbound_connections = true
 		node.stale_outbound_connections_list.assign(d["outbound_connections"])
 
-	return node
+	print(node)
 
+	return node

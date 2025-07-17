@@ -194,10 +194,15 @@ func _end_research():
 		BottomBar.ping_research += 1
 		BottomBar.ping_shop += 1
 	else:
-		state = State.AVAILABLE
+
+		# REPEAT UPGRADE
+		
 		Economy.research[id]["state"] = State.AVAILABLE
-		level =  Economy.research[id]["level"] + 1
+		Economy.research[id]["level"] += 1
 		Economy.active_research = ""
+
+		level += 1
+		state = State.AVAILABLE
 		BottomBar.ping_research += 1
 	_config_ui()
 	refresh_state()
