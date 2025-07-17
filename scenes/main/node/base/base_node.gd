@@ -62,9 +62,10 @@ func _ready():
 var update_timer := 0.0
 
 func _process(delta):
+	$rb/Control/node_ui.progress = progress
+	
 	update_timer += delta
 	if update_timer >= 0.1:
-		$rb/Control/node_ui.progress = progress
 		update_units()
 		update_timer = 0.0
 		

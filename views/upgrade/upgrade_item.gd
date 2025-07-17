@@ -35,12 +35,21 @@ func _sync():
 		else:
 			unlocked_level = Economy.research[id].level - 1
 	
+	price = Prices.upgrade_price(upgrade_type, node.type, level+1) / 10
+
 	$Title/Name.text = L.upgrade_name(upgrade_type) 
 	$Logo/Icon.texture = Upgrades.upgrade_icons(upgrade_type)
 
-
+	$Button/VB/HB/Price.text = str(price)
 	$Title/HB/Level.text = "Level " + str(level)
-	$Title/HB/Value.text = "1.0x"
+
+	if upgrade_type == Upgrades.UpgradeType.SPEED && node.type == Nodes.NodeType.MINE:
+		$Title/HB/Value.text = str(round(Values.mine_speed_duration(level)* 100)/100) + "s"
+	elif node.type == Nodes.NodeType.PROCESSOR && upgrade_type == Upgrades.UpgradeType.SPEED:
+		$Title/HB/Value.text = str(round(Values.process_speed_duration(level)* 100)/100) + "s"
+	elif node.type == Nodes.NodeType.PROCESSOR && upgrade_type == Upgrades.UpgradeType.VALUE:
+		$Title/HB/Value.text = "+" + str(round(Values.process_value_increase(level)* 100)/100)
+
 
 func _process(_delta: float) -> void:
 	if level < unlocked_level:

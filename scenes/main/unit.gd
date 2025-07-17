@@ -20,6 +20,7 @@ static var label_settings_initialized := false
 func spawn(con: GameNode.Connection):
 	current_connection = con
 	active = true
+	dirty = true
 	global_position = con.fromKnob.global_position
 	progress = 0.0
 	loop = false

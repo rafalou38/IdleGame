@@ -182,8 +182,6 @@ _data = {
 [node name="Research Box" type="PanelContainer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -1000.0
-offset_right = -1000.0
 offset_bottom = 167.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_06r7i")

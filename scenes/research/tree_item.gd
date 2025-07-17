@@ -74,9 +74,15 @@ func _ready():
 	call_deferred("_config_ui")
 	call_deferred("refresh_state")
 
-
+var prev_current = ""
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+
+	# If active research was reset
+	if(Economy.research.has(id) && state == State.RESEARCHING && Economy.research[id].state == State.AVAILABLE):
+		state = State.AVAILABLE
+		refresh_state()
+
 	if Engine.is_editor_hint():
 		id = Upgrades.upgrade_id(node_type, type)
 		_config_ui()
@@ -165,20 +171,20 @@ func _sync_progress():
 	
 	if state == State.RESEARCHING:
 		# Update progress bar
-		var spent : float = min(price, Economy.research[id]["spent"])
-		var spent_rp : float = min(price_rp, Economy.research[id]["spent_rp"])
+		var spent: float = min(price, Economy.research[id]["spent"])
+		var spent_rp: float = min(price_rp, Economy.research[id]["spent_rp"])
 
-		var progress := (spent + spent_rp)/(price+price_rp)
+		var progress := (spent + spent_rp) / (price + price_rp)
 
-		var text :=  " "
+		var text := " "
 		if (price > 0):
 			text = text + Util.number_to_human(spent) + "/" + Util.number_to_human(price)
 			if (price_rp > 0): text += " "
-		if(price_rp > 0):
+		if (price_rp > 0):
 			text += Util.number_to_human(spent_rp) + "/" + Util.number_to_human(price_rp)
 		
 		$container/VBoxContainer/ResearchBox/VBoxContainer/Label2.text = text
-		if(progress >= 0 and progress <= 1):
+		if (progress >= 0 and progress <= 1):
 			$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
 			$container/VBoxContainer/ResearchBox/Panel.position.x = 0
 			$container/VBoxContainer/ResearchBox/Panel.position.y = 0
@@ -201,6 +207,8 @@ func _end_research():
 		state = State.AVAILABLE
 		
 		Economy.research[id]["state"] = state
+		Economy.research[id]["spent"] = 0
+		Economy.research[id]["spent_rp"] = 0
 		Economy.research[id]["level"] = level
 		Economy.active_research = ""
 
@@ -210,20 +218,38 @@ func _end_research():
 
 
 func _start_research():
+	# Reset active research
+	if(Economy.active_research != ""):
+		Economy.research[Economy.active_research].state = State.AVAILABLE
+	
 	Economy.active_research = id
 	state = State.RESEARCHING
-	Economy.research[id] = {
-		"spent_rp": 0,
-		"price": price,
-		"spent": 0,
-		"price_rp": price_rp,
-		"state": State.RESEARCHING,
-		"level": level
-	}
+
+	if Economy.research.has(id): 
+		Economy.research[id].state = State.RESEARCHING;
+		Economy.research[id].level = level;
+	else:
+		Economy.research[id] = {
+			"spent_rp": 0,
+			"price": price,
+			"spent": 0,
+			"price_rp": price_rp,
+			"state": State.RESEARCHING,
+			"level": level
+		}
 	refresh_state()
 
 
 func refresh_state() -> void:
+	# Compute price
+	if type != Upgrades.UpgradeType.UNLOCK:
+		if type == Upgrades.UpgradeType.VALUE:
+			price = 0
+			price_rp = Prices.upgrade_price(type, node_type, level)
+		else:
+			price = Prices.upgrade_price(type, node_type, level)
+			price_rp = 0
+
 	if prev_state != State.NULL: animator.speed_scale = 2
 
 	match state:

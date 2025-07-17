@@ -121,10 +121,10 @@ func dfs(root: GameNode, rate: float, value: float):
 	match root.type:
 		Nodes.NodeType.MINE:
 			value = root.get_parent().spawn_value
-			rate = root.get_parent().spawn_interval
+			rate = Values.mine_speed_duration(root.get_parent().speed_level)
 		Nodes.NodeType.PROCESSOR:
-			value += root.get_parent().increment
-			rate = max(rate, root.get_parent().process_duration)
+			value += Values.process_value_increase(root.get_parent().value_level)
+			rate = max(rate, Values.process_speed_duration(root.get_parent().speed_level))
 		Nodes.NodeType.LAB:
 			value = 0
 		Nodes.NodeType.SHOP:
