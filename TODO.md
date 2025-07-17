@@ -11,3 +11,5 @@
 Bugs:
 - Camera movement over drawer in research
 - Drag in shop
+- Inventory bad
+- research price box + tree (processor value upgrade)
