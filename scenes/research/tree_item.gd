@@ -197,12 +197,13 @@ func _end_research():
 
 		# REPEAT UPGRADE
 		
-		Economy.research[id]["state"] = State.AVAILABLE
-		Economy.research[id]["level"] += 1
-		Economy.active_research = ""
-
 		level += 1
 		state = State.AVAILABLE
+		
+		Economy.research[id]["state"] = state
+		Economy.research[id]["level"] = level
+		Economy.active_research = ""
+
 		BottomBar.ping_research += 1
 	_config_ui()
 	refresh_state()

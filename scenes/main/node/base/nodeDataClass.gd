@@ -39,8 +39,8 @@ static func deserialize(d: Dictionary) -> NodeData:
 	node.placed = d["placed"]
 	node.position = Vector2(d["position"]["x"], d["position"]["y"])
 	node.outbound_connections.clear()
-	for up_id in d["upgrades"]:
-		node.upgrades[up_id] = int(d["upgrades"][up_id])
+	for up_id_s in d["upgrades"]:
+		node.upgrades[int(up_id_s)] = int(d["upgrades"][up_id_s])
 
 	if (d["outbound_connections"].size() > 0):
 		node.stale_outbound_connections = true

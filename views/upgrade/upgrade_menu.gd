@@ -37,8 +37,9 @@ func _configure_upgrades():
 		var node_type := Upgrades.node_type_from_id(upgrade_id)
 		var research_type := Upgrades.upgrade_type_from_id(upgrade_id)
 
-		if (research_type != Upgrades.UpgradeType.UNLOCK && node_type == current_node.type
-			&& (r.state == ResearchTreeItem.State.BOUGHT || (r.level > 1 ))
+		if (node_type == current_node.type
+			&& research_type != Upgrades.UpgradeType.UNLOCK
+			&& (r.state == ResearchTreeItem.State.BOUGHT || (r.level > 1))
 		):
 			var item = upgrade_item_ref.instantiate()
 			item.node = current_node
@@ -75,12 +76,9 @@ func _sync():
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if (event.pressed):
-			# var touch_position: Vector2 = Util.screen_to_world(get_viewport(), event.position)
-			# var bg_rect: Rect2 = $TextureRect.get_global_rect()
-
 			var fg_rect: Rect2 = $Control/PanelContainer.get_global_rect()
 
-			if (!Util.collide_rect(fg_rect, event.position)): # && _collide(bg_rect, event.position)):
+			if (!Util.collide_rect(fg_rect, event.position)):
 				close()
 
 func anim_end(anim_name):
