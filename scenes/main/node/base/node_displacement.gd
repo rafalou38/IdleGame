@@ -15,6 +15,8 @@ var target_position := Vector2(0, 0)
 var offset := Vector2(0, 0)
 var initial_drag_position := Vector2(0, 0)
 
+static var dragging_node : GameNode = null
+
 func _ready():
 	handler = find_parent("Node Handler")
 	assert(handler != null, "Node should be in a node Handler")
@@ -60,14 +62,19 @@ func initiate_drag(event: InputEventScreenTouch):
 	drag_index = event.index
 	timer_start = Time.get_ticks_msec()
 
+	dragging_node = owner
+
 func cancel_drag(a):
 	if a and drag_initiated and Time.get_ticks_msec() - timer_start < long_press_delay_ms  and !CameraMovement.control_locks.has("knob-manager/" + str(drag_index)):
 		# NodeHandler.speed_up_factor += 1
 		if(CameraMovement.control_locks.is_empty()):
 			get_node("/root/root/CanvasLayer/VBoxContainer/Main/UpgradeMenu").open(owner)
 
+	if Inventory.dropping:
+		handler.move_to_inventory(dragging_node.data)
+
 	drag_initiated = false
-			
+	dragging_node = null
 	dragging = false
 	CameraMovement.control_locks.erase("NodeDisplacement/" + str(drag_index))
 	drag_index = -1
@@ -97,12 +104,15 @@ func _process(_delta):
 			var new_parent = $"../../../CanvasLayer"
 			$"../../..".remove_child($"../..")
 			new_parent.add_child($"../..")
-	else: 
+	elif get_parent().data.placed: 
 		$Control.scale = Vector2(1, 1)
 		if $"../../.." is CanvasLayer:
 			var new_parent = $"../../../.."
 			$"../../..".remove_child($"../..")
 			new_parent.add_child($"../..")
+	else:
+		if $"../../.." is CanvasLayer:
+			$"../../..".remove_child($"../..")
 
 	get_parent().refreshLines()
 

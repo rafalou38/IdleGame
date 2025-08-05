@@ -57,6 +57,18 @@ func drag_node(nodeInfo: NodeData, touch_id: int, point: Vector2):
 	displacement.drag_index = touch_id
 
 
+func move_to_inventory(nodeInfo: NodeData):
+	var f = func c(e):
+		print(e.data.id," ", nodeInfo.id, " ", e.data.id == nodeInfo.id)
+		return e.data.id == nodeInfo.id
+	var node_i := nodes.find_custom(f)
+
+	nodes.remove_at(node_i)
+	
+	nodeInfo.placed = false
+	Inventory.dirty = true
+
+
 func add_node(nodeInfo: NodeData, pos: Vector2):
 	var node_ref = node_ref_by_type[nodeInfo.type]
 	var node = node_ref.instantiate()

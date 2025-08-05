@@ -52,7 +52,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
-	if long_press_id != -1 and Time.get_ticks_msec() - long_press_start_time > 200 and long_press_current_point.distance_to(long_press_start_point) < 10:
+	if long_press_id != -1 and abs(long_press_current_point.y - long_press_start_point.y) > 100:
 		take_out()
 		long_press_id = -1
 
