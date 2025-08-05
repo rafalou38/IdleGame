@@ -38,6 +38,7 @@ func _input(event):
 
 func initiate_drag(event: InputEventScreenTouch):
 	var touch_position = Util.screen_to_world(get_viewport(), event.position)
+	if CameraMovement.is_locked(): return
 	
 	if !is_point_inside_capsule(
 			to_local(touch_position),

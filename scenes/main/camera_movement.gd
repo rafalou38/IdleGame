@@ -21,7 +21,7 @@ func reset_points_origin():
 	for id in points:
 		points[id][0] = points[id][1]
 
-func is_locked():
+static func is_locked():
 	if control_locks.size() > 0:
 		return true
 	else:

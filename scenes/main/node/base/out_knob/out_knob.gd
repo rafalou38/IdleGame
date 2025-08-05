@@ -43,6 +43,8 @@ func _exit_tree():
 	out_knobs.erase(self)
 
 func initiateConnection(origin_pos_new: Vector2):
+	if CameraMovement.is_locked(): return
+	
 	# Check if overlapping node is connected
 	if overlapping_node.connected:
 		return
