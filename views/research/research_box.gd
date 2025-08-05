@@ -24,6 +24,7 @@ func _process(_delta: float) -> void:
 	if Economy.active_research not in Economy.research: return
 
 	var research = Economy.research[Economy.active_research]
+	# print(research)
 	var research_type = Upgrades.upgrade_type_from_id(Economy.active_research)
 	var research_node = Upgrades.node_type_from_id(Economy.active_research)
 	var research_level = Economy.research[Economy.active_research].get("level", 0)
@@ -46,8 +47,8 @@ func _process(_delta: float) -> void:
 	var box = $Container/Panel.get_theme_stylebox("panel", "PanelContainer");
 	box.bg_color = Nodes.node_color(research_node)
 
-	$Container/PanelContainer/VBoxContainer/HBoxContainer/Label.text = str(spent) + "/" + str(research["price"])
-	$Container/PanelContainer/VBoxContainer/HBoxContainer/Label2.text = str(spent_rp) + "/" + str(research["price_rp"])
+	$Container/PanelContainer/VBoxContainer/HBoxContainer/Label.text = Util.number_to_human(spent) + "/" + Util.number_to_human(research["price"])
+	$Container/PanelContainer/VBoxContainer/HBoxContainer/Label2.text = Util.number_to_human(spent_rp) + "/" + Util.number_to_human(research["price_rp"])
 
 	$Container/ProgressBar.value = progress * 100
 

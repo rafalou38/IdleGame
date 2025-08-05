@@ -176,14 +176,9 @@ func _sync_progress():
 
 		var progress := (spent + spent_rp) / (price + price_rp)
 
-		var text := " "
-		if (price > 0):
-			text = text + Util.number_to_human(spent) + "/" + Util.number_to_human(price)
-			if (price_rp > 0): text += " "
-		if (price_rp > 0):
-			text += Util.number_to_human(spent_rp) + "/" + Util.number_to_human(price_rp)
+		$container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Label.text = Util.number_to_human(spent) + "/" + Util.number_to_human(price)
+		$container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Label2.text = Util.number_to_human(spent_rp) + "/" + Util.number_to_human(price_rp)
 		
-		$container/VBoxContainer/ResearchBox/VBoxContainer/Label2.text = text
 		if (progress >= 0 and progress <= 1):
 			$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
 			$container/VBoxContainer/ResearchBox/Panel.position.x = 0
@@ -228,6 +223,11 @@ func _start_research():
 	if Economy.research.has(id): 
 		Economy.research[id].state = State.RESEARCHING;
 		Economy.research[id].level = level;
+		Economy.research[id].spent = 0;
+		Economy.research[id].spent_rp = 0;
+		Economy.research[id].price = price;
+		Economy.research[id].price_rp = price_rp;
+
 	else:
 		Economy.research[id] = {
 			"spent_rp": 0,

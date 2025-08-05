@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1ud4qawmtjdw"]
+[gd_scene load_steps=14 format=3 uid="uid://b1ud4qawmtjdw"]
 
 [ext_resource type="Script" uid="uid://dewebjn6oxyr" path="res://views/upgrade/upgrade_item.gd" id="1_kfcme"]
 [ext_resource type="FontVariation" uid="uid://e6js8xyi0pq7" path="res://fonts/InterBold.tres" id="2_fp7ac"]
@@ -35,12 +35,16 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfcme"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3mtn"]
 bg_color = Color(0.16, 0.16, 0.16, 0.588235)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_h3mtn"]
+font = ExtResource("2_fp7ac")
+font_color = Color(0.65834, 0.65834, 0.65834, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tpw88"]
 font = ExtResource("2_fp7ac")
@@ -108,7 +112,7 @@ custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_7d4gg")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7d4gg")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_kfcme")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_h3mtn")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7d4gg")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7d4gg")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7d4gg")
@@ -125,8 +129,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 4
 alignment = 1
+
+[node name="HB2" type="HBoxContainer" parent="Button/VB"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Price" type="Label" parent="Button/VB/HB2"]
+layout_mode = 2
+text = "Lv 2"
+label_settings = SubResource("LabelSettings_h3mtn")
 
 [node name="HB" type="HBoxContainer" parent="Button/VB"]
 layout_mode = 2

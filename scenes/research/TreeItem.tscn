@@ -69,10 +69,9 @@ bg_color = Color(0.176471, 0.176471, 0.176471, 1)
 font = ExtResource("2_4maex")
 font_size = 41
 
-[sub_resource type="LabelSettings" id="LabelSettings_xcy6d"]
+[sub_resource type="LabelSettings" id="LabelSettings_oniiu"]
 font = ExtResource("2_4maex")
-font_size = 21
-font_color = Color(0.61, 0.61, 0.61, 1)
+font_size = 20
 
 [sub_resource type="Animation" id="Animation_jputf"]
 length = 0.001
@@ -876,7 +875,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -283.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vmr2t")
@@ -896,11 +894,47 @@ text = "Researching"
 label_settings = SubResource("LabelSettings_5mshb")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="container/VBoxContainer/ResearchBox/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="container/VBoxContainer/ResearchBox/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.584314)
 layout_mode = 2
-text = "1740248826s"
-label_settings = SubResource("LabelSettings_xcy6d")
-horizontal_alignment = 1
+alignment = 1
+
+[node name="Control" type="CenterContainer" parent="container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Control"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("3_lr6ln")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "--/--"
+label_settings = SubResource("LabelSettings_oniiu")
+
+[node name="Spacer" type="Control" parent="container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Control2" type="CenterContainer" parent="container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Control2"]
+modulate = Color(0.501788, 0.768851, 0.96597, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("6_nj1l7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "--/--"
+label_settings = SubResource("LabelSettings_oniiu")
 
 [node name="ConnectorBox" type="VBoxContainer" parent="container"]
 layout_mode = 2

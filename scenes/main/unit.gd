@@ -14,7 +14,7 @@ var dirty := false
 var current_connection: GameNode.Connection = null
 var active := false
 
-static var label_settings : Dictionary[int, LabelSettings]
+static var label_settings: Dictionary[int, LabelSettings]
 static var label_settings_initialized := false
 
 func spawn(con: GameNode.Connection):
@@ -56,7 +56,7 @@ func _ready():
 
 
 func sync():
-	$Label.text = str(value)
+	$Label.text = Util.number_to_human(value)
 	var new_settings: LabelSettings
 	if value < 100:
 		new_settings = label_settings[100]
@@ -81,7 +81,7 @@ func sync():
 func _process(delta):
 	if active:
 		if dirty:
-			sync()
+			sync ()
 			dirty = false
 
 		progress = progress + delta * speed # * (NodeHandler.speed_up_factor)**2

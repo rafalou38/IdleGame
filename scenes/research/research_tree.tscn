@@ -121,7 +121,7 @@ research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 id = "0_1"
 research_name = "Speed upgrade I"
 description = "Make it faster !"
-price_rp = 40
+price_rp = 0
 state = 1
 
 [node name="Shop" parent="." node_paths=PackedStringArray("targets_b") instance=ExtResource("1_4p8a7")]
@@ -129,7 +129,6 @@ offset_left = -2067.0
 offset_top = 768.0
 offset_right = -2067.0
 offset_bottom = 768.0
-research_color = Color(0.396078, 0.290196, 0.290196, 1)
 price = 30
 price_rp = 0
 state = 1
@@ -178,7 +177,6 @@ research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 id = "0_2"
 research_name = "Speed upgrade I"
 description = "Make it faster !"
-price = 0
 price_rp = 0
 state = 1
 
@@ -194,19 +192,19 @@ research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 id = "1_2"
 research_name = "Value upgrade I"
 description = "More value !"
-price_rp = 0
+price = 0
 state = 1
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(-2168, 1297, -814, 1246, 1430, 1327, 3543, 1341, 3775, 689, 3221, 622, 2649, 672, 2233, 504, 2206, 155, 2317, -114, 3631, -175, 4417, -108, 4588, 746, 4753, 1774, 4531, 2510, 3950, 3125, 2156, 3306, 556, 3333, -704, 3108, -1564, 2933, -2350, 1814, -2165, 1300)
+points = PackedVector2Array(-2168, 1297, -939, 1269, -589, 2567, 2472, 2789, 4174, 1827, 3775, 689, 3221, 622, 2649, 672, 2233, 504, 2206, 155, 2317, -114, 3631, -175, 4417, -108, 4588, 746, 4753, 1774, 4531, 2510, 3950, 3125, 2156, 3306, 556, 3333, -704, 3108, -1564, 2933, -2350, 1814, -2165, 1300)
 closed = true
 width = 30.0
 default_color = Color(0.270588, 0.270588, 0.270588, 1)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 1474.0
-offset_top = 1283.0
-offset_right = 1867.0
-offset_bottom = 1526.0
+offset_left = 1629.0
+offset_top = 2545.0
+offset_right = 2022.0
+offset_bottom = 2788.0
 text = "WIP"
 label_settings = SubResource("LabelSettings_t2me3")

@@ -40,7 +40,10 @@ static func number_to_human(n: float) -> String:
 	elif n > 1_000:
 		n = n / 1000
 		unit = "k"
-
+	elif n >= 10:
+		n = round(n)
+	else:
+		n = round(n*10)/10
 	n = round(n * 100) / 100
 	
 	return str(n) + unit

@@ -4,29 +4,32 @@ static func node_buy(type: Nodes.NodeType, own_count: int) -> float:
 	var x = own_count
 	match type:
 		Nodes.NodeType.SHOP:
-			return 9.0 ** (x ** 1.45 + 1)
+			return 9.0 ** (x ** 1.2 + 1)
 		Nodes.NodeType.MINE:
-			return 8.0 ** (x ** 1.35 + 1)
+			return 8.0 ** (x ** 1.1 + 1)
+			# 8 ^ {x ^ 1.1 + 1}
 		Nodes.NodeType.PROCESSOR:
-			return 9.0 ** (log(x + 1) ** 1.8 + 1)
+			return 9.0 ** (x ** 0.4 + 1)
+			# 9 ^ {\log(x + 1) ^ 1.8 + 1}
 		Nodes.NodeType.REFINERY:
 			return Util.factorial(x + 6) ** (9 / 10.0)
 		Nodes.NodeType.TETHER:
-			return 9.0 ** (x ** 1.4 + 1)
+			return 9.0 ** (x ** 0.4 + 1)
 		Nodes.NodeType.LAB:
-			return 9.0 ** (x ** 1.6 + 1)
+			return 9.0 ** (x ** 1.2 + 1)
 		Nodes.NodeType.RESEARCH_CENTER:
-			return 9.0 ** (x ** 1.6 + 1)
+			return 9.0 ** (x ** 1.2 + 1)
 	return 1
 
 
 static func upgrade_price(type: Upgrades.UpgradeType, node: Nodes.NodeType, level: int):
 	if node == Nodes.NodeType.MINE && type == Upgrades.UpgradeType.SPEED:
 		return 10 * pow(level, 3 + 0.04 * level)
+		# 10 * x ^ {3 + 0.04 * x}
 	if node == Nodes.NodeType.PROCESSOR && type == Upgrades.UpgradeType.SPEED:
 		return 10 * pow(level, 2 + 0.02 * level)
 	if node == Nodes.NodeType.PROCESSOR && type == Upgrades.UpgradeType.VALUE:
-		return 10 * pow(level, 2 + 0.05 * level)
+		return 10 * pow(level, 2 + 0.04 * level)
 
 	if type == Upgrades.UpgradeType.RP_MARKET:
 		return 100

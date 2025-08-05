@@ -51,19 +51,29 @@ func _sync():
 		$Title/HB/Value.text = "+" + str(round(Values.process_value_increase(level)* 100)/100)
 
 
-func _process(_delta: float) -> void:
-	if level < unlocked_level:
-		button.visible = true
-	else:
-		button.visible = false
-		
-	if Economy.money < price:
+func _process(_delta: float) -> void:		
+	# print(level," ", unlocked_level)
+	if Economy.money < price || level >= unlocked_level:
 		button.disabled = true
+		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		# button.modulate.a = 0.5
 	else:
 		button.disabled = false
+		button.mouse_filter = Control.MOUSE_FILTER_PASS
+		# button.modulate.a = 1
+	
+	if level < unlocked_level:
+		$Button/VB/HB.visible = true
+		$Button/VB/HB2.visible = true
+		$Button/VB/HB2.visible = true
+		$Button/VB/HB2/Price.text = "Lvl " + str(level+1)
+	else:
+		$Button/VB/HB.visible = false
+		$Button/VB/HB2.visible = true
+		$Button/VB/HB2/Price.text = "LOCKED"
 
 func _on_button_pressed() -> void:
-	if Economy.money >= price:
+	if Economy.money >= price && level < unlocked_level:
 		Economy.money -= price
 		node.data.upgrades[upgrade_type] += 1
 		_sync()
