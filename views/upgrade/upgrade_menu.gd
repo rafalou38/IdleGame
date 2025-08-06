@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 
 func _sync():
 	if (current_node == null): return
-
+	$Control/PanelContainer/VBoxContainer/Processing/ProgressBar.value = current_node.progress * 100
 	if prev_cnt != current_node.input_queue.size():
 		$Control/PanelContainer/VBoxContainer/InputQueue/QueueCOntainer/HB/Counter/Label.text = str(current_node.input_queue.size())
 		prev_cnt = current_node.input_queue.size()
