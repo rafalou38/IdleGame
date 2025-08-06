@@ -1,3 +1,4 @@
+@tool
 extends Label
 
 
@@ -25,7 +26,7 @@ func _process(delta: float) -> void:
 
 	if (curent_dialogue == 0):
 		Inventory.open = false
-	if (curent_dialogue == 2):
+	if (curent_dialogue == 1):
 		# Drag out
 		Inventory.open = true
 		locked = false
@@ -36,9 +37,7 @@ func _process(delta: float) -> void:
 		if not locked:
 			curent_dialogue += 1
 			letter = 0
-		
-
-	if (curent_dialogue == 3):
+	if (curent_dialogue == 2):
 		locked = true
 		if Economy.money > 0: 
 			locked = false

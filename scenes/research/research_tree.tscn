@@ -108,6 +108,7 @@ research_color = Color(0.313726, 0.290196, 0.396078, 1)
 id = "3_1"
 research_name = "Mine"
 description = "Generate units at a fixed rate."
+price_rp = 15
 state = 1
 targets_b = [NodePath("Speed Upgrade3")]
 
@@ -121,6 +122,7 @@ research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 id = "0_1"
 research_name = "Speed upgrade I"
 description = "Make it faster !"
+price = 12
 price_rp = 0
 state = 1
 
@@ -159,7 +161,6 @@ research_color = Color(0.317647, 0.396078, 0.290196, 1)
 id = "3_2"
 research_name = "Processor"
 description = "Increase units value."
-price_rp = 5
 state = 1
 targets_r = [NodePath("../Mine")]
 targets_b = [NodePath("Speed Upgrade"), NodePath("Value Upgrade")]
@@ -177,6 +178,7 @@ research_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 id = "0_2"
 research_name = "Speed upgrade I"
 description = "Make it faster !"
+price = 8
 price_rp = 0
 state = 1
 
@@ -193,6 +195,7 @@ id = "1_2"
 research_name = "Value upgrade I"
 description = "More value !"
 price = 0
+price_rp = 21
 state = 1
 
 [node name="Line2D" type="Line2D" parent="."]
