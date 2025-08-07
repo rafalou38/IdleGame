@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://bjhho2pte32v1"]
+[gd_scene load_steps=24 format=3 uid="uid://bjhho2pte32v1"]
 
 [ext_resource type="Script" uid="uid://b723qevbbiddq" path="res://scenes/main/camera_movement.gd" id="1_3m6la"]
 [ext_resource type="Texture2D" uid="uid://cvvfvpt2dj4pw" path="res://scenes/main/pattern.png" id="2_5su2o"]
 [ext_resource type="Script" uid="uid://ds8fxwq5k3xwy" path="res://scenes/main/nodes_handler.gd" id="3_de16d"]
 [ext_resource type="PackedScene" uid="uid://bbos71oi0rhwg" path="res://views/TopBar/top_bar.tscn" id="3_lnnve"]
+[ext_resource type="PackedScene" uid="uid://b15o6yupmwg4q" path="res://views/boost/boost.tscn" id="4_kdg7e"]
 [ext_resource type="Script" uid="uid://0lputi56ygch" path="res://views/research/research.gd" id="4_uagff"]
 [ext_resource type="PackedScene" uid="uid://degu5ftaio8gf" path="res://views/shop/shop.tscn" id="5_wbxbt"]
 [ext_resource type="PackedScene" uid="uid://cptukrisif4kk" path="res://views/research/research_box.tscn" id="6_1n38w"]
@@ -285,6 +286,15 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
+
+[node name="Boost" parent="CanvasLayer/VBoxContainer/Main" instance=ExtResource("4_kdg7e")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -248.0
+offset_bottom = 0.0
+grow_vertical = 0
 
 [node name="Research" type="Control" parent="CanvasLayer/VBoxContainer/Main" node_paths=PackedStringArray("camera")]
 z_index = 1

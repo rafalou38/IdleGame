@@ -84,7 +84,7 @@ func _process(delta):
 			sync ()
 			dirty = false
 
-		progress = progress + delta * speed # * (NodeHandler.speed_up_factor)**2
+		progress = progress + delta * speed * (Boost.get_boost(3)) # * (NodeHandler.speed_up_factor)**2
 		# progress = progress + delta * speed * min(4, 1 + (NodeHandler.speed_up_factor-1) * 4)
 
 		if progress_ratio >= 1.0:

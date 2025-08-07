@@ -8,7 +8,7 @@ var spawn_delay := 0.0
 var unit_scene = preload("res://scenes/main/unit.tscn")
 
 func _process(delta):
-	spawn_delay += delta * NodeHandler.speed_up_factor
+	spawn_delay += delta * NodeHandler.speed_up_factor * (Boost.get_boost(3))
 
 	if $BaseNode.data.upgrades.has(Upgrades.UpgradeType.SPEED):
 		speed_level = $BaseNode.data.upgrades[Upgrades.UpgradeType.SPEED]

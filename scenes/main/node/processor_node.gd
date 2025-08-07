@@ -7,7 +7,7 @@ var value_level = 0
 var process_delay := 0.0
 func _process(delta):
 	if node.input_queue.size() > 0:
-		process_delay += delta * NodeHandler.speed_up_factor
+		process_delay += delta * NodeHandler.speed_up_factor  * (Boost.get_boost(3))
 		
 		if $BaseNode.data.upgrades.has(Upgrades.UpgradeType.SPEED):
 			speed_level = $BaseNode.data.upgrades[Upgrades.UpgradeType.SPEED]

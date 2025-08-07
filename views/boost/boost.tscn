@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://b15o6yupmwg4q"]
+
+[ext_resource type="Texture2D" uid="uid://bqseytv8p1sgs" path="res://sprites/icons/fire.svg" id="1_ippiy"]
+[ext_resource type="Script" uid="uid://dq6geujyvg5m" path="res://views/boost/boost.gd" id="1_ttufp"]
+[ext_resource type="PackedScene" uid="uid://c0xcs6gfq1aeh" path="res://views/shop/button/ripple.tscn" id="2_xf1ag"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ippiy"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 80.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf1ag"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.11, 0.11, 0.11, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 32
+
+[node name="Boost" type="PanelContainer"]
+offset_right = 200.0
+offset_bottom = 248.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ippiy")
+script = ExtResource("1_ttufp")
+
+[node name="wrapper" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_xf1ag")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xf1ag")
+
+[node name="TextureButton" type="TextureRect" parent="wrapper"]
+self_modulate = Color(1, 1, 1, 0.647059)
+layout_mode = 2
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 111.0
+offset_bottom = 111.0
+texture = ExtResource("1_ippiy")
+expand_mode = 1
+
+[node name="Ripple" parent="wrapper" instance=ExtResource("2_xf1ag")]
+
+[connection signal="pressed" from="wrapper" to="." method="_on_pressed"]
