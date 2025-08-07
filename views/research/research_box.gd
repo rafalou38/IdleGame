@@ -50,6 +50,14 @@ func _process(_delta: float) -> void:
 	$Container/PanelContainer/VBoxContainer/HBoxContainer/Label.text = Util.number_to_human(spent) + "/" + Util.number_to_human(research["price"])
 	$Container/PanelContainer/VBoxContainer/HBoxContainer/Label2.text = Util.number_to_human(spent_rp) + "/" + Util.number_to_human(research["price_rp"])
 
+	$Container/PanelContainer/VBoxContainer/HBoxContainer/Control.visible = research["price"] > 0
+	$Container/PanelContainer/VBoxContainer/HBoxContainer/Label.visible = research["price"] > 0
+
+	$Container/PanelContainer/VBoxContainer/HBoxContainer/Control2.visible = research["price_rp"] > 0
+	$Container/PanelContainer/VBoxContainer/HBoxContainer/Label2.visible = research["price_rp"] > 0
+	
+
+
 	$Container/ProgressBar.value = progress * 100
 
 	if (owner.find_child("BottomBar").focused in ["home"]):

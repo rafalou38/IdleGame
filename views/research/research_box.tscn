@@ -222,7 +222,7 @@ modulate = Color(1, 1, 1, 0.584314)
 layout_mode = 2
 
 [node name="Control" type="CenterContainer" parent="Container/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(26, 40)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/VBoxContainer/HBoxContainer/Control"]

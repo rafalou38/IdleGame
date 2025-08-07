@@ -24,10 +24,10 @@ static func node_buy(type: Nodes.NodeType, own_count: int) -> float:
 
 static func upgrade_price(type: Upgrades.UpgradeType, node: Nodes.NodeType, level: int):
 	if node == Nodes.NodeType.MINE && type == Upgrades.UpgradeType.SPEED:
-		return 3 * (pow(3, level) + 1)
+		return 8 * (pow(3.5, level) + 1)
 		# 10 * x ^ {3 + 0.04 * x}
 	if node == Nodes.NodeType.PROCESSOR && type == Upgrades.UpgradeType.SPEED:
-		return 2 * (pow(3, level) + 1)
+		return 10 * (pow(3, level) + 1)
 		# 10 * x ^ {2 + 0.02 * x}
 	if node == Nodes.NodeType.PROCESSOR && type == Upgrades.UpgradeType.VALUE:
 		return 7 * (pow(2, level) + 1)

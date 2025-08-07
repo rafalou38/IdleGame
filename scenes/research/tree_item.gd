@@ -178,7 +178,12 @@ func _sync_progress():
 
 		$container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Label.text = Util.number_to_human(spent) + "/" + Util.number_to_human(price)
 		$container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Label2.text = Util.number_to_human(spent_rp) + "/" + Util.number_to_human(price_rp)
-		
+			
+		$container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Control.visible = price > 0
+		$container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Label.visible = price > 0
+		$container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Control2.visible = price_rp > 0
+		$container/VBoxContainer/ResearchBox/VBoxContainer/HBoxContainer/Label2.visible = price_rp > 0
+
 		if (progress >= 0 and progress <= 1):
 			$container/VBoxContainer/ResearchBox/Panel.size.x = $container/VBoxContainer/ResearchBox.size.x * progress
 			$container/VBoxContainer/ResearchBox/Panel.position.x = 0
