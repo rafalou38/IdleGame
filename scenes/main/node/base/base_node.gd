@@ -79,6 +79,9 @@ func _process(delta):
 		
 func _physics_process(_delta):
 	for con in pending_forces.keys():
+		if con.fromNode.data.placed == false or con.toNode.data.placed == false:
+			pending_forces.erase(con)
+			continue
 		var f = pending_forces[con]
 		con.fromNode.body.apply_force(f.from_force, f.from_pos)
 		con.toNode.body.apply_force(f.to_force, f.to_pos)
@@ -122,7 +125,6 @@ func _refresh_line(con: Connection):
 			from_pos = con.fromKnob.position,
 			to_pos = con.toKnob.position
 		}
-
 	else:
 		pending_forces.erase(con)
 

@@ -62,11 +62,25 @@ func move_to_inventory(nodeInfo: NodeData):
 		print(e.data.id," ", nodeInfo.id, " ", e.data.id == nodeInfo.id)
 		return e.data.id == nodeInfo.id
 	var node_i := nodes.find_custom(f)
-
-	nodes.remove_at(node_i)
 	
+	for other in nodes:
+		if (other.data.id == nodeInfo.id):
+			continue
+		
+		for con in other.data.outbound_connections:
+			if (con.toNode.data.id == nodeInfo.id):
+				con.fromKnob.retract = true
+				con.fromNode.dispose_connection(con.fromKnob, con.toKnob)
+				con.fromNode.refreshLines()
+
+	for con in nodeInfo.outbound_connections:
+		con.fromNode.dispose_connection(con.fromKnob, con.toKnob)
+		con.fromNode.refreshLines()
+
 	nodeInfo.placed = false
 	Inventory.dirty = true
+
+	nodes.remove_at(node_i)
 
 
 func add_node(nodeInfo: NodeData, pos: Vector2):
