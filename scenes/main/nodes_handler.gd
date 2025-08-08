@@ -5,7 +5,7 @@ static var node_ref_by_type: Dictionary = {
 	Nodes.NodeType.SHOP: preload("res://scenes/main/node/shop_node.tscn"),
 	Nodes.NodeType.MINE: preload("res://scenes/main/node/mine_node.tscn"),
 	Nodes.NodeType.PROCESSOR: preload("res://scenes/main/node/processor_node.tscn"),
-	Nodes.NodeType.REFINERY: null,
+	Nodes.NodeType.REFINERY: preload("res://scenes/main/node/refinery_node.tscn"),
 	Nodes.NodeType.TETHER: preload("res://scenes/main/node/tether_node.tscn"),
 	Nodes.NodeType.DUPLICATOR: null,
 	Nodes.NodeType.RESEARCH_CENTER: preload("res://scenes/main/node/research_center_node.tscn"),

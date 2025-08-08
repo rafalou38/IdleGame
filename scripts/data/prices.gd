@@ -12,7 +12,7 @@ static func node_buy(type: Nodes.NodeType, own_count: int) -> float:
 			return 8 * (pow(2.5, x) + 1)
 			# 9 ^ {\log(x + 1) ^ 1.8 + 1}
 		Nodes.NodeType.REFINERY:
-			return Util.factorial(x + 6) ** (9 / 10.0)
+			return Util.factorial(x + 4) ** (9 / 10.0)
 		Nodes.NodeType.TETHER:
 			return 9.0 ** (x ** 0.4 + 1)
 		Nodes.NodeType.LAB:
@@ -31,10 +31,12 @@ static func upgrade_price(type: Upgrades.UpgradeType, node: Nodes.NodeType, leve
 		# 10 * x ^ {2 + 0.02 * x}
 	if node == Nodes.NodeType.PROCESSOR && type == Upgrades.UpgradeType.VALUE:
 		return 7 * (pow(2, level) + 1)
-
+	if node == Nodes.NodeType.REFINERY && type == Upgrades.UpgradeType.SPEED:
+		return 10 * (pow(3, level) + 1)
+	if node == Nodes.NodeType.REFINERY && type == Upgrades.UpgradeType.VALUE:
+		return 10 * (pow(7, level) + 1)
 	if type == Upgrades.UpgradeType.RP_MARKET:
 		return 100
-
 	return 0
 
 

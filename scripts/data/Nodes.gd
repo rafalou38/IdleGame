@@ -36,7 +36,7 @@ static func node_color(t: NodeType):
 			NodeType.SHOP: Color("#654a4a"),
 			NodeType.MINE: Color("#504a65"),
 			NodeType.PROCESSOR: Color("#51654a"),
-			NodeType.REFINERY: Color("#00000000"),
+			NodeType.REFINERY: Color("#8e804f"),
 			NodeType.TETHER: Color("#4a6065"),
 			NodeType.DUPLICATOR: Color("#00000000"),
 			NodeType.RESEARCH_CENTER: Color("#373bb9"),

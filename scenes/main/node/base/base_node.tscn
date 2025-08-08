@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy7lg6glergvy"]
+[gd_scene load_steps=15 format=3 uid="uid://dy7lg6glergvy"]
 
 [ext_resource type="Script" uid="uid://dgi3o6u1u21lb" path="res://scenes/main/node/base/node_displacement.gd" id="1_g1t8c"]
 [ext_resource type="Script" uid="uid://c7lhxsvw5gmpd" path="res://scenes/main/node/base/base_node.gd" id="1_yiria"]
 [ext_resource type="Texture2D" uid="uid://bwws2qjpuuxps" path="res://sprites/particles/x64-circle.svg" id="2_1ufmw"]
 [ext_resource type="PackedScene" uid="uid://dfsb3qlietv5l" path="res://scenes/main/node/base/ui/node_ui.tscn" id="3_vwrt4"]
+[ext_resource type="Texture2D" uid="uid://d24hjoro4qkp6" path="res://sprites/icons/sell.svg" id="5_mhq77"]
 [ext_resource type="PackedScene" uid="uid://0rfk8ulnlean" path="res://scenes/main/node/base/out_knob/out_knob.tscn" id="8_jf7ek"]
 [ext_resource type="PackedScene" uid="uid://84huf2fqgxrx" path="res://scenes/main/node/base/in_knob/in_knob.tscn" id="9_h45e7"]
 
@@ -14,14 +15,14 @@ friction = 0.0
 _data = [Vector2(0.00917432, 1), 0.0, -3.39921, 0, 0, Vector2(1, 0), -0.0753149, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nqqf"]
-bg_color = Color(0, 0, 0, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhq77"]
+bg_color = Color(0.396078, 0.290196, 0.290196, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhfto"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ikutq"]
 radius = 146.55
 height = 293.1
 
@@ -210,8 +211,10 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4nqqf")
-color = Color(0, 0, 0, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mhq77")
+color = Color(0.396078, 0.290196, 0.290196, 1)
+icon = ExtResource("5_mhq77")
+displayName = "Shop"
 
 [node name="Knobs" type="Control" parent="rb/Control"]
 z_index = 2
@@ -334,7 +337,7 @@ enabled = false
 visible = false
 position = Vector2(71, 71)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_mhfto")
+shape = SubResource("CapsuleShape2D_ikutq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

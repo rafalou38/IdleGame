@@ -9,6 +9,8 @@ extends Panel
 @export var displayName := ""
 @export var progress := 0.0
 
+
+
 func apply():
 	if (hue > 0.1):
 		color = Color.from_hsv(hue / 360, 38.0 / 100, 29.0 / 100, 1.0)
@@ -27,5 +29,6 @@ func apply():
 func _ready():
 	apply()
 
+# todo 
 func _process(_delta):
 	apply()

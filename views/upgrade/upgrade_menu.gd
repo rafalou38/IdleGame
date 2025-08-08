@@ -33,13 +33,13 @@ func _configure_upgrades():
 		c.queue_free()
 
 	for upgrade_id in Economy.research.keys():
-		var r = Economy.research[upgrade_id]
+		#var r = Economy.research[upgrade_id]
 		var node_type := Upgrades.node_type_from_id(upgrade_id)
 		var research_type := Upgrades.upgrade_type_from_id(upgrade_id)
 
 		if (node_type == current_node.type
 			&& research_type != Upgrades.UpgradeType.UNLOCK
-			&& (r.state == ResearchTreeItem.State.BOUGHT || (r.level > 1))
+			#&& (r.state == ResearchTreeItem.State.BOUGHT || (r.level > 1))
 		):
 			var item = upgrade_item_ref.instantiate()
 			item.node = current_node

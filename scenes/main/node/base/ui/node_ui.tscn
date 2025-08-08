@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b14tppiydctbk" path="res://sprites/icons/mine.svg" id="3_eltol"]
 [ext_resource type="Texture2D" uid="uid://dqj3xsv85rsfc" path="res://scenes/main/node/base/sprites/square.png" id="5_6c6aq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgxy7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yngd"]
 bg_color = Color(0, 0.645167, 0.79, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -15,7 +15,7 @@ corner_radius_bottom_left = 10
 clip_children = 2
 offset_right = 142.0
 offset_bottom = 142.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tgxy7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1yngd")
 script = ExtResource("2_5t51d")
 color = Color(0, 0.645167, 0.79, 1)
 icon = ExtResource("3_eltol")

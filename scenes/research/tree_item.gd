@@ -70,6 +70,8 @@ func _ready():
 				print(Economy.research[id])
 				level = Economy.research[id]["level"]
 				state = Economy.research[id]["state"]
+	else:
+		_register_empty()
 
 	call_deferred("_config_ui")
 	call_deferred("refresh_state")
@@ -79,7 +81,7 @@ var prev_current = ""
 func _process(_delta: float) -> void:
 
 	# If active research was reset
-	if(Economy.research.has(id) && state == State.RESEARCHING && Economy.research[id].state == State.AVAILABLE):
+	if (Economy.research.has(id) && state == State.RESEARCHING && Economy.research[id].state == State.AVAILABLE):
 		state = State.AVAILABLE
 		refresh_state()
 
@@ -213,19 +215,28 @@ func _end_research():
 		Economy.active_research = ""
 
 		BottomBar.ping_research += 1
-	_config_ui()
 	refresh_state()
+	_config_ui()
 
+func _register_empty():
+	Economy.research[id] = {
+		"spent_rp": 0,
+		"price": price,
+		"spent": 0,
+		"price_rp": price_rp,
+		"state": state,
+		"level": level
+	}
 
 func _start_research():
 	# Reset active research
-	if(Economy.active_research != ""):
+	if (Economy.active_research != ""):
 		Economy.research[Economy.active_research].state = State.AVAILABLE
 	
 	Economy.active_research = id
 	state = State.RESEARCHING
 
-	if Economy.research.has(id): 
+	if Economy.research.has(id):
 		Economy.research[id].state = State.RESEARCHING;
 		Economy.research[id].level = level;
 		Economy.research[id].spent = 0;

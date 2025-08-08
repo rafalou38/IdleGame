@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvutsbq5r6bhi"]
+
+[ext_resource type="Script" uid="uid://unek7ex750lp" path="res://scenes/main/node/refinery_node.gd" id="1_soibj"]
+[ext_resource type="PackedScene" uid="uid://dy7lg6glergvy" path="res://scenes/main/node/base/base_node.tscn" id="2_8uwwl"]
+[ext_resource type="Texture2D" uid="uid://b63ytok7xwyu4" path="res://sprites/icons/refinery.svg" id="3_soibj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_soibj"]
+bg_color = Color(0.556863, 0.501961, 0.309804, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uwwl"]
+radius = 146.55
+height = 293.1
+
+[node name="RefineryNode" type="Node2D"]
+script = ExtResource("1_soibj")
+
+[node name="BaseNode" parent="." instance=ExtResource("2_8uwwl")]
+type = 3
+input_knob_count = 1
+output_knob_count = 1
+
+[node name="node_ui" parent="BaseNode/rb/Control" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_soibj")
+color = Color(0.556863, 0.501961, 0.309804, 1)
+icon = ExtResource("3_soibj")
+displayName = "Refinery"
+
+[node name="CollisionShape2D" parent="BaseNode/rb" index="2"]
+shape = SubResource("CapsuleShape2D_8uwwl")
+
+[editable path="BaseNode"]

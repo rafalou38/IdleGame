@@ -7,7 +7,7 @@ static func node_desc(t: Nodes.NodeType) -> String:
 		Nodes.NodeType.LAB: "Convert basic units into research points.",
 		Nodes.NodeType.RESEARCH_CENTER: "Allows researching new technologies.",
 		Nodes.NodeType.PROCESSOR: "Increase units value.",
-		Nodes.NodeType.REFINERY: "Multiplies unit by fixed value.",
+		Nodes.NodeType.REFINERY: "Multiplies unit value.",
 		Nodes.NodeType.TETHER: "Distributes inputs to multiple nodes.",
 		Nodes.NodeType.DUPLICATOR: "Duplicates units.",
 		Nodes.NodeType.SPEED: "Speeds up units.",

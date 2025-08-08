@@ -1,3 +1,5 @@
+@tool
+
 class_name GameNode
 extends Node2D
 
@@ -59,6 +61,12 @@ func _ready():
 	$rb/CollisionShape2D.shape = $rb/CollisionShape2D.shape.duplicate()
 	# $AnimationPlayer.play("spawn")
 
+	var ui = $rb/Control/node_ui
+	ui.icon = Nodes.node_icons(type)
+	ui.color = Nodes.node_color(type)
+	ui.hue = 0
+	ui.displayName = L.node_name(type)
+	
 var update_timer := 0.0
 
 func _process(delta):

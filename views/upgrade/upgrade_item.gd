@@ -2,7 +2,7 @@ extends HBoxContainer
 class_name UpgradeItem
 
 # InBound
-var node : GameNode
+var node: GameNode
 var upgrade_type: Upgrades.UpgradeType = Upgrades.UpgradeType.SPEED
 
 # Private
@@ -35,9 +35,9 @@ func _sync():
 		else:
 			unlocked_level = Economy.research[id].level - 1
 	
-	price = Prices.upgrade_price(upgrade_type, node.type, level+1) / 4
+	price = Prices.upgrade_price(upgrade_type, node.type, level + 1) / 4
 
-	$Title/Name.text = L.upgrade_name(upgrade_type) 
+	$Title/Name.text = L.upgrade_name(upgrade_type)
 	$Logo/Icon.texture = Upgrades.upgrade_icons(upgrade_type)
 
 
@@ -46,22 +46,19 @@ func _sync():
 
 	if upgrade_type != Upgrades.UpgradeType.RP_MARKET:
 		$Title/HB/Level.text = "Level " + str(level)
-		if upgrade_type == Upgrades.UpgradeType.SPEED && node.type == Nodes.NodeType.MINE:
-			$Title/HB/Value.text = str(round(Values.mine_speed_duration(level)* 100)/100) + "s"
-		elif node.type == Nodes.NodeType.PROCESSOR && upgrade_type == Upgrades.UpgradeType.SPEED:
-			$Title/HB/Value.text = str(round(Values.process_speed_duration(level)* 100)/100) + "s"
-		elif node.type == Nodes.NodeType.PROCESSOR && upgrade_type == Upgrades.UpgradeType.VALUE:
-			$Title/HB/Value.text = "+" + str(round(Values.process_value_increase(level)* 100)/100)
+		if upgrade_type == Upgrades.UpgradeType.SPEED && (node.type == Nodes.NodeType.MINE || node.type == Nodes.NodeType.PROCESSOR || node.type == Nodes.NodeType.REFINERY):
+			$Title/HB/Value.text = str(round(Values.mine_speed_duration(level) * 100) / 100) + "s"
+		elif upgrade_type == Upgrades.UpgradeType.VALUE && (node.type == Nodes.NodeType.PROCESSOR):
+			$Title/HB/Value.text = "+" + str(round(Values.process_value_increase(level) * 100) / 100)
+		elif upgrade_type == Upgrades.UpgradeType.VALUE && (node.type == Nodes.NodeType.REFINERY):
+			$Title/HB/Value.text = "+" + str(round((Values.refinery_value(level) - 1) * 10 * 100) / 10) + "%"
 	elif level == 0:
 		$Title/HB/Level.text = "DISABLED"
 	elif level == 1:
 		$Title/HB/Level.text = "ENABLED"
 	
 
-
-
-func _process(_delta: float) -> void:		
-	print(level," ", unlocked_level)
+func _process(_delta: float) -> void:
 	if Economy.money < price || level >= unlocked_level:
 		button.disabled = true
 		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -75,7 +72,7 @@ func _process(_delta: float) -> void:
 		$Button/VB/HB.visible = true
 		$Button/VB/HB2.visible = true
 		$Button/VB/HB2.visible = true
-		$Button/VB/HB2/Price.text = "Lvl " + str(level+1)
+		$Button/VB/HB2/Price.text = "Lvl " + str(level + 1)
 	else:
 		$Button/VB/HB.visible = false
 		$Button/VB/HB2.visible = true
